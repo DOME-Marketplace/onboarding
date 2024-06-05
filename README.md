@@ -27,7 +27,7 @@ This section will guide you through the steps to access the Dome Marketplace usi
 
 ### Step 1: Access DOME Marketplace
 
-Visit the Dome Marketplace by clicking on the following link: [DOME Marketplace](https://dome-marketplace.org).
+Visit the Dome Marketplace by clicking on the following link: [DOME Marketplace](https://dome-marketplace-dev.org).
 
 ![DOME Marketplace Access](./assets/DOME_Marketplace_Access.png)
 
