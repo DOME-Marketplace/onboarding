@@ -3,16 +3,13 @@
 ## How to request your Demo LEAR Credential
 To begin the process of obtaining your Demo LEAR Credential, please send an email to [ruben.modamio@in2.es ](mailto:ruben.modamio@in2.es) with the required information listed below. This will help us create your credential efficiently. Note that the Mandator data can be extracted from your organization's EIDAS digital certificate.
 
-### Required Attributes:
-+ DID Web name: The ID format should be did:web:<organizationDND> (e.g., did:web:in2.es)
-
 ### Mandator Attributes:
-+ OrganizationIdentifier: (e.g., VATES-B60645900)
-+ CommonName: (e.g., IN2)
++ Tax Identification Number: 
++ Surname and Name of the employee acting as legal representative of the company
 + EmailAddress: (e.g., rrhh@in2.es)
-+ SerialNumber: (e.g., B60645900)
-+ Organization: (e.g., IN2, Ingeniería de la Información, S.L.)
-+ Country: (e.g., ES)
++ National Identification Number of the employee
++ Official Organisation name: (e.g., IN2, Ingeniería de la Información, S.L.)
++ Two letters representing the contry: (e.g., ES)
 
 ### Mandatee Attributes:
 + First Name: (e.g., Rubén) 
