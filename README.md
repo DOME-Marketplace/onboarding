@@ -1,7 +1,7 @@
 # Onboarding
 
 ## How to request your Demo LEAR Credential
-To begin the process of obtaining your Demo LEAR Credential, please send an email to [ruben.modamio@in2.es ](mailto:ruben.modamio@in2.es) with the required information listed below. This will help us create your credential efficiently. Note that the Mandator data can be extracted from your organization's EIDAS digital certificate.
+To begin the process of obtaining your Demo LEAR Credential, please create a ticket on [ticketing system](https://ticketing.dome-marketplace-dev.org/) with the required information listed below. This will help us create your credential efficiently. Note that the Mandator data can be extracted from your organization's EIDAS digital certificate.
 
 ### Mandator Attributes:
 + Tax Identification Number: 
