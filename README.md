@@ -3,7 +3,9 @@
 ## How to request your Demo LEAR Credential
 To begin the process of obtaining your Demo LEAR Credential, please create a ticket on [ticketing system](https://ticketing.dome-marketplace-dev.org/) with the required information listed below. This will help us create your credential efficiently. Note that the Mandator data can be extracted from your organization's EIDAS digital certificate.
 
-### Mandator Attributes:
+### Mandator/Principal Attributes:
+This is the person who authorizes another person to represent them and act on their behalf.
+
 + Tax Identification Number: 
 + Surname and Name of the employee acting as legal representative of the company
 + EmailAddress: (e.g., rrhh@in2.es)
@@ -11,12 +13,16 @@ To begin the process of obtaining your Demo LEAR Credential, please create a tic
 + Official Organisation name: (e.g., IN2, Ingeniería de la Información, S.L.)
 + Two letters representing the contry: (e.g., ES)
 
-### Mandatee Attributes:
+### Mandatee/Agent Attributes:
+This is the person who is authorized to act on behalf of another person.
+
 + First Name: (e.g., Rubén) 
 + Last Name: (e.g., Modamio)
 + Gender: (e.g., M)
 + Email: (e.g., ruben.modamio@in2.es)
 + Mobile Phone: (e.g., +34999999999)
+
+Both the Mandator and the Mandatee share a contract in which a person (the principal) entrusts another person (the agent) with the management of one or more businesses. The agent is responsible for carrying out the principal's instructions and acting in the principal's best interests.
 
 ## How to access the portal once you have your credentials
 
