@@ -84,7 +84,7 @@ The Marketplace will generate verifiable credentials for you and your designated
       ![Screenshot of accessing the DOME Digital Wallet](./assets/wallet-1.png)
 
 - **Registration Process**:
-    - Complete the registration form with the required details. You will need to validate the email and register a passkey for security reasons.
+    - Complete the registration form. You will need to validate the email and register a passkey.
       ![Screenshot of the registration form](./assets/wallet-2.png)
       ![Screenshot of the email validation](./assets/wallet-3.png)
       ![Screenshot of the passkey registration](./assets/wallet-4.png)
