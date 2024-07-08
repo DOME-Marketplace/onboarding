@@ -140,7 +140,7 @@ A QR code will be displayed on the screen. This QR code is unique to your login 
 
 > **Note**: Each QR code is unique and must be scanned during the current session to ensure security. Do not use QR codes from other sessions or sources.
 
-![QR Code Display](./assets/marketplace-1.png)
+![QR Code Display](./assets/marketplace-2.png)
 
 ### Step 3: Log into DOME Wallet
 
