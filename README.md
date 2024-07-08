@@ -79,47 +79,48 @@ Once all documentation is approved, your provisional account will be converted i
 ### For LEAR and CSP Operators
 The Marketplace will generate verifiable credentials for you and your designated operators.
 #### Registering on the DOME Digital Wallet
-1. **Access the Digital Wallet**:
-  - Visit [DOME Digital Wallet](https://wallet.dome-marketplace-prd.org) to start the registration process and press register.
-    ![Screenshot of accessing the DOME Digital Wallet](./assets/wallet-1.png)
-  - 
-2. **Registration Process**:
-  - Complete the registration form with the required details after you will need te validate the email and register a passkey for security reasons.
-    ![Screenshot of the registration form](./assets/wallet-2.png)
-    ![Screenshot of the email validation](./assets/wallet-3.png)
-    ![Screenshot of the passkey registration](./assets/wallet-4.png)
+- **Access the Digital Wallet**:
+    - Visit [DOME Digital Wallet](https://wallet.dome-marketplace-prd.org) to start the registration process and press register.
+      ![Screenshot of accessing the DOME Digital Wallet](./assets/wallet-1.png)
+
+- **Registration Process**:
+    - Complete the registration form with the required details. You will need to validate the email and register a passkey for security reasons.
+      ![Screenshot of the registration form](./assets/wallet-2.png)
+      ![Screenshot of the email validation](./assets/wallet-3.png)
+      ![Screenshot of the passkey registration](./assets/wallet-4.png)
 
 #### Receiving and Accepting the Credential Offer
-3. **Credential Offer**:
-  - Within a few days after confirmation, you will receive an email with a credential offer. Click on 'Start Credential Offer' in the email.
-    ![Screenshot of the credential offer email](./assets/mail-1.png)
+- **Credential Offer**:
+    - Within a few days after confirmation, you will receive an email with a credential offer. Click on 'Start Credential Offer' in the email.
+      ![Screenshot of the credential offer email](./assets/mail-1.png)
 
-4. **Scanning the QR Code**:
-  - The email will display a QR code that you need to scan using the QR scan function in your wallet. This is a critical step to ensure your digital credentials are linked correctly.
-    ![Screenshot of the QR code](./assets/issuer-qr.png)
-  - Look for the QR scan button in your wallet app to initiate the scanning process.
-    ![Screenshot of the QR scan button](./assets/wallet-5.png)
+- **Scanning the QR Code**:
+    - The email will display a QR code that you need to scan using the QR scan function in your wallet. This is a critical step to ensure your digital credentials are linked correctly.
+      ![Screenshot of the QR code](./assets/issuer-qr.png)
+    - Look for the QR scan button in your wallet app to initiate the scanning process.
+      ![Screenshot of the QR scan button](./assets/wallet-5.png)
 
-5. **PIN Code Entry**:
+- **PIN Code Entry**:
     - After scanning the QR code, you will be prompted to enter a PIN code that you received by email. This PIN is crucial for verifying your identity and securing your credential.
       ![Screenshot of the email with the PIN](./assets/mail-2.png)
       ![Screenshot of entering the PIN](./assets/wallet-6.png)
 
 #### Finalizing the Credential
-6. **Credential in Unsigned State**:
-  - Once the PIN is entered, the credential will appear in your wallet in an 'unsigned' state, which means it is not yet validated or signed.
-    ![Screenshot of the unsigned credential](./assets/wallet-7.png)
+- **Credential in Unsigned State**:
+    - Once the PIN is entered, the credential will appear in your wallet in an 'unsigned' state, which means it is not yet validated or signed.
+      ![Screenshot of the unsigned credential](./assets/wallet-7.png)
 
-7. **Manual Validation and Signing**:
-  - The credential requires manual intervention for validation and signing. Once this is completed, you will receive an email notifying you that your credential is signed and ready to be downloaded.
-    ![Screenshot of the credential signing notification email](./assets/mail-3.png)
+- **Manual Validation and Signing**:
+    - The credential requires manual intervention for validation and signing. Once this is completed, you will receive an email notifying you that your credential is signed and ready to be downloaded.
+      ![Screenshot of the credential signing notification email](./assets/mail-3.png)
 
-8. **Downloading the Signed Credential**:
-  - Go back to your wallet and click on the signature icon to download the signed credential. After this, the credential will no longer be in the 'unsigned' state.
-    ![Screenshot of downloading the signed credential](./assets/wallet-7-b.png)
-9. **Credential Ready for Use**:
-  - You now have your LEAR Credential ready for use in the marketplace.
-    ![Screenshot of the final LEAR Credential ready for use](./assets/wallet-8.png)
+- **Downloading the Signed Credential**:
+    - Go back to your wallet and click on the signature icon to download the signed credential. After this, the credential will no longer be in the 'unsigned' state.
+      ![Screenshot of downloading the signed credential](./assets/wallet-7-b.png)
+
+- **Credential Ready for Use**:
+    - You now have your LEAR Credential ready for use in the marketplace.
+      ![Screenshot of the final LEAR Credential ready for use](./assets/wallet-8.png)
 
 ## 7. How to Access the Portal Once You Have Your Credentials
 
