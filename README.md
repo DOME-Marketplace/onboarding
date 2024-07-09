@@ -140,7 +140,24 @@ The Marketplace will generate verifiable credentials for you and your designated
       
       ![Screenshot of the final LEAR Credential ready for use](./assets/wallet-8.png)
 
-## 7. How to Access the Portal Once You Have Your Credentials
+## 7. Issuance of Credentials by LEAR Delegation
+This section explains the process for issuing a LEAR credential to a new employee of a CSP that is already registered. This process ensures that newly authorized employees can act on behalf of the CSP.
+
+### Credential Delegation Process
+- **Designating a New LEAR**:
+    - **Required Documents**:
+        - **LEAR Appointment Form**: Necessary to authorize the new LEAR.
+          [Download LEAR Appointment Form](link-to-LEAR-form)
+        - **Declaration of Honor (DoH)**: Required to confirm the accuracy of the information.
+          [Download Declaration of Honor](link-to-Declaration-of-Honor)
+    - **Additional Information**: Additional documentation may be required based on Marketplace policies.
+
+### Important Considerations
+- **Internal Validation**: Essential to ensure that the information is correct before submission.
+- **Security and Confidentiality**: Comply with established regulations to protect sensitive information.
+
+
+## 8. How to Access the Portal Once You Have Your Credentials
 
 This section will guide you through the steps to access the Dome Marketplace using the VC Login option, utilizing your LEAR credential.
 
@@ -184,15 +201,15 @@ You are now logged into the Dome Marketplace.
 
 ![Dome marketplace](./assets/marketplace-3.png)
 
-## 8. Publishing Offers in the Marketplace
+## 9. Publishing Offers in the Marketplace
 
 ### Offer Descriptions
 All offers must meet the minimum criteria set by the Marketplace, when describing your offers, make sure to include all necessary technical and compliance details, for more detailed information about the criteria, please consult the following document:
 [Criteria Document](expected-link)
 
-## 9. Complaint Resolution and Intellectual Property Rights Infringement Management
+## 10. Complaint Resolution and Intellectual Property Rights Infringement Management
 ### Complaint Submission Process
 If you have any complaints, send them to [legal.helpdesk@dome-marketplace.org](mailto:legal.helpdesk@dome-marketplace.org) with all relevant details.
 
-## 10. Contact and Support
+## 11. Contact and Support
 For further help, contact our technical support at [support@dome-marketplace.org](mailto:support@dome-marketplace.org).
