@@ -100,7 +100,7 @@ The Marketplace will generate verifiable credentials for you and your designated
 
 #### Receiving and Accepting the Credential Offer
 - **Credential Offer**:
-    - Within a few days after confirmation, you will receive an email with a credential offer. Click on 'Start Credential Offer' in the email.
+    - Within a few days after confirmation, you will receive an email with a credential offer. It is recommended to open this email on a different device from the one where the DOME Wallet is installed because you will need to scan the QR code with the wallet. Click on 'Start Credential Offer' in the email to proceed.
       
       ![Screenshot of the credential offer email](./assets/mail-1.png)
 
@@ -126,7 +126,7 @@ The Marketplace will generate verifiable credentials for you and your designated
       ![Screenshot of the unsigned credential](./assets/wallet-7.png)
 
 - **Manual Validation and Signing**:
-    - The credential requires manual intervention for validation and signing. Once this is completed, you will receive an email notifying you that your credential is signed and ready to be downloaded.
+    - The credential requires manual intervention for validation and signing. This process typically takes between 2-4 business days. You will be notified by email once your credential is signed and ready to be downloaded.
       
       ![Screenshot of the credential signing notification email](./assets/mail-3.png)
 
