@@ -17,23 +17,29 @@ Before beginning, ensure you meet the following criteria:
 ### Account Creation
 #### Request for provisional account creation
 To begin the process, visit the [DOME Marketplace website](https://dome-marketplace.org/). After navigating to the homepage, click on the "Contact Us" link.
+
 ![Screenshot of the DOME Marketplace homepage](./assets/homepage-image.png)
 
 **Enter your work email:** On the Contact Us page, input your work email address and submit. This is required to receive the verification code.
+
 ![Screenshot of the Contact Us page](./assets/csp-account-application-1.png)
 
 **Verification email:** Check your email for a confirmation message that includes a verification code.
+
 ![Screenshot of the confirmation email with verification code](./assets/csp-account-application-email-confirmation.png)
 
 **Complete the provisional CSP account creation:** With the verification code, return to the DOME Marketplace website to enter the code or use the link provided on the mail.
+
 ![Screenshot of the application form](./assets/csp-account-application-2.png)
 
 **Then you will be logged just press continue:**
+
 ![Screenshot of the successful login](./assets/csp-account-application-3.png)
 
 ### Filling Out Forms
 #### Company information form
 Fill in all required fields, making sure to use Latin characters.
+
 ![Screenshot of the company information form](./assets/company-information-form.png)
 
 ## 4. Submission and Validation of Documentation
@@ -52,7 +58,7 @@ You must submit the following documentation by emailing it to [onboarding@dome-m
 - **Marketplace Terms And Conditions for Cloud Service Providers**: It is essential to review and agree to the Terms and Conditions of the Marketplace. These can be accessed here:
   [Marketplace Terms and Conditions](expected-link)
 
-Additionally, Support documents that provide further clarification and guidance:
+Additionally, Support documents that provide further clarification and guidance, you don't need to provide this documents:
 
 - **Practical comments to Appointment Of Legal Entity Appointed Representative Form**: This document offers practical advice and detailed instructions on how to properly fill out the LEAR form.
   [Download Practical Comments on LEAR Form](expected-link)
@@ -85,41 +91,53 @@ The Marketplace will generate verifiable credentials for you and your designated
 
 - **Registration Process**:
     - Complete the registration form. You will need to validate the email and register a passkey.
+
       ![Screenshot of the registration form](./assets/wallet-2.png)
+  
       ![Screenshot of the email validation](./assets/wallet-3.png)
+  
       ![Screenshot of the passkey registration](./assets/wallet-4.png)
 
 #### Receiving and Accepting the Credential Offer
 - **Credential Offer**:
     - Within a few days after confirmation, you will receive an email with a credential offer. Click on 'Start Credential Offer' in the email.
+      
       ![Screenshot of the credential offer email](./assets/mail-1.png)
 
 - **Scanning the QR Code**:
     - The email will display a QR code that you need to scan using the QR scan function in your wallet. This is a critical step to ensure your digital credentials are linked correctly.
+      
       ![Screenshot of the QR code](./assets/issuer-qr.png)
     - Look for the QR scan button in your wallet app to initiate the scanning process.
+      
       ![Screenshot of the QR scan button](./assets/wallet-5.png)
 
 - **PIN Code Entry**:
     - After scanning the QR code, you will be prompted to enter a PIN code that you received by email. This PIN is crucial for verifying your identity and securing your credential.
+      
       ![Screenshot of the email with the PIN](./assets/mail-2.png)
+      
       ![Screenshot of entering the PIN](./assets/wallet-6.png)
 
 #### Finalizing the Credential
 - **Credential in Unsigned State**:
     - Once the PIN is entered, the credential will appear in your wallet in an 'unsigned' state, which means it is not yet validated or signed.
+      
       ![Screenshot of the unsigned credential](./assets/wallet-7.png)
 
 - **Manual Validation and Signing**:
     - The credential requires manual intervention for validation and signing. Once this is completed, you will receive an email notifying you that your credential is signed and ready to be downloaded.
+      
       ![Screenshot of the credential signing notification email](./assets/mail-3.png)
 
 - **Downloading the Signed Credential**:
     - Go back to your wallet and click on the signature icon to download the signed credential. After this, the credential will no longer be in the 'unsigned' state.
+      
       ![Screenshot of downloading the signed credential](./assets/wallet-7-b.png)
 
 - **Credential Ready for Use**:
     - You now have your LEAR Credential ready for use in the marketplace.
+      
       ![Screenshot of the final LEAR Credential ready for use](./assets/wallet-8.png)
 
 ## 7. How to Access the Portal Once You Have Your Credentials
@@ -163,6 +181,7 @@ Upon successful completion of the attestation, you will be redirected and logged
 ![Attestation Exchange Success](./assets/wallet-vc-login-2.png)
 
 You are now logged into the Dome Marketplace.
+
 ![Dome marketplace](./assets/marketplace-3.png)
 
 ## 8. Publishing Offers in the Marketplace
