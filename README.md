@@ -79,7 +79,7 @@ It's crucial that all information provided during the application process is acc
 Before any offerings can be uploaded to the DOME Marketplace, it is mandatory for the CSP to sign the Marketplace Terms and Conditions. This contract solidifies your obligations and rights within the marketplace.
 
 - **Contract Signing**:
-    - After your documentation is verified and you are notified of approval, you must sign the Marketplace Terms and Conditions for Cloud Service Providers. This document outlines all legal requirements and operational standards expected of CSPs within the marketplace.
+    - After your documentation is verified and you are notified of approval, either your Legal Representative or the appointed LEAR must sign the Marketplace Terms and Conditions for Cloud Service Providers. This document outlines all legal requirements and operational standards expected of CSPs within the marketplace.
 
 - **Submitting the Signed Contract**:
     - Once signed, the contract should be sent via email to [onboarding@dome-marketplace.org](mailto:onboarding@dome-marketplace.org). Only after this contract is received and processed by the DOME administrative team can the CSP begin to upload offerings to the marketplace.
