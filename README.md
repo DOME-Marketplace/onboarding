@@ -92,17 +92,7 @@ Once all documentation is approved, your provisional account will be converted i
 The Marketplace will generate verifiable credentials for you and your designated operators.
 #### Registering on the DOME Digital Wallet
 - **Access the Digital Wallet**:
-    - Visit [DOME Digital Wallet](https://wallet.dome-marketplace-prd.org) to start the registration process and press register.
-      ![Screenshot of accessing the DOME Digital Wallet](./assets/wallet-1.png)
-
-- **Registration Process**:
-    - Complete the registration form. You will need to validate the email and register a passkey.
-
-      ![Screenshot of the registration form](./assets/wallet-2.png)
-  
-      ![Screenshot of the email validation](./assets/wallet-3.png)
-  
-      ![Screenshot of the passkey registration](./assets/wallet-4.png)
+    - For detailed instructions on how to register and set up your DOME Digital Wallet, please refer to the registration section in our comprehensive [Wallet Guide](https://github.com/DOME-Marketplace/wallet-guide/tree/initial-wallet-guide?tab=readme-ov-file#1-registering-on-the-dome-digital-wallet). This guide provides step-by-step instructions on creating your wallet account.
 
 #### Receiving and Accepting the Credential Offer
 - **Credential Offer**:
@@ -122,6 +112,8 @@ The Marketplace will generate verifiable credentials for you and your designated
     - Look for the QR scan button in your wallet app to initiate the scanning process.
       
       ![Screenshot of the QR scan button](./assets/wallet-5.png)
+
+> **Note:** If you experience issues with the camera not activating or if the QR code is expired or already used, please consult the troubleshooting section of our [Wallet Guide](https://github.com/DOME-Marketplace/wallet-guide/tree/initial-wallet-guide?tab=readme-ov-file#5-troubleshooting-common-issues). For expired or used QR codes, email [domesupport@in2.es](mailto:domesupport@in2.es) to request a new QR code.
 
 - **PIN Code Entry**:
     - After scanning the QR code, you will be prompted to enter a PIN code that you received by email. This PIN is crucial for verifying your identity and securing your credential.
