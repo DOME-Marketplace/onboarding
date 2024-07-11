@@ -99,7 +99,7 @@ The Marketplace will generate verifiable credentials for you and your designated
     - Within a few days after confirmation, you will receive an email with a credential offer. It is recommended to open this email on a different device from the one where the DOME Wallet is installed because you will need to scan the QR code with the wallet. Click on 'Start Credential Offer' in the email to proceed.
       
       ![Screenshot of the credential offer email](./assets/mail-1.png)
-- 
+
 - **Information Screen**:
     - Upon opening the email, you will initially be presented with an informational screen containing detailed instructions on how to proceed. There will be a button labeled 'Get QR Code'. Pressing this button will display the QR code with the credential offer.
 
