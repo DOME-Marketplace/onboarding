@@ -50,35 +50,41 @@ You must submit the following documentation by emailing it to [onboarding@dome-m
 - **Power of Attorney**: A certified copy of the power of attorney or another document evidencing the source of the power of representation of the legal representative acting on behalf of the potential CSP.
 - **Bank Account Certificate Form**: Completed and signed, in Latin characters.
 - **Appointment of the Legal Entity Appointed Representative (LEAR) Form**: Completed and signed. You can find the form and more details here:
-  [Download LEAR Form](expected-link)
+  [Download LEAR Form](https://dome-marketplace-prd.org/assets/documents/Legal-Entity-Appointed-Representative-Form-v-June-2024.pdf)
 - **Declaration of Honor Form**: Completed and signed. Access the form via the following link:
-  [Download Declaration of Honor Form](expected-link)
-- **Sworn Translations**: Any document not submitted in English or Spanish must include a sworn translation into English. More information and guidelines can be found here:
-- **Digital Certificate**: If the CSP company has a Digital Certificate as per the eIDAS Regulation, then the document related to the power of attorney (4.c) is not needed.
-- **Marketplace Terms And Conditions for Cloud Service Providers**: It is essential to review and agree to the Terms and Conditions of the Marketplace. These can be accessed here:
-  [Marketplace Terms and Conditions](expected-link)
+  [Download Declaration of Honor Form](https://dome-marketplace-prd.org/assets/documents/DoH-for-company-v-June-2024.pdf)
+- **Sworn Translations**: Any document not submitted in English or Spanish must include a sworn translation into English.
+- **Marketplace Terms And Conditions for Cloud Service Providers**: It is essential to review and agree to the Terms and Conditions of the Marketplace, after the documentation submitted has been validated, you will be required to sign the Marketplace Terms And Conditions for Cloud Services Providers. Once you sign it and send it to onboarding@dome-marketplace.org the process of generating the verifiable credential will continue.
+  [Marketplace Terms and Conditions](https://dome-marketplace-prd.org/assets/documents/Marketplace-Terms-And-Conditions-for-Cloud-Service-Providers-v-June-2024.pdf)
 
 Additionally, Support documents that provide further clarification and guidance, you don't need to provide this documents:
 
 - **Practical comments to Appointment Of Legal Entity Appointed Representative Form**: This document offers practical advice and detailed instructions on how to properly fill out the LEAR form.
-  [Download Practical Comments on LEAR Form](expected-link)
-- **Third Party Notification of IPR Infringement**: Guidelines on how to notify if there's an infringement of intellectual property rights by a third party.
-  [Download IPR Infringement Notification Guidelines](expected-link)  
+  [Download Practical Comments on LEAR Form](https://dome-marketplace-prd.org/assets/documents/Practical-comments-to-APPOINTMENT-OF-LEGAL-ENTITY-APPOINTED-REPRESENTATIVE-FORM-v-June-2024.pdf)
 
 If the CSP company has a Digital Certificate in the sense of the eIDAS Regulation, the document related to the power of attorney mentioned earlier is not needed.
 
 ### Documentation Review and Notification Process
-After the required documentation set in sections 3 and 4 above has been submitted, the review process may take more than five business days. Then you will receive a notification about the status of their documentation:
+After the required documentation has been submitted, the review process may take more than five business days. Then you will receive a notification about the status of their documentation:
 
 - **Documentation Correct and Complete**: If all documents are in order and fully compliant, a notification confirming the correctness and completeness will be sent.
 
 - **Error, Mistake, or Information Missing**: If there are any errors, mistakes, or missing information, you will be notified and given a fourteen (14) days term to complete or correct the documentation. Here's what happens next:
     - The new information will be reviewed once submitted.
-    - If the corrections or additional documents are not provided in a satisfactory manner within the specified fourteen (14) days, the onboarding request will be declined.
+    - If the corrections or additional documents are not provided in a satisfactory manner within the specified fourteen (14) days, then we will deem that you relinquish from your onboarding request.
 
 It's crucial that all information provided during the application process is accurate and complete to prevent any delays or rejection during the review phase.
 
-## 5. Account Consolidation
+## 5. Signing the Marketplace Terms and Conditions
+Before any offerings can be uploaded to the DOME Marketplace, it is mandatory for the CSP to sign the Marketplace Terms and Conditions. This contract solidifies your obligations and rights within the marketplace.
+
+- **Contract Signing**:
+    - After your documentation is verified and you are notified of approval, you must sign the Marketplace Terms and Conditions for Cloud Service Providers. This document outlines all legal requirements and operational standards expected of CSPs within the marketplace.
+
+- **Submitting the Signed Contract**:
+    - Once signed, the contract should be sent via email to [onboarding@dome-marketplace.org](mailto:onboarding@dome-marketplace.org). Only after this contract is received and processed by the DOME administrative team can the CSP begin to upload offerings to the marketplace.
+
+## 6. Account Consolidation
 Once all documentation is approved, your provisional account will be converted into an operational account.
 
 ## 6. Generation and Management of Verifiable Credentials
@@ -145,22 +151,11 @@ The Marketplace will generate verifiable credentials for you and your designated
       
       ![Screenshot of the final LEAR Credential ready for use](./assets/wallet-8.png)
 
-## 7. Issuance of Credentials by LEAR Delegation
+## 7. Additional LEAR Appointment
 This section explains the process for issuing a LEAR credential to a new employee of a CSP that is already registered. This process ensures that newly authorized employees can act on behalf of the CSP.
 
 ### Credential Delegation Process
-- **Designating a New LEAR**:
-    - **Required Documents**:
-        - **LEAR Appointment Form**: Necessary to authorize the new LEAR.
-          [Download LEAR Appointment Form](link-to-LEAR-form)
-        - **Declaration of Honor (DoH)**: Required to confirm the accuracy of the information.
-          [Download Declaration of Honor](link-to-Declaration-of-Honor)
-    - **Additional Information**: Additional documentation may be required based on Marketplace policies.
-
-### Important Considerations
-- **Internal Validation**: Essential to ensure that the information is correct before submission.
-- **Security and Confidentiality**: Comply with established regulations to protect sensitive information.
-
+If you wish to change or appoint an additional LEAR, you must send a signed notification from the company’s legal representative to [onboarding@dome-marketplace.org](mailto:onboarding@dome-marketplace.org), and then submit a new LEAR appointment form and Declaration of Honor for the new LEAR.
 
 ## 8. How to Access the Portal Once You Have Your Credentials
 
@@ -209,8 +204,8 @@ You are now logged into the Dome Marketplace.
 ## 9. Publishing Offers in the Marketplace
 
 ### Offer Descriptions
-All offers must meet the minimum criteria set by the Marketplace, when describing your offers, make sure to include all necessary technical and compliance details, for more detailed information about the criteria, please consult the following document:
-[Criteria Document](expected-link)
+All offers must meet the minimum criteria set by the Marketplace, when describing your offers, make sure to include all necessary technical and compliance details, for more detailed information about the criteria, please consult the following document on Description of Offerings section:
+[Criteria Document](https://dome-marketplace-prd.org/assets/documents/DOME-Marketplace-Procedures-v-june-2024.pdf)
 
 ## 10. Complaint Resolution and Intellectual Property Rights Infringement Management
 ### Complaint Submission Process
