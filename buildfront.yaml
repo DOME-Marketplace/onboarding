@@ -32,5 +32,5 @@ staticAssets:
 # This includes the pages names
 hashEntrypointNames: true
 
-subdomainprefix: "onboarding"
+subdomainprefix: ""
 
