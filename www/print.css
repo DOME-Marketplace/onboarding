@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Medium.ttf") format("truetype");
+  font-weight: 450 500;
+}
+
+.onlyscreen {
+  display: none;
+}
+.w3-card-2 {
+  box-shadow: none;
+}
+
+.pagebreak { page-break-before: always; }
