@@ -18,7 +18,7 @@ func main() {
 
 	// serves static files from the provided public dir (if exists)
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		e.Router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("./www"), false))
+		e.Router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("./docs"), false))
 		return nil
 	})
 

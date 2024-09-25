@@ -860,6 +860,58 @@ var myerror = MHR.storage.myerror;
 var mylog = MHR.storage.mylog;
 var html = MHR.html;
 var cleanReload = MHR.cleanReload;
+var introductionText = html`
+<h1>INFORMATION FOR ONBOARDING IN DOME</h1>
+
+<p>The  Marketplace is a digital platform that enables CSPs to offer cloud and edge computing services to customers across Europe.
+</p>
+
+<p>The main goal of the onboarding process is the creation of an operating account for the CSPs from which they can operate within the Marketplace and start publishing their offerings.
+</p>
+
+<p>The process is structured in three main steps:
+</p>
+
+<ol>
+    <li>Launching of the process and provision of company information and documentation</li>
+
+    <li>Verification of the company documentation and contract signature</li>
+
+    <li>Generation of the verifiable credential for the Legal Entity Appointed Representative (LEAR)</li>
+
+</ol>
+ 
+<p>Upon the generation of the LEAR verifiable credential, the CSP is fully operational.
+</p>
+
+<h2>Eligibility Verification</h2>
+
+<p>Before launching the onboarding process, make sure that you meet the following criteria:
+</p>
+
+<ul>
+    <li>You are a legal entity duly registered in an EU country.</li>
+    <li>You have the capability to offer cloud or edge services.</li>
+</ul>
+
+<h2>Filling Out Forms</h2>
+
+<p>In this page you will find a form with three sections. Fill in all the fields (all of them are required), making sure to use Latin characters.
+</p>
+
+<p>
+    The information you enter in the forms will be used to generate two of the documents required for the onboarding process. The whole process is described in more detail in the DOME knowledgebase: <a href="https://knowledgebase.dome-marketplace-prd.org/shelves/company-onboarding-process">Company Onboarding Process</a>. You can read the description in the knowledgebase and come back here whennever you want.
+</p>
+
+<p>
+    The forms are below. Please, click the "<b>Submit and create documents</b>" after filling all the fields.
+</p>
+
+<p>
+    For testing purposes, you can click the "<b>Fill with test data</b>" button to create and print documents with test data but with the final legal prose, so they can be reviewed by your legal department in advance of creating the real documents. 
+</p>
+
+`;
 MHR.register("OnboardingHome", class extends MHR.AbstractPage {
   /**
    * @param {string} id
@@ -925,16 +977,15 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
       verified = pb.authStore.model.verified;
     }
     var theHtml = html`
-<h3>INFORMATION FOR ONBOARDING IN DOME</h3>
+
+${introductionText}
 
 <form name="theform" id="formElements">
-<p><button class="w3-btn w3-black">Submit</button></p>
-
 
     <div  class="w3-panel w3-card-2">
 
         <div class="w3-container w3-xlarge">
-            <h3>Legal representative</h3>
+            <h3>Legal representative of the company</h3>
         </div>
 
         <div class="w3-row">
@@ -1049,10 +1100,10 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
                 <input name="LEARLastName" class="w3-input w3-border" type="text" placeholder="Last name"></p>
 
                 <p><label><b>Nationality</b></label>
-                <input name="LEARRepNationality" class="w3-input w3-border" type="text" placeholder="Nationality"></p>
+                <input name="LEARNationality" class="w3-input w3-border" type="text" placeholder="Nationality"></p>
 
                 <p><label><b>ID card number</b></label>
-                <input name="LEARRepIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number"></p>
+                <input name="LEARIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number"></p>
 
                 <p><label><b>Email</b></label>
                 <input name="LEAREmail" class="w3-input w3-border" type="text" placeholder="Email"></p>
@@ -1067,8 +1118,21 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
 
     </div>
 
+<div class="w3-bar">
+    <button class="w3-btn w3-black w3-left" title="sdjhd asdasd wdwed we">Submit and create documents</button>
+    <button @click=${this.fillTestData} class="w3-btn w3-black w3-right">Fill with test data (only for testing)</button>
+</div>
 
 </form>
+
+<p>
+    Click the "<b>Submit and create documents</b>" button above to create the documents automatically including the data you entered.
+</p>
+
+<p>
+    If you are not yet ready and want to see how the final documents look like, click the button "<b>Fill with test data</b>" and then the "<b>Submit and create documents</b>" button to create the documents with test data.
+</p>
+
 `;
     this.render(theHtml, false);
     var validations = [{
@@ -1085,10 +1149,25 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
       validations,
       this.createDocument
     );
+  }
+  async fillTestData(ev) {
+    ev.preventDefault();
     document.forms["theform"].elements["LegalRepFirstName"].value = "Jesus";
     document.forms["theform"].elements["LegalRepLastName"].value = "Ruiz";
     document.forms["theform"].elements["LegalRepNationality"].value = "Spanish";
     document.forms["theform"].elements["LegalRepIDNumber"].value = "24676932R";
+    document.forms["theform"].elements["CompanyName"].value = "Air Quality Cloud";
+    document.forms["theform"].elements["CompanyStreetName"].value = "C/ Academia 54";
+    document.forms["theform"].elements["CompanyCity"].value = "Madrid";
+    document.forms["theform"].elements["CompanyPostal"].value = "28654";
+    document.forms["theform"].elements["CompanyCountry"].value = "Spain";
+    document.forms["theform"].elements["CompanyVATID"].value = "B35664875";
+    document.forms["theform"].elements["LEARFirstName"].value = "John";
+    document.forms["theform"].elements["LEARLastName"].value = "Doe";
+    document.forms["theform"].elements["LEARNationality"].value = "Spanish";
+    document.forms["theform"].elements["LEARIDNumber"].value = "56332876F";
+    document.forms["theform"].elements["LEAREmail"].value = "john.doe@airquality.com";
+    document.forms["theform"].elements["LEARMobilePhone"].value = "+34876549022";
   }
   async createDocument(errors, ev) {
     ev.preventDefault();
@@ -1185,16 +1264,44 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
         <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
     </div>
 
-
-    <p class="onlyscreen"><button class="w3-btn w3-black" @click=${() => print()}>Print the document</button></p>
-
-
 </div>
 
 <div class="pagebreak"></div>
 
 ${await this.createLEARDocument(form)}
 
+<p class="onlyscreen"><button class="w3-btn w3-black" @click=${() => print()}>Print the documents</button></p>
+
+<div class="onlyscreen">
+<h2>Next steps</h2>
+
+<p>To complete the onboarding process in DOME, you will have to submit some documentation to <a href="mailto:onboarding@dome-marketplace.org">onboarding@dome-marketplace.org</a>.
+</p>
+
+<p>
+    The amount of documents to submit will depend on whether your company is able to electronically sign documents or not.
+</p>
+
+<p>
+    <b>If your company has a valid qualified Digital Certificate</b> in the sense of the eIDAS Regulation, the two documents generated above are the only ones that you have to submit for the onboarding process in DOME:
+</p>
+
+<ul>
+    <li>Declaration of Honor Form: Completed and signed using the qualified Digital Certificate of the company.
+    </li>
+
+    <li>
+        Appointment of the Legal Entity Appointed Representative (LEAR) Form: Completed and signed using the qualified Digital Certificate of the company.
+    </li>
+</ul>
+
+<p>
+    <b>If your company is not able to electronically sign documents</b>, you have to submit additional documents, <b>in addition to the two described above</b>. Please, see the whole description of the onboarding process in the DOME knowledgebase: <a href="https://knowledgebase.dome-marketplace-prd.org/shelves/company-onboarding-process">Company Onboarding Process</a>.
+</p>
+
+<div class="w3-padding-48"></div>
+
+</div>
 `;
     this.render(theHtml, false);
   }
@@ -1225,11 +1332,11 @@ ${await this.createLEARDocument(form)}
                 </tr>
                 <tr>
                     <td class="w3-border">ID card number</td>
-                    <td>${form.LEARRepIDNumber}</td>
+                    <td>${form.LEARIDNumber}</td>
                 </tr>
                 <tr>
                     <td class="w3-border">Postal address</td>
-                    <td>Jackson</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="w3-border">Email</td>
@@ -1354,11 +1461,7 @@ ${await this.createLEARDocument(form)}
 
                 </div>
 
-            </div>
-
-        
-            <p class="onlyscreen"><button class="w3-btn w3-black" @click=${() => print()}>Print the document</button></p>
-        
+            </div>        
         
         </div>
         `;
