@@ -25,3 +25,5 @@
 }
 
 .pagebreak { page-break-before: always; }
+
+.signature { break-inside: avoid;}

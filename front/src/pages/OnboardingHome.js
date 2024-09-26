@@ -526,13 +526,71 @@ ${introductionText}
         // Define the form validation rules
         var validations = [{
             name: 'LegalRepFirstName',
-            display: 'required|valid_email',
+            display: 'required',
             rules: 'required'
         }, {
             name: 'LegalRepLastName',
             display: 'required',
             rules: 'required'
-        }]
+        }, {
+            name: 'LegalRepNationality',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'LegalRepIDNumber',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'CompanyName',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'CompanyStreetName',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'CompanyCity',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'CompanyPostal',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'CompanyCountry',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'CompanyVATID',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'LEARFirstName',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'LEARLastName',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'LEARNationality',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'LEARIDNumber',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'LEAREmail',
+            display: 'required',
+            rules: 'required'
+        }, {
+            name: 'LEARMobilePhone',
+            display: 'required',
+            rules: 'required'
+        }
+    
+    ]
 
         // Attach the form validation rules
         var validator = new FV('theform',
@@ -619,7 +677,7 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
         
         var theHtml = html`
 
-<div class="w3-panel w3-card-2">
+<div id="doh" class="document w3-panel w3-card-2">
 
     <h3>COMPANY DECLARATION OF HONOR</h3>
 
@@ -660,31 +718,40 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
         </li>
     </ol>
 
-    <p>
-    In witness whereof, I sign this present declaration on behalf of Company on the date above.
-    </p>
+    <div class="signature">
+        <p>
+        In witness whereof, I sign this present declaration on behalf of Company on the date above.
+        </p>
 
-    <div class="w3-row">
-        <div class="w3-half w3-container w3-border" style="padding-top:5px;padding-bottom:100px;padding-left:16px">
-            <div>For and on behalf of Company</div>
+        <div class="w3-row">
+            <div class="w3-half w3-container w3-border" style="padding-top:5px;padding-bottom:100px;padding-left:16px">
+                <div>For and on behalf of Company</div>
+            </div>
         </div>
-    </div>
-    <div>
-        <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
-    </div>
+        <div>
+            <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
+        </div>
 
+    </div>
 </div>
 
-<div class="pagebreak"></div>
+<div id="learappointment" class="document">
+
+<div class="pagebreak onlyscreen"></div>
 
 ${await this.createLEARDocument(form)}
 
+</div>
 
 <div class="onlyscreen">
-<p><button class="w3-btn w3-black" @click=${()=> print()}>Print the documents</button></p>
 
 <p>
-    Click the button above to start printing the documents. If you want to electronically sign PDFs, you can "print to PDF" to save the documents in your disk and then sign them with whatever program you use for signing (e.g., Acrobat Reader).
+<button class="w3-btn w3-black" @click=${()=> this.printDocument('#doh')}>Print Declaration of Honour</button>
+<button class="w3-btn w3-black" @click=${()=> this.printDocument('#learappointment')}>Print LEAR appointment</button>
+</p>
+
+<p>
+    Click each of the buttons above to start printing the documents. If you want to electronically sign PDFs, you can "print to PDF" to save the documents in your disk and then sign them with whatever program you use for signing (e.g., Acrobat Reader).
 </p>
 
 <h2>Next steps</h2>
@@ -720,6 +787,16 @@ ${await this.createLEARDocument(form)}
     
         this.render(theHtml, false)
 
+    }
+
+    /**
+     * @param {string} identifier
+     */
+    printDocument(identifier) {
+        any('.document').classAdd('onlyscreen')
+        me(identifier).classRemove('onlyscreen')
+        print()
+        any('.document').classRemove('onlyscreen')
     }
 
     /**
@@ -840,47 +917,49 @@ ${await this.createLEARDocument(form)}
             It is the responsibility of the entity to revoke the designation of an individual as LEAR or as a delegated individual vested with powers to legally bind the entity within the scope of operation of the Marketplace once the entity does not wish to be represented within the Marketplace by such individuals.
             </p>
 
-            <p>
-            In witness whereof I sign this appointment letter on the date set at the beginning of the letter.
-            </p>
-        
-            <div class="w3-cell-row">
-                <div class="w3-container w3-cell w3-border" style="width:50%">
+            <div class="signature">
+                <p>
+                In witness whereof I sign this appointment letter on the date set at the beginning of the letter.
+                </p>
+            
+                <div class="w3-cell-row">
+                    <div class="w3-container w3-cell w3-border" style="width:50%">
 
-                    <div>For and on behalf of Company</div>
+                        <div>For and on behalf of Company</div>
 
-                    <div class="w3-container" style="padding-bottom:100px;"></div>
+                        <div class="w3-container" style="padding-bottom:100px;"></div>
+
+                    </div>
+
+                    <div class="w3-container w3-cell w3-border" style="width:50%">
+                        <div>Acceptance of the appointment by the LEAR</div>
+
+                        <div class="w3-container" style="padding-bottom:100px;"></div>
+
+                    </div>
 
                 </div>
 
-                <div class="w3-container w3-cell w3-border" style="width:50%">
-                    <div>Acceptance of the appointment by the LEAR</div>
+                <div class="w3-cell-row">
+                    <div class="w3-container w3-cell" style="width:50%">
 
-                    <div class="w3-container" style="padding-bottom:100px;"></div>
+                        <div>
+                            <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
+                        </div>
 
-                </div>
+                    </div>
+
+                    <div class="w3-container w3-cell" style="width:50%">
+
+                        <div>
+                            <p>Accepted and signed: Mr./Mrs. ${form.LEARFirstName} ${form.LEARLastName}</p>
+                        </div>
+
+                    </div>
+
+                </div>        
 
             </div>
-
-            <div class="w3-cell-row">
-                <div class="w3-container w3-cell" style="width:50%">
-
-                    <div>
-                        <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
-                    </div>
-
-                </div>
-
-                <div class="w3-container w3-cell" style="width:50%">
-
-                    <div>
-                        <p>Accepted and signed: Mr./Mrs. ${form.LEARFirstName} ${form.LEARLastName}</p>
-                    </div>
-
-                </div>
-
-            </div>        
-        
         </div>
         `
 
