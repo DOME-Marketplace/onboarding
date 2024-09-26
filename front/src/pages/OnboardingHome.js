@@ -681,9 +681,14 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
 
 ${await this.createLEARDocument(form)}
 
-<p class="onlyscreen"><button class="w3-btn w3-black" @click=${()=> print()}>Print the documents</button></p>
 
 <div class="onlyscreen">
+<p><button class="w3-btn w3-black" @click=${()=> print()}>Print the documents</button></p>
+
+<p>
+    Click the button above to start printing the documents. If you want to electronically sign PDFs, you can "print to PDF" to save the documents in your disk and then sign them with whatever program you use for signing (e.g., Acrobat Reader).
+</p>
+
 <h2>Next steps</h2>
 
 <p>To complete the onboarding process in DOME, you will have to submit some documentation to <a href="mailto:onboarding@dome-marketplace.org">onboarding@dome-marketplace.org</a>.

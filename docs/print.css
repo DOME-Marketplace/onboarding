@@ -1,3 +1,11 @@
+@page {
+  size: A4 portrait;
+  margin-top: 20mm;
+  margin-left: 25mm;
+  margin-right: 20mm;
+  margin-bottom: 20mm;
+}
+
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Regular.ttf") format("truetype");
