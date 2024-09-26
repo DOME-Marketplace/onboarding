@@ -308,6 +308,7 @@ func pageEntryPointsAsMap(cfg *yaml.YAML) map[string]bool {
 	pageMap := map[string]bool{}
 	for _, file := range files {
 		pageMap[filepath.Join(pageDir, file.Name())] = true
+		fmt.Println(filepath.Join(pageDir, file.Name()))
 	}
 
 	return pageMap

@@ -900,7 +900,7 @@ var introductionText = html`
 </p>
 
 <p>
-    The information you enter in the forms will be used to generate two of the documents required for the onboarding process. The whole process is described in more detail in the DOME knowledgebase: <a href="https://knowledgebase.dome-marketplace-prd.org/shelves/company-onboarding-process">Company Onboarding Process</a>. You can read the description in the knowledgebase and come back here whennever you want.
+    The information you enter in the forms will be used to generate two of the documents required for the onboarding process. The whole process is described in more detail in the DOME knowledge base: <a href="https://knowledgebase.dome-marketplace-prd.org/shelves/company-onboarding-process">Company Onboarding Process</a>. You can read the description in the knowledgebase and come back here whenever you want.
 </p>
 
 <p>
@@ -1030,12 +1030,12 @@ ${introductionText}
                     We also need information about the company so we can register it in DOME.
                 </p>
                 <p>
-                    Make sure that the name is the legal name of the company as found in the business registry of incorporation.
+                    Make sure that the name is the legal name of the company as found in the commercial registry or equivalent institution in your jurisdiction. The address must be that of the official place of incorporation of your company.
                 </p>
                 <p>
-                    We need the VAT number of your company because we use it as a unique identifier in our database. At this moment, this is not used to charge you anything.
-                    Whenever in the future we provide paid services to you, a specific authorisation will be requested. 
+                    We need the VAT number of your company because we use it as a unique identifier in our database. At this moment, this is not used to charge you anything. Whenever in the future we provide paid services to you, a specific authorisation will be requested, and you will have to adhere to new terms of contract.
                 </p>
+
             </div>
 
             <div class="w3-rest w3-container">
@@ -1080,12 +1080,10 @@ ${introductionText}
                     This section identifies an employee of the company who will act as the LEAR.
                 </p>
                 <p>
-                    The LEAR is the Legal Entity Authorised Representative.
-                    Do not confuse with the Legal Representative, who has to appear in the official records in the business registry.
-                    Instead, the LEAR can be any employee who is authorised by a Legal Representative to interact with DOME and act on behalf of the company
+                    The LEAR is the Legal Entity Appointed Representative. Do not confuse with the Legal Representative, who has to appear in the official records in the commercial registry or equivalent institution in your jurisdiction. Instead, the LEAR can be any person who is authorised by a Legal Representative to interact with DOME and act on behalf of the company. There is specific information about the LEAR in the knowledge base.
                 </p>
                 <p>
-                    Of course, the Legal Representative can appoint itself as the LEAR for DOME, if this is what is suitable for you.
+                    Of course, the Legal Representative can appoint him/herself as the LEAR for DOME, if this is what is suitable for you.
                 </p>
             </div>
 
