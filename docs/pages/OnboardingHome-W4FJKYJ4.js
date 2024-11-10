@@ -978,158 +978,354 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
     }
     var theHtml = html`
 
-${introductionText}
-
-<form name="theform" id="formElements">
-
-    <div  class="w3-panel w3-card-2">
-
-        <div class="w3-container w3-xlarge">
-            <h3>Legal representative of the company</h3>
+  <!-- Header -->
+  <div class="dome-header">
+    <div class="dome-content">
+      <div class="w3-bar">
+        <div class="w3-bar-item padding-right-0">
+          <a href="#">
+            <img src="assets/logos/DOME_Icon_White.svg" alt="DOME Icon" style="width:100%;max-height:32px">
+          </a>
         </div>
+        <div class="w3-bar-item">
+          <span class="blinker-semibold w3-xlarge nowrap">DOME MARKETPLACE</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="w3-row">
-                
-            <div class="w3-quarter w3-container">
-                <p>We need information identifying the legal representative of the company who is going to sign the document.</p>
+  <!-- Jumbo -->
+  <div class="bg-cover" style="background-image: url(assets/images/bg_1_shadow.png);">
+    <div class="dome-content w3-text-white">
+      <div class="text-jumbo blinker-bold w3-padding-top-48">Information for</div>
+      <div class="text-jumbo blinker-bold">Onboarding in DOME.</div>
+      <p class="w3-xlarge">The Marketplace is a digital platform that enables CSPs to offer cloud and edge computing
+        services to customers across Europe. The main goal of the onboarding process is the creation of an operating
+        account for the CSPs from which they can operate within the Marketplace and start publishing their offerings.
+      </p>
+    </div>
+    <div class="w3-padding-32"></div>
+  </div>
+
+  <div class="w3-padding-32" style="background-color: #EDF2FA;">
+
+    <!-- Process structure -->
+    <div class="w3-card-4 dome-content w3-round-large w3-white">
+      <div class="w3-container">
+        <h2>The process is structured in three main steps</h2>
+
+        <div class="w3-row-padding">
+          <div class="w3-third">
+            <div class="parent">
+              <div class="child padding-right-8">
+                <span class="material-symbols-outlined dome-color w3-xxxlarge">
+                  counter_1
+                </span>
+              </div>
+              <div class="child padding-right-24">
+                <p>Launching of the process and provision of company information and documentation</p>
+              </div>
+            </div>
+          </div>
+          <div class="w3-third">
+            <div class="parent">
+              <div class="child padding-right-8">
+                <span class="material-symbols-outlined dome-color w3-xxxlarge">
+                  counter_2
+                </span>
+              </div>
+              <div class="child padding-right-24">
+                <p>Verification of the company documentation and contract signature</p>
+              </div>
             </div>
 
-            <div class="w3-rest w3-container">
-
-                <div class="w3-panel w3-card-2  w3-light-grey">
-
-                    <p><label><b>First Name</b></label>
-                    <input name="LegalRepFirstName" class="w3-input w3-border" type="text" placeholder="First name"></p>
-
-
-                    <p><label><b>Last Name</b></label>
-                    <input name="LegalRepLastName" class="w3-input w3-border" type="text" placeholder="Last name"></p>
-
-                    <p><label><b>Nationality</b></label>
-                    <input name="LegalRepNationality" class="w3-input w3-border" type="text" placeholder="Nationality"></p>
-
-                    <p><label><b>ID card number</b></label>
-                    <input name="LegalRepIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number"></p>
-
-                </div>
+          </div>
+          <div class="w3-third">
+            <div class="parent">
+              <div class="child padding-right-8">
+                <span class="material-symbols-outlined dome-color w3-xxxlarge">
+                  counter_3
+                </span>
+              </div>
+              <div class="child padding-right-24">
+                <p>Generation of the verifiable credential for the Legal Entity Appointed Representative (LEAR)</p>
+              </div>
             </div>
+
+
+          </div>
         </div>
+        <h4>Upon the generation of the LEAR verifiable credential, the CSP is fully operational.</h4>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Eligibility -->
+  <div class="w3-panel dome-content">
+    <h1>Eligibility Verification</h1>
+
+    <div class="w3-row">
+      <div class="w3-half">
+        <p class="w3-large padding-right-large">Before launching the onboarding process, make sure that you meet the
+          following criteria:</p>
+      </div>
+      <div class="w3-half">
+
+        <div class="w3-cell-row w3-padding-16" style="border-bottom: 1px solid #ddd">
+          <div class="w3-cell w3-cell-top padding-top-small padding-right-4">
+            <span class="material-symbols-outlined dome-color">
+              check_circle
+            </span>
+          </div>
+          <div class="w3-cell w3-cell-top">
+            <div class="w3-xlarge blinker-semibold">You are a legal entity duly registered in an EU country</div>
+          </div>
+        </div>
+
+        <div class="w3-cell-row w3-padding-16">
+          <div class="w3-cell w3-cell-middle padding-top-small padding-right-4">
+            <span class="material-symbols-outlined dome-color">
+              check_circle
+            </span>
+          </div>
+          <div class="w3-cell w3-cell-middle">
+            <div class="w3-xlarge blinker-semibold">You have the capability to offer cloud or edge services</div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="w3-padding-32" style="background-color: #EDF2FA;">
+
+    <div class="card w3-card-4 dome-content w3-round-large dome-bgcolor w3-margin-bottom">
+
+      <div class="parent">
+        <div class="child">
+          <div class="w3-panel">
+            <h1>Filling Out Forms</h1>
+            <p class="w3-large">
+              In this page you will find a form with three sections. Fill in all the fields (all of them are required),
+              making sure to use Latin characters.
+            </p>
+            <p class="w3-large">
+              The information you enter in the forms will be used to generate two of the documents required for the
+              onboarding process. The whole process is described in more detail in the DOME knowledge base: Company
+              Onboarding Process. You can read the description in the knowledgebase and come back here whenever you
+              want.
+            </p>
+            <p class="w3-large">
+              The forms are below. Please, click the "Submit and create documents" after filling all the fields.
+            </p class="w3-large">
+            <p class="w3-large">
+              For testing purposes, you can click the "Fill with test data" button to create and print documents with
+              test data but with the final legal prose, so they can be reviewed by your legal department in advance of
+              creating the real documents.</p>
+            </p>
+          </div>
+        </div>
+        <div class="">
+          <img src="assets/images/form.png" alt="DOME Icon" style="max-width:450px">
+        </div>
+      </div>
     </div>
 
 
-    <div  class="w3-panel w3-card-2">
+    <div class="dome-content">
 
-        <div class="w3-container w3-xlarge">
-            <h3>Company information</h3>
-        </div>
-
-        <div class="w3-row">
-
+      <form name="theform" id="formElements" class="w3-margin-bottom">
+    
+        <div class="card w3-card-2 w3-white">
+    
+          <div class="w3-container">
+            <h1>Legal representative of the company</h1>
+          </div>
+    
+          <div class="w3-row">
+    
             <div class="w3-quarter w3-container">
-                <p>
-                    We also need information about the company so we can register it in DOME.
-                </p>
-                <p>
-                    Make sure that the name is the legal name of the company as found in the commercial registry or equivalent institution in your jurisdiction. The address must be that of the official place of incorporation of your company.
-                </p>
-                <p>
-                    We need the VAT number of your company because we use it as a unique identifier in our database. At this moment, this is not used to charge you anything. Whenever in the future we provide paid services to you, a specific authorisation will be requested, and you will have to adhere to new terms of contract.
-                </p>
-
+              <p>We need information identifying the legal representative of the company who is going to sign the document.
+              </p>
             </div>
-
+    
             <div class="w3-rest w3-container">
-
-                <div class="w3-panel w3-card-2  w3-light-grey">
-
-                <p><label><b>Name</b></label>
-                <input name="CompanyName" class="w3-input w3-border" type="text" placeholder="Name"></p>
-
-                <p><label><b>Street name and number</b></label>
-                <input name="CompanyStreetName" class="w3-input w3-border" type="text" placeholder="Street name and number"></p>
-
-                <p><label><b>City</b></label>
-                <input name="CompanyCity" class="w3-input w3-border" type="text" placeholder="City"></p>
-
-                <p><label><b>Postal code</b></label>
-                <input name="CompanyPostal" class="w3-input w3-border" type="text" placeholder="Postal code"></p>
-
-                <p><label><b>Country</b></label>
-                <input name="CompanyCountry" class="w3-input w3-border" type="text" placeholder="Country"></p>
-
-                <p><label><b>VAT number</b></label>
-                <input name="CompanyVATID" class="w3-input w3-border" type="text" placeholder="VAT number"></p>
-
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div  class="w3-panel w3-card-2">
-
-        <div class="w3-container w3-xlarge">
-            <h3>Information about the LEAR</h3>
-        </div>
-
-        <div class="w3-row">
-
-            <div class="w3-quarter w3-container">
-                <p>
-                    This section identifies an employee of the company who will act as the LEAR.
+    
+              <div class="w3-panel w3-card-2  w3-light-grey">
+    
+                <p><label><b>First Name</b></label>
+                  <input name="LegalRepFirstName" class="w3-input w3-border" type="text" placeholder="First name">
                 </p>
-                <p>
-                    The LEAR is the Legal Entity Appointed Representative. Do not confuse with the Legal Representative, who has to appear in the official records in the commercial registry or equivalent institution in your jurisdiction. Instead, the LEAR can be any person who is authorised by a Legal Representative to interact with DOME and act on behalf of the company. There is specific information about the LEAR in the knowledge base.
+    
+    
+                <p><label><b>Last Name</b></label>
+                  <input name="LegalRepLastName" class="w3-input w3-border" type="text" placeholder="Last name">
                 </p>
-                <p>
-                    Of course, the Legal Representative can appoint him/herself as the LEAR for DOME, if this is what is suitable for you.
-                </p>
-            </div>
-
-            <div class="w3-rest w3-container">
-
-                <div class="w3-panel w3-card-2  w3-light-grey">
-
-                <p><label><b>First name</b></label>
-                <input name="LEARFirstName" class="w3-input w3-border" type="text" placeholder="First name"></p>
-
-                <p><label><b>Last name</b></label>
-                <input name="LEARLastName" class="w3-input w3-border" type="text" placeholder="Last name"></p>
-
+    
                 <p><label><b>Nationality</b></label>
-                <input name="LEARNationality" class="w3-input w3-border" type="text" placeholder="Nationality"></p>
-
+                  <input name="LegalRepNationality" class="w3-input w3-border" type="text" placeholder="Nationality">
+                </p>
+    
                 <p><label><b>ID card number</b></label>
-                <input name="LEARIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number"></p>
-
-                <p><label><b>Email</b></label>
-                <input name="LEAREmail" class="w3-input w3-border" type="text" placeholder="Email"></p>
-
-                <p><label><b>Mobile phone</b></label>
-                <input name="LEARMobilePhone" class="w3-input w3-border" type="text" placeholder="Mobile phone"></p>
-
-
-                </div>
+                  <input name="LegalRepIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number">
+                </p>
+    
+              </div>
             </div>
+          </div>
+        </div>
+    
+    
+        <div class="card w3-card-2 w3-white">
+    
+          <div class="w3-container">
+            <h1>Company information</h1>
+          </div>
+    
+          <div class="w3-row">
+    
+            <div class="w3-quarter w3-container">
+              <p>
+                We also need information about the company so we can register it in DOME.
+              </p>
+              <p>
+                Make sure that the name is the legal name of the company as found in the commercial registry or equivalent
+                institution in your jurisdiction. The address must be that of the official place of incorporation of your
+                company.
+              </p>
+              <p>
+                We need the VAT number of your company because we use it as a unique identifier in our database. At this
+                moment, this is not used to charge you anything. Whenever in the future we provide paid services to you, a
+                specific authorisation will be requested, and you will have to adhere to new terms of contract.
+              </p>
+    
+            </div>
+    
+            <div class="w3-rest w3-container">
+    
+              <div class="w3-panel w3-card-2  w3-light-grey">
+    
+                <p><label><b>Name</b></label>
+                  <input name="CompanyName" class="w3-input w3-border" type="text" placeholder="Name">
+                </p>
+    
+                <p><label><b>Street name and number</b></label>
+                  <input name="CompanyStreetName" class="w3-input w3-border" type="text"
+                    placeholder="Street name and number">
+                </p>
+    
+                <p><label><b>City</b></label>
+                  <input name="CompanyCity" class="w3-input w3-border" type="text" placeholder="City">
+                </p>
+    
+                <p><label><b>Postal code</b></label>
+                  <input name="CompanyPostal" class="w3-input w3-border" type="text" placeholder="Postal code">
+                </p>
+    
+                <p><label><b>Country</b></label>
+                  <input name="CompanyCountry" class="w3-input w3-border" type="text" placeholder="Country">
+                </p>
+    
+                <p><label><b>VAT number</b></label>
+                  <input name="CompanyVATID" class="w3-input w3-border" type="text" placeholder="VAT number">
+                </p>
+    
+    
+              </div>
+            </div>
+          </div>
+    
+        </div>
+    
+        <div class="card w3-card-2 w3-white">
+    
+          <div class="w3-container">
+            <h1>Information about the LEAR</h1>
+          </div>
+    
+          <div class="w3-row">
+    
+            <div class="w3-quarter w3-container">
+              <p>
+                This section identifies an employee of the company who will act as the LEAR.
+              </p>
+              <p>
+                The LEAR is the Legal Entity Appointed Representative. Do not confuse with the Legal Representative, who has
+                to appear in the official records in the commercial registry or equivalent institution in your jurisdiction.
+                Instead, the LEAR can be any person who is authorised by a Legal Representative to interact with DOME and
+                act on behalf of the company. There is specific information about the LEAR in the knowledge base.
+              </p>
+              <p>
+                Of course, the Legal Representative can appoint him/herself as the LEAR for DOME, if this is what is
+                suitable for you.
+              </p>
+            </div>
+    
+            <div class="w3-rest w3-container">
+    
+              <div class="w3-panel w3-card-2  w3-light-grey">
+    
+                <p><label><b>First name</b></label>
+                  <input name="LEARFirstName" class="w3-input w3-border" type="text" placeholder="First name">
+                </p>
+    
+                <p><label><b>Last name</b></label>
+                  <input name="LEARLastName" class="w3-input w3-border" type="text" placeholder="Last name">
+                </p>
+    
+                <p><label><b>Nationality</b></label>
+                  <input name="LEARNationality" class="w3-input w3-border" type="text" placeholder="Nationality">
+                </p>
+    
+                <p><label><b>ID card number</b></label>
+                  <input name="LEARIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number">
+                </p>
+    
+                <p><label><b>Email</b></label>
+                  <input name="LEAREmail" class="w3-input w3-border" type="text" placeholder="Email">
+                </p>
+    
+                <p><label><b>Mobile phone</b></label>
+                  <input name="LEARMobilePhone" class="w3-input w3-border" type="text" placeholder="Mobile phone">
+                </p>
+    
+    
+              </div>
+            </div>
+          </div>
+    
+        </div>
+    
+        <div class="w3-bar w3-center">
+          <button class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold" title="Submit and create documents">Submit and create documents</button>
+          <button @click=${this.fillTestData} class="w3-btn dome-color border-2 w3-round-large w3-margin-left blinker-semibold">Fill with test data (only for
+            testing)</button>
+        </div>
+    
+      </form>
+
+      <div class="card w3-card-4 dome-content w3-round-large dome-bgcolor w3-margin-bottom">
+        <div class="w3-container">
+
+          <p>
+            Click the "<b>Submit and create documents</b>" button above to create the documents automatically including the data you entered.
+          </p>
+          <p>
+            If you are not yet ready and want to see how the final documents look like, click the button "<b>Fill with test data</b>" and then the "<b>Submit and create documents</b>" button to create the documents with test data.
+          </p>
+  
         </div>
 
+      </div>
+
+    
     </div>
-
-<div class="w3-bar">
-    <button class="w3-btn w3-black w3-left" title="sdjhd asdasd wdwed we">Submit and create documents</button>
-    <button @click=${this.fillTestData} class="w3-btn w3-black w3-right">Fill with test data (only for testing)</button>
-</div>
-
-</form>
-
-<p>
-    Click the "<b>Submit and create documents</b>" button above to create the documents automatically including the data you entered.
-</p>
-
-<p>
-    If you are not yet ready and want to see how the final documents look like, click the button "<b>Fill with test data</b>" and then the "<b>Submit and create documents</b>" button to create the documents with test data.
-</p>
+    
+  </div>
 
 `;
     this.render(theHtml, false);
@@ -1281,9 +1477,39 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
     const today = /* @__PURE__ */ new Date();
     var theHtml = html`
 
+<div class="onlyscreen">
+  <!-- Header -->
+  <div class="dome-header">
+    <div class="dome-content">
+      <div class="w3-bar">
+        <div class="w3-bar-item padding-right-0">
+          <a href="#">
+            <img src="assets/logos/DOME_Icon_White.svg" alt="DOME Icon" style="width:100%;max-height:32px">
+          </a>
+        </div>
+        <div class="w3-bar-item">
+          <span class="blinker-semibold w3-xlarge nowrap">DOME MARKETPLACE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jumbo -->
+  <div class="bg-cover" style="background-image: url(assets/images/bg_1_shadow.png);">
+    <div class="dome-content w3-text-white">
+      <div class="text-jumbo blinker-bold w3-padding-top-48">Prefilled Onboarding documents</div>
+      <p class="w3-xlarge">The documents below have to be sent to <b>onboarding@dome-marketplace.eu</b> duly signed.
+      </p>
+    </div>
+    <div class="w3-padding-16"></div>
+  </div>
+
+</div>
+
+<div class="dome-content">
 <div id="doh" class="document w3-panel w3-card-2">
 
-    <h3>COMPANY DECLARATION OF HONOR</h3>
+    <h2>COMPANY DECLARATION OF HONOR</h2>
 
     <p>Date: ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}</p>
 
@@ -1349,24 +1575,28 @@ ${await this.createLEARDocument(form)}
 
 <div class="onlyscreen">
 
-<p>
-<button class="w3-btn w3-black" @click=${() => this.printDocument("#doh")}>Print Declaration of Honour</button>
-<button class="w3-btn w3-black" @click=${() => this.printDocument("#learappointment")}>Print LEAR appointment</button>
-</p>
+<div class="w3-bar w3-center">
+    <button class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold" @click=${() => this.printDocument("#doh")}>Print Declaration of Honour</button>
+    <button class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold" @click=${() => this.printDocument("#learappointment")}>Print LEAR appointment</button>
+</div>
 
+
+<div class="dome-content">
 <p>
     Click each of the buttons above to start printing the documents. If you want to electronically sign PDFs, you can "print to PDF" to save the documents in your disk and then sign them with whatever program you use for signing (e.g., Acrobat Reader).
 </p>
+</div>
+
+<div class="card w3-card-4 dome-content w3-round-large dome-bgcolor w3-margin-bottom">
+<div class="w3-container">
 
 <h2>Next steps</h2>
 
 <p>To complete the onboarding process in DOME, you will have to submit some documentation to <a href="mailto:onboarding@dome-marketplace.org">onboarding@dome-marketplace.org</a>.
 </p>
-
 <p>
     The amount of documents to submit will depend on whether your company is able to electronically sign documents or not.
 </p>
-
 <p>
     <b>If your company has a valid qualified Digital Certificate</b> in the sense of the eIDAS Regulation, the two documents generated above are the only ones that you have to submit for the onboarding process in DOME:
 </p>
@@ -1384,8 +1614,15 @@ ${await this.createLEARDocument(form)}
     <b>If your company is not able to electronically sign documents</b>, you have to submit additional documents, <b>in addition to the two described above</b>. Please, see the whole description of the onboarding process in the DOME knowledgebase: <a href="https://knowledgebase.dome-marketplace-prd.org/shelves/company-onboarding-process">Company Onboarding Process</a>.
 </p>
 
+</div>
+
+</div>
+
+
+
 <div class="w3-padding-48"></div>
 
+</div>
 </div>
 `;
     this.render(theHtml, false);
@@ -1408,7 +1645,7 @@ ${await this.createLEARDocument(form)}
 
         <div class="w3-panel w3-card-2">
         
-            <h3>LEAR APPOINTMENT FORM</h3>
+            <h2>LEAR APPOINTMENT FORM</h2>
         
             <p>Date: ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}</p>
 
@@ -1438,7 +1675,7 @@ ${await this.createLEARDocument(form)}
                 </tr>
             </table>
 
-            <h2>ROLE AND POWERS OF THE LEAR</h2>
+            <h3>ROLE AND POWERS OF THE LEAR</h3>
 
             <p>
             The Legal Entity Appointed Representative (hereinafter, the LEAR) is the person that any entity willing to onboard on the DOME Marketplace (hereinafter, the Marketplace) must designate to act, within the scope of the operation of the Marketplace, as the representative of the entity.
