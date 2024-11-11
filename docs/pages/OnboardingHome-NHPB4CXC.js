@@ -1289,6 +1289,10 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
                   <input name="LEARIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number">
                 </p>
     
+                <p><label><b>Complete postal professional address</b></label>
+                  <input name="LEARPostalAddress" class="w3-input w3-border" type="text" placeholder="Complete postal professional address">
+                </p>
+    
                 <p><label><b>Email</b></label>
                   <input name="LEAREmail" class="w3-input w3-border" type="text" placeholder="Email">
                 </p>
@@ -1410,6 +1414,11 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
         rules: "required"
       },
       {
+        name: "LEARPostalAddress",
+        display: "required",
+        rules: "required"
+      },
+      {
         name: "LEAREmail",
         display: "required",
         rules: "required"
@@ -1443,6 +1452,7 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
     document.forms["theform"].elements["LEARLastName"].value = "Doe";
     document.forms["theform"].elements["LEARNationality"].value = "Spanish";
     document.forms["theform"].elements["LEARIDNumber"].value = "56332876F";
+    document.forms["theform"].elements["LEARPostalAddress"].value = "C/ Academia 54, Madrid - 28654, Spain";
     document.forms["theform"].elements["LEAREmail"].value = "john.doe@airquality.com";
     document.forms["theform"].elements["LEARMobilePhone"].value = "+34876549022";
   }
@@ -1798,7 +1808,7 @@ ${await this.createLEARDocument(form)}
             </tr>
             <tr>
               <td>Complete postal professional address</td>
-              <td></b></td>
+              <td><b>${form.LEARPostalAddress}</b></td>
             </tr>
             <tr>
               <td>Email</td>
