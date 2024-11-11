@@ -175,3 +175,20 @@ h6 {
 .border-2 {
     border: 2px solid #305AA4!important
 }
+
+.dometable {
+    width: 80%;
+    border-collapse: collapse;
+    border: 2px solid;
+    table-layout: fixed;
+}
+
+.dometable td {
+    padding: 8px;
+    border: 1px solid;
+}
+
+.dometable tr td:nth-child(1) {
+    width: 30%;
+}
+  

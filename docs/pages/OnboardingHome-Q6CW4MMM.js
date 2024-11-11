@@ -1174,6 +1174,10 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
                   <input name="LegalRepIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number">
                 </p>
     
+                <p><label><b>Email</b></label>
+                  <input name="LegalRepEmail" class="w3-input w3-border" type="text" placeholder="Email">
+                </p>
+    
               </div>
             </div>
           </div>
@@ -1351,6 +1355,11 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
         rules: "required"
       },
       {
+        name: "LegalRepEmail",
+        display: "required",
+        rules: "required"
+      },
+      {
         name: "CompanyName",
         display: "required",
         rules: "required"
@@ -1423,6 +1432,7 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
     document.forms["theform"].elements["LegalRepLastName"].value = "Ruiz";
     document.forms["theform"].elements["LegalRepNationality"].value = "Spanish";
     document.forms["theform"].elements["LegalRepIDNumber"].value = "24676932R";
+    document.forms["theform"].elements["LegalRepEmail"].value = "jr@airquality.com";
     document.forms["theform"].elements["CompanyName"].value = "Air Quality Cloud";
     document.forms["theform"].elements["CompanyStreetName"].value = "C/ Academia 54";
     document.forms["theform"].elements["CompanyCity"].value = "Madrid";
@@ -1507,62 +1517,118 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
 </div>
 
 <div class="dome-content">
+
+<!-- DOH -->
 <div id="doh" class="document w3-panel w3-card-2">
 
-    <h2>COMPANY DECLARATION OF HONOR</h2>
+  <div class="w3-bar">
+    <div class="w3-bar-item">DOME DoH for CSP</div>
+    <div class="w3-bar-item w3-right">version October 2024</div>
+  </div>
 
-    <p>Date: ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}</p>
+  <div class="w3-center">
+    <h3>DOME DECLARATION OF HONOR</h3>
+  </div>
 
+  <p>Date: ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}</p>
+
+  <p>
+    I, the undersigned, 
+  </p>
+
+  <table class="dometable">
+    <tr>
+      <td>Name</td>
+      <td><b>${form.LegalRepFirstName}</b></td>
+    </tr>
+    <tr>
+      <td>Surname</td>
+      <td><b>${form.LegalRepLastName}</b></td>
+    </tr>
+    <tr>
+      <td>ID card number</td>
+      <td><b>${form.LegalRepIDNumber}</b></td>
+    </tr>
+    <tr>
+      <td>Country</td>
+      <td><b>${form.LegalRepNationality}</b></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><b>${form.LegalRepEmail}</b></td>
+    </tr>
+  </table>
+
+  <p>acting for and on behalf of</p>
+
+  <table class="dometable">
+    <tr>
+      <td>Entity full legal name</td>
+      <td><b>${form.CompanyName}</b></td>
+    </tr>
+    <tr>
+      <td>Registered office full address</td>
+      <td>
+        <div><b>${form.CompanyStreetName}</b></div>
+        <div><b>${form.CompanyCity} - ${form.CompanyPostal}</b></div>
+      </td>
+    </tr>
+    <tr>
+      <td>Country of incorporation</td>
+      <td><b>${form.CompanyCountry}</b></td>
+    </tr>
+    <tr>
+      <td>Tax ID number</td>
+      <td><b>${form.CompanyVATID}</b></td>
+    </tr>
+  </table>
+
+  <p>(hereinafter, the Company)</p>
+
+  <div class="w3-center">
     <p>
-        I, the undersigned, Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}, holding the ${form.LegalRepNationality} ID card number ${form.LegalRepIDNumber} acting for and on behalf of
+    do hereby confirm:
+  </p>
+  </div>
+
+  <p>that:</p>
+
+  <ol>
+    <li>
+      The address above is correct and that I am reachable there
+    </li>
+    <li>
+      The information we have provided for the Company in the context of onboarding Company on the DOME Marketplace is correct and updated
+    </li>
+    <li>
+      That my powers of representation of the Company are in full force an effect on the date of this declaration and that of the appointment of the LEAR of Company
+    </li>
+    <li>
+      That my powers of representation of the Company are not limited in whichever fashion
+    </li>
+    <li>
+      That the Company is an actual, existing and operating entity
+    </li>
+    <li>
+      That Company is not bankrupt, being wound up, having the affairs administered by the courts, entered into an arrangement with creditors, suspended business activities or subject to any other similar proceedings or procedures
+    </li>
+  </ol>
+
+  <div class="signature">
+    <p>
+      In witness whereof, I sign this present declaration on behalf of Company on the date above.
     </p>
 
-    <div>${form.CompanyName} (hereinafter, the Company)</div>
-    <div>${form.CompanyStreetName}</div>
-    <div>${form.CompanyCity} - ${form.CompanyPostal}</div>
-    <div>${form.CompanyCountry}</div>
-    <div>VAT number ${form.CompanyVATID}</div>
-
-    <p>
-    do hereby confirm that:
-    </p>
-
-    <ol>
-        <li>
-        The address above is correct and that I am reachable there.
-        </li>
-        <li>
-        The information we have provided for the Company in the context of onboarding Company on the DOME Marketplace is correct and updated.
-        </li>
-        <li>
-        That my powers of representation of the Company are in full force an effect on the date of this declaration and that of the appointment of the LEAR of Company.
-        </li>
-        <li>
-        That my powers of representation of the Company are not limited in whichever fashion.
-        </li>
-        <li>
-        That the Company is an actual, existing and operating entity incorporated within the European Union.
-        </li>
-        <li>
-        That Company is not bankrupt, being wound up, having the affairs administered by the courts, entered into an arrangement with creditors, suspended business activities or subject to any other similar proceedings or procedures.
-        </li>
-    </ol>
-
-    <div class="signature">
-        <p>
-        In witness whereof, I sign this present declaration on behalf of Company on the date above.
-        </p>
-
-        <div class="w3-row">
-            <div class="w3-half w3-container w3-border" style="padding-top:5px;padding-bottom:100px;padding-left:16px">
-                <div>For and on behalf of Company</div>
-            </div>
-        </div>
-        <div>
-            <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
-        </div>
-
+    <div class="w3-row">
+      <div class="w3-half w3-container w3-border" style="padding-top:5px;padding-bottom:100px;padding-left:16px">
+        <div>For and on behalf of Company</div>
+      </div>
     </div>
+    <div>
+      <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
+    </div>
+
+  </div>
 </div>
 
 <div id="learappointment" class="document">
@@ -1645,157 +1711,240 @@ ${await this.createLEARDocument(form)}
 
         <div class="w3-panel w3-card-2">
         
-            <h2>LEAR APPOINTMENT FORM</h2>
+          <div class="w3-bar">
+            <div class="w3-bar-item">DOME LEAR appointment form</div>
+            <div class="w3-bar-item w3-right">version October 2024</div>
+          </div>
         
-            <p>Date: ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}</p>
-
-            <p>Subject:	designation of legal entity appointed representative (LEAR) in DOME Marketplace</p>
+          <div class="w3-center">
+            <h3>APPOINTMENT OF LEGAL ENTITY APPOINTED REPRESENTATIVE FORM</h3>
+          </div>
         
-            <p>
-                I, the undersigned, Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}, holding the ${form.LegalRepNationality} ID card number ${form.LegalRepIDNumber} acting, without any kind of limitation, for and on behalf of ${form.CompanyName} (hereinafter, the Company), having its registered office at ${form.CompanyStreetName}, ${form.CompanyCity}-${form.CompanyPostal} ${form.CompanyCountry}, in my capacity of legal representative, after having read and understood the information below concerning the designation and the powers of a LEAR within the DOME Marketplace, do hereby designate as the LEAR of Company:
-            </p>
+        
+          <h3>LEAR APPOINTMENT FORM</h3>
+          <p>Date: ${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}</p>
+        
+          <p>Subject: designation of legal entity appointed representative (LEAR) in DOME Marketplace</p>
+        
+          <p>
+            I, the undersigned, 
+          </p>
+        
+          <table class="dometable">
+            <tr>
+              <td>Name</td>
+              <td><b>${form.LegalRepFirstName}</b></td>
+            </tr>
+            <tr>
+              <td>Surname</td>
+              <td><b>${form.LegalRepLastName}</b></td>
+            </tr>
+            <tr>
+              <td>ID card number</td>
+              <td><b>${form.LegalRepIDNumber}</b></td>
+            </tr>
+            <tr>
+              <td>Country</td>
+              <td><b>${form.LegalRepNationality}</b></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><b>${form.LegalRepEmail}</b></td>
+            </tr>
+          </table>
+        
+          <p>acting, as legal representative, for and on behalf of:</p>
+        
+          <table class="dometable">
+            <tr>
+              <td>Entity full legal name</td>
+              <td><b>${form.CompanyName}</b></td>
+            </tr>
+            <tr>
+              <td>Registered office full address</td>
+              <td>
+                <div><b>${form.CompanyStreetName}</b></div>
+                <div><b>${form.CompanyCity} - ${form.CompanyPostal}</b></div>
+              </td>
+            </tr>
+            <tr>
+              <td>Country of incorporation<sup>1</sup></td>
+              <td><b>${form.CompanyCountry}</b></td>
+            </tr>
+            <tr>
+              <td>Tax ID number</td>
+              <td><b>${form.CompanyVATID}</b></td>
+            </tr>
+          </table>
+
+          <p><sup>1</sup>For designating the country of incorporation, please use the two-letter country code. You can find such code <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Country_codes" target="_blank">here</a>.</p>
+        
+          <p>(hereinafter, the Company)</p>
+        
+          <p>after having read and understood the information below concerning the designation and the powers of a LEAR within the DOME Marketplace, do hereby designate as the LEAR of Company:</p>
+
+          <table class="dometable">
+            <tr>
+              <td>Name</td>
+              <td><b>${form.LEARFirstName}</b></td>
+            </tr>
+            <tr>
+              <td>Surname</td>
+              <td><b>${form.LEARLastName}</b></td>
+            </tr>
+            <tr>
+              <td>ID card number</td>
+              <td><b>${form.LEARIDNumber}</b></td>
+            </tr>
+            <tr>
+              <td>Complete postal professional address</td>
+              <td></b></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><b>${form.LEAREmail}</b></td>
+            </tr>
+          </table>
 
 
-            <table class="w3-table w3-border w3-bordered">
-                <tr>
-                    <td class="w3-border">Name and surname</td>
-                    <td>${form.LEARFirstName} ${form.LEARLastName}</td>
-                </tr>
-                <tr>
-                    <td class="w3-border">ID card number</td>
-                    <td>${form.LEARIDNumber}</td>
-                </tr>
-                <tr>
-                    <td class="w3-border">Postal address</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="w3-border">Email</td>
-                    <td>${form.LEAREmail}</td>
-                </tr>
-            </table>
-
-            <h3>ROLE AND POWERS OF THE LEAR</h3>
-
-            <p>
+        
+          <h3>ROLE AND POWERS OF THE LEAR</h3>
+        
+          <p>
             The Legal Entity Appointed Representative (hereinafter, the LEAR) is the person that any entity willing to onboard on the DOME Marketplace (hereinafter, the Marketplace) must designate to act, within the scope of the operation of the Marketplace, as the representative of the entity.
-            </p>
+          </p>
         
-            <p>
+          <p>
             Designating a LEAR is the first step of the onboarding process of the Marketplace.
-            </p>
-
-            <p>
-            The LEAR will be responsible for providing and checking that all the information concerning the entity is accurate and remains up to date at any time.
-            </p>
-
-            <p>
-            The LEAR must have all the capacity and powers to legally represent and bind your entity she/he represents for:
-            </p>
-            
+          </p>
         
-            <ul>
-                <li>
-                Signing contracts on behalf of the entity for the sale or lease of the entity’s products and services of whatever nature;
-                </li>
-
-                <li>
-                Signing contracts on behalf of the entity for the purchase of goods and services of whatever nature from third parties;
-                </li>
-
-                <li>
-                Represent the entity before any other third party, be it an individual, a private entity or any public entity or public authority in any kind of proceedings, regardless of their nature (e.g., informal complaints, arbitration proceedings, jurisdictional proceedings, mediation, negotiation, administrative proceedings, etc.), either as claimant or defendant or interested party or otherwise;
-                </li>
-
-                <li>
-                Accept payments in whichever form on behalf of the entity;
-                </li>
-
-                <li>
-                Order payments on behalf of the entity;
-                </li>
-
-                <li>
-                Make declarations on behalf of the entity, including the submission of offers or proposals (e.g., making a description of cloud or edge services in the Marketplace);
-                </li>
-
-                <li>
-                Settling any complaint, claim or dispute on behalf of the entity;
-                </li>
-
-                <li>
-                Delegate any of those faculties on other individuals.
-                </li>
-
-            </ul>
-
-            <p>
+          <p>
+            The LEAR will be responsible for providing and checking that all the information concerning the entity is accurate and remains up to date at any time.
+          </p>
+        
+          <p>
+            The LEAR must have all the capacity and powers to legally represent and bind your entity she/he represents for:
+          </p>
+        
+        
+          <ul>
+            <li>
+              Signing contracts on behalf of the Company for the sale or lease of the entity’s products and services of whatever nature;
+            </li>
+        
+            <li>
+              Signing contracts on behalf of the Company for the purchase of goods and services of whatever nature from third parties;
+            </li>
+        
+            <li>
+              Represent the Company before any other third party, be it an individual, a private entity or any public entity or public authority in any kind of proceedings, regardless of their nature (e.g., informal complaints, arbitration proceedings, jurisdictional proceedings, mediation, negotiation, administrative proceedings, etc.), either as claimant or defendant or interested party or otherwise;
+            </li>
+        
+            <li>
+              Accept payments in whichever form on behalf of the Company;
+            </li>
+        
+            <li>
+              Order payments on behalf of the Company;
+            </li>
+        
+            <li>
+              Make declarations on behalf of the entity, including the submission of offers or proposals (e.g., making a description of cloud or edge services in the Marketplace);
+            </li>
+        
+            <li>
+              Settling any complaint, claim or dispute on behalf of the Company;
+            </li>
+        
+            <li>
+              Delegate any of those faculties to other individuals.
+            </li>
+        
+          </ul>
+        
+          <p>
             Once the LEAR is correctly registered in the Marketplace, the system will generate for her/him a verifiable credential that univocally identifies the LEAR within the Marketplace and enables her/him to digitally sign documents and perform some actions in a secure and non-repudiable fashion vis-à-vis the Marketplace.
-            </p>
+          </p>
+        
+          <p>
+            The LEAR will be entitled to delegate some of its faculties to other individuals, who will normally belong to your Company’s organisation. Those delegated persons will also have verifiable credentials enabling them to act within the Marketplace on behalf of your Company within the scope of the delegation. The delegated persons shall not be entitled to further delegate any of their powers and/or faculties.
+          </p>
+        
+          <p>
+            The Company shall be bound by any act or omission performed by the LEAR or the delegated representatives.
+          </p>
+        
+          <p>
+            The contract with the Marketplace must be signed either by the LEAR or by the legal representative of the Company.
+          </p>
+        
+          <p>
+            The appointment of the LEAR is indefinite in time. Nonetheless, the Company can change its LEAR at any moment. Any acts, actions or omissions performed by the former LEAR will still be valid and binding on the Company represented by the LEAR.
+          </p>
 
+          <p>
+            A single Company can appoint more than one LEAR at the same time.
+          </p>
+        
+          <p>
+            It is the responsibility of the Company to revoke the designation of an individual as LEAR or as a delegated individual vested with powers to legally bind the entity within the scope of operation of the Marketplace once the Company does not wish to be represented within the Marketplace by such individuals.
+          </p>
+
+          <p>
+            The LEAR(s) of the Company are the people who will have to manage the delegation and revocation of powers to Account Operators.
+          </p>
+
+          <p>
+            There can be a delay between the decision to revoke the representation powers of a LEAR and its actual cancellation in the system. Therefore, in the meantime, when revoking the appointment of a LEAR, the Company should take internal steps to control that the LEAR cannot perform any action that may cause any prejudice to your Company or adversely.
+          </p>
+
+          <hr/>
+
+
+        
+          <div class="signature">
             <p>
-            The LEAR will be entitled to delegate some of its faculties to other individuals, who will normally belong to your entity’s organisation. Those delegated persons will also have verifiable credentials enabling them to act within the Marketplace on behalf of your entity within the scope of the delegation. The delegated persons shall not be entitled to further delegated any of their powers and/or faculties.
+              In witness whereof I sign this appointment letter on the date set at the beginning of the letter.
             </p>
-
-            <p>
-            The entity shall be bound by any act or action or omission performed by the LEAR or the delegated representatives.
-            </p>
-
-            <p>
-            The contract with the Marketplace must be signed by means of the verifiable credential of the LEAR or an individual vested by the LEAR with the capacity of signing contracts on behalf of the entity.
-            </p>
-
-            <p>
-            The appointment of the LEAR is indefinite in time. Nonetheless, the entity can change its LEAR at any moment. Any acts, actions or omissions performed by the former LEAR will still be valid and binding on the entity represented by the LEAR.
-            </p>
-
-            <p>
-            It is the responsibility of the entity to revoke the designation of an individual as LEAR or as a delegated individual vested with powers to legally bind the entity within the scope of operation of the Marketplace once the entity does not wish to be represented within the Marketplace by such individuals.
-            </p>
-
-            <div class="signature">
-                <p>
-                In witness whereof I sign this appointment letter on the date set at the beginning of the letter.
-                </p>
-            
-                <div class="w3-cell-row">
-                    <div class="w3-container w3-cell w3-border" style="width:50%">
-
-                        <div>For and on behalf of Company</div>
-
-                        <div class="w3-container" style="padding-bottom:100px;"></div>
-
-                    </div>
-
-                    <div class="w3-container w3-cell w3-border" style="width:50%">
-                        <div>Acceptance of the appointment by the LEAR</div>
-
-                        <div class="w3-container" style="padding-bottom:100px;"></div>
-
-                    </div>
-
-                </div>
-
-                <div class="w3-cell-row">
-                    <div class="w3-container w3-cell" style="width:50%">
-
-                        <div>
-                            <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
-                        </div>
-
-                    </div>
-
-                    <div class="w3-container w3-cell" style="width:50%">
-
-                        <div>
-                            <p>Accepted and signed: Mr./Mrs. ${form.LEARFirstName} ${form.LEARLastName}</p>
-                        </div>
-
-                    </div>
-
-                </div>        
-
+        
+            <div class="w3-cell-row">
+              <div class="w3-container w3-cell w3-border" style="width:50%">
+        
+                <div>For and on behalf of Company</div>
+        
+                <div class="w3-container" style="padding-bottom:100px;"></div>
+        
+              </div>
+        
+              <div class="w3-container w3-cell w3-border" style="width:50%">
+                <div>Acceptance of the appointment by the LEAR</div>
+        
+                <div class="w3-container" style="padding-bottom:100px;"></div>
+        
+              </div>
+        
             </div>
+        
+            <div class="w3-cell-row">
+              <div class="w3-container w3-cell" style="width:50%">
+        
+                <div>
+                  <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
+                </div>
+        
+              </div>
+        
+              <div class="w3-container w3-cell" style="width:50%">
+        
+                <div>
+                  <p>Accepted and signed: Mr./Mrs. ${form.LEARFirstName} ${form.LEARLastName}</p>
+                </div>
+        
+              </div>
+        
+            </div>
+        
+          </div>
         </div>
         `;
     return theHtml;
