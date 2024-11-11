@@ -27,3 +27,7 @@
 .pagebreak { page-break-before: always; }
 
 .signature { break-inside: avoid;}
+
+.forprint {
+  font-family: system-ui, sans-serif;
+}
