@@ -382,7 +382,7 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
 
           </div>
         </div>
-        <h4>Upon the generation of the LEAR verifiable credential, the CSP is fully operational.</h4>
+        <h4>Upon the generation of the LEAR verifiable credential, the CSP account is fully operational.</h4>
 
       </div>
 
