@@ -528,6 +528,7 @@ class AbstractPage {
         // The caller can specify if the back button has to be displayed in the header
         let header = document.getElementById('the_header')
         if (header) {
+            // @ts-ignore
             render(header, HeaderBar(backButton))
         }    
 
