@@ -806,7 +806,6 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
 
 })
 
-
 MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
 
     constructor(id) {

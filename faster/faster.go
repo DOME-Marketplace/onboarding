@@ -108,6 +108,34 @@ func buildAndBundle(cfg *yaml.YAML) api.BuildResult {
 
 }
 
+var riteOnLoadPlugin = api.Plugin{
+	Name: "example",
+	Setup: func(build api.PluginBuild) {
+		// Load ".js" files and process any Rite text in the html tags
+		build.OnLoad(api.OnLoadOptions{Filter: `\.js$`},
+			func(args api.OnLoadArgs) (api.OnLoadResult, error) {
+				if !strings.Contains(args.Path, "src/pages") {
+					return api.OnLoadResult{}, nil
+				}
+
+				// text, err := os.ReadFile(args.Path)
+				// if err != nil {
+				// 	return api.OnLoadResult{}, err
+				// }
+
+				fmt.Println("--plugin-- ", args.Path)
+				return api.OnLoadResult{}, nil
+
+				// contents := string(text)
+
+				// return api.OnLoadResult{
+				// 	Contents: &contents,
+				// 	Loader:   api.LoaderJS,
+				// }, nil
+			})
+	},
+}
+
 // Generate the build options struct for ESBUILD
 func buildOptions(cfg *yaml.YAML) api.BuildOptions {
 
@@ -129,6 +157,7 @@ func buildOptions(cfg *yaml.YAML) api.BuildOptions {
 	options := api.BuildOptions{
 		EntryPoints: entryPoints,
 		Format:      api.FormatESModule,
+		Plugins:     []api.Plugin{riteOnLoadPlugin},
 		Outdir:      cfg.String("targetdir"),
 		Write:       true,
 		Bundle:      true,
@@ -308,7 +337,6 @@ func pageEntryPointsAsMap(cfg *yaml.YAML) map[string]bool {
 	pageMap := map[string]bool{}
 	for _, file := range files {
 		pageMap[filepath.Join(pageDir, file.Name())] = true
-		fmt.Println(filepath.Join(pageDir, file.Name()))
 	}
 
 	return pageMap
