@@ -186,6 +186,7 @@ h6 {
 .dometable td {
     padding: 8px;
     border: 1px solid;
+    overflow-wrap: anywhere;
 }
 
 .dometable tr td:nth-child(1) {

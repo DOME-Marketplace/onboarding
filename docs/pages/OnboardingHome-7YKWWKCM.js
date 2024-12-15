@@ -1576,7 +1576,7 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
       </div>
     </div>
     <div>
-      <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
+      <p style="overflow-wrap: anywhere;">Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
     </div>
 
   </div>
@@ -1905,7 +1905,7 @@ ${await this.createLEARDocument(form)}
               <div class="w3-container w3-cell" style="width:50%">
         
                 <div>
-                  <p>Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
+                  <p style="overflow-wrap: anywhere;">Signed: Mr./Mrs. ${form.LegalRepFirstName} ${form.LegalRepLastName}</p>
                 </div>
         
               </div>
@@ -1913,7 +1913,7 @@ ${await this.createLEARDocument(form)}
               <div class="w3-container w3-cell" style="width:50%">
         
                 <div>
-                  <p>Accepted and signed: Mr./Mrs. ${form.LEARFirstName} ${form.LEARLastName}</p>
+                  <p style="overflow-wrap: anywhere;">Accepted and signed: Mr./Mrs. ${form.LEARFirstName} ${form.LEARLastName}</p>
                 </div>
         
               </div>
