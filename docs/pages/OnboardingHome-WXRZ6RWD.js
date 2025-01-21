@@ -68,7 +68,8 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
                   </span>
                 </div>
                 <div class="child padding-right-24">
-                  <p>Launching of the process and provision of company information and documentation</p>
+                  <p>Launching of the process and provision of company information and
+                    <a target="_blank" href="https://knowledgebase.dome-marketplace.eu/shelves/company-onboarding-process">required documentation</a></p>
                 </div>
               </div>
             </div>
@@ -100,7 +101,7 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
 
             </div>
           </div>
-          <h4>Upon the generation of the LEAR verifiable credential, the CSP account is fully operational.</h4>
+          <h4>Upon the generation of the LEAR verifiable credential, the CSP account is fully operational and products and services can be published.</h4>
 
         </div>
 
@@ -125,7 +126,7 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
               </span>
             </div>
             <div class="w3-cell w3-cell-top">
-              <div class="w3-xlarge blinker-semibold">You are a legal entity duly registered in an EU country</div>
+              <div class="w3-xlarge blinker-semibold">You are a legal entity duly registered in an EU country.</div>
             </div>
           </div>
 
@@ -136,7 +137,18 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
               </span>
             </div>
             <div class="w3-cell w3-cell-middle">
-              <div class="w3-xlarge blinker-semibold">You have the capability to offer cloud or edge services</div>
+              <div class="w3-xlarge blinker-semibold">You have the capability to offer cloud or edge services.</div>
+            </div>
+          </div>
+
+          <div class="w3-cell-row w3-padding-16">
+            <div class="w3-cell w3-cell-middle padding-top-small padding-right-4">
+              <span class="material-symbols-outlined dome-color">
+                check_circle
+              </span>
+            </div>
+            <div class="w3-cell w3-cell-middle">
+              <div class="w3-xlarge blinker-semibold">The target users of the offerings you publish are other companies or legal entities or professionals, not consumers.</div>
             </div>
           </div>
 
