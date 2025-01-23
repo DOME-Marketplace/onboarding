@@ -130,7 +130,7 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
             </div>
           </div>
 
-          <div class="w3-cell-row w3-padding-16">
+          <div class="w3-cell-row w3-padding-16" style="border-bottom: 1px solid #ddd">
             <div class="w3-cell w3-cell-middle padding-top-small padding-right-4">
               <span class="material-symbols-outlined dome-color">
                 check_circle
