@@ -505,7 +505,7 @@ MHR.register("OnboardingDocument", class extends MHR.AbstractPage {
   <div class="bg-cover" style="background-image: url(assets/images/bg_1_shadow.png);">
     <div class="dome-content w3-text-white">
       <div class="text-jumbo blinker-bold w3-padding-top-48">Prefilled Onboarding documents</div>
-      <p class="w3-xlarge">The documents below have to be sent to <b>onboarding@dome-marketplace.eu</b> duly signed.
+      <p class="w3-xlarge">The documents below have to be sent to <b>onboarding@dome-marketplace.org</b> duly signed.
       </p>
     </div>
     <div class="w3-padding-16"></div>
