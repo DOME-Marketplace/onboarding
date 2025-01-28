@@ -102,6 +102,12 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
             </div>
           </div>
           <h4>Upon the generation of the LEAR verifiable credential, the CSP account is fully operational and products and services can be published.</h4>
+          <p class="w3-large">
+          Please note that if you do not sign the forms below with a <b><u>digital certificate that validly identifies the natural person
+          signing the forms as a representative of the company onboarding</u></b>, you will need to submit further documentation
+          proving the existence of the company and the power of representation of the signatory.
+          Kindly refer to the onboarding guidelines.
+          </p>
 
         </div>
 
