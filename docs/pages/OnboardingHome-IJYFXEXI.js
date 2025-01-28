@@ -106,7 +106,7 @@ MHR.register("OnboardingForm", class extends MHR.AbstractPage {
           Please note that if you do not sign the forms below with a <b><u>digital certificate that validly identifies the natural person
           signing the forms as a representative of the company onboarding</u></b>, you will need to submit further documentation
           proving the existence of the company and the power of representation of the signatory.
-          Kindly refer to the onboarding guidelines.
+          Kindly refer to the <a href="https://knowledgebase.dome-marketplace.eu/books/company-onboarding-process-guide-for-cloud-service-providers-csp/page/4-submission-and-verification-of-documentation">onboarding guidelines</a>.
           </p>
 
         </div>
