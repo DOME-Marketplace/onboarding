@@ -20,5 +20,8 @@ jspm_packages/
 # Pocketbase data directory
 pb_data/
 
+# Config directory
+config/
+
 # SQLite databases
 *.sqlite
