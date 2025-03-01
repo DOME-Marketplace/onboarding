@@ -8,6 +8,9 @@ const pb = new PocketBase(onboardServer);
 
 // Copy some globals to make code less verbose
 
+// @ts-ignore
+let homePage = window.homePage
+
 let gotoPage = window.MHR.gotoPage;
 let goHome = window.MHR.goHome;
 let storage = window.MHR.storage;
@@ -26,12 +29,13 @@ MHR.register(
 
     async enter() {
       var theHtml;
+      pb.authStore.clear()
 
       // Chech if we are logged in
       const logedIn = pb.authStore.isValid;
 
-      // If we are logedin, just show the data about the registration
-      if (logedIn) {
+      // If we have a logedin Buyer, just show the data about the registration
+      if (logedIn && homePage == "BuyerOnboardingHome") {
         gotoPage("BuyerOnboardingShowData", null);
         return;
       }
@@ -140,6 +144,18 @@ MHR.register(
     async enter(pageData) {
       debugger;
 
+      // Check if we are really authenticated
+      if (!pb.authStore.isValid) {
+        gotoPage("MessagePage", {
+          title: "User not authenticated",
+          msg: "The user has not yet authenticated",
+        });
+        return;
+      }
+
+      // Get the saved data for onboarding
+      let r = pb.authStore.record
+
       var theHtml = html`
         <!-- Header -->
         <div class="dome-header">
@@ -189,7 +205,7 @@ MHR.register(
               id="formElements"
               class="w3-margin-bottom"
             >
-              ${LegalRepresentativeDisplay()} ${CompanyForm()} ${LEARForm()}
+              ${LegalRepresentativeDisplay(r)} ${CompanyForm(r)} ${LEARForm(r)}
 
               <div class="w3-bar w3-center">
                 <button
@@ -838,7 +854,8 @@ function LegalRepresentativeForm() {
 /**
  * @returns {import("uhtml").Renderable}
  */
-function LegalRepresentativeDisplay(personData) {
+function LegalRepresentativeDisplay(r) {
+
   return html`
     <div class="card w3-card-2 w3-white">
       <div class="w3-container">
@@ -858,6 +875,8 @@ function LegalRepresentativeDisplay(personData) {
                 name="LegalRepCommonName"
                 class="w3-input w3-border"
                 type="text"
+                value=${r ? r.name : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -869,6 +888,8 @@ function LegalRepresentativeDisplay(personData) {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Email"
+                value=${r ? r.email : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -882,7 +903,7 @@ function LegalRepresentativeDisplay(personData) {
 /**
  * @returns {import("uhtml").Renderable}
  */
-function CompanyForm() {
+function CompanyForm(r) {
   var theHtml = html`
     <div class="card w3-card-2 w3-white">
       <div class="w3-container">
@@ -911,6 +932,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Name"
+                value=${r ? r.organization : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -922,6 +945,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Street name and number"
+                value=${r ? r.street : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -933,6 +958,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="City"
+                value=${r ? r.city : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -944,6 +971,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Postal code"
+                value=${r ? r.postalCode : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -955,6 +984,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Country"
+                value=${r ? r.country : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -966,6 +997,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="VAT number"
+                value=${r ? r.organizationIdentifier : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -977,7 +1010,7 @@ function CompanyForm() {
   return theHtml;
 }
 
-function LEARForm() {
+function LEARForm(r) {
   var theHtml = html`
     <div class="card w3-card-2 w3-white">
       <div class="w3-container">
@@ -1014,6 +1047,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="First name"
+                value=${r ? r.learFirstName : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -1025,6 +1060,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Last name"
+                value=${r ? r.learLastName : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -1036,6 +1073,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Nationality"
+                value=${r ? r.learNationality : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -1047,6 +1086,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="ID card number"
+                value=${r ? r.learIdcard : null}
+                ?readonly=${r}
               />
             </p>
 
@@ -1057,6 +1098,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Complete postal professional address"
+                value=${r ? r.learStreet : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -1068,6 +1111,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Email"
+                value=${r ? r.learEmail : null}
+                ?readonly=${r}
                 required
               />
             </p>
@@ -1079,6 +1124,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Mobile phone"
+                value=${r ? r.learMobile : null}
+                ?readonly=${r}
               />
             </p>
           </div>

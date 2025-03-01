@@ -978,6 +978,7 @@ var Client = class {
 // front/src/pages/BuyerOnboardingHome.js
 var onboardServer = "http://localhost:8090";
 var pb = new Client(onboardServer);
+var homePage = window.homePage;
 var gotoPage = window.MHR.gotoPage;
 var goHome = window.MHR.goHome;
 var storage = window.MHR.storage;
@@ -994,8 +995,9 @@ MHR.register(
     }
     async enter() {
       var theHtml;
+      pb.authStore.clear();
       const logedIn = pb.authStore.isValid;
-      if (logedIn) {
+      if (logedIn && homePage == "BuyerOnboardingHome") {
         gotoPage("BuyerOnboardingShowData", null);
         return;
       }
@@ -1062,6 +1064,14 @@ MHR.register(
     }
     async enter(pageData) {
       debugger;
+      if (!pb.authStore.isValid) {
+        gotoPage("MessagePage", {
+          title: "User not authenticated",
+          msg: "The user has not yet authenticated"
+        });
+        return;
+      }
+      let r2 = pb.authStore.record;
       var theHtml = html`
         <!-- Header -->
         <div class="dome-header">
@@ -1111,11 +1121,7 @@ MHR.register(
               id="formElements"
               class="w3-margin-bottom"
             >
-              ${LegalRepresentativeDisplay()}
-              
-              ${CompanyForm()}
-
-              ${LEARForm()}
+              ${LegalRepresentativeDisplay(r2)} ${CompanyForm(r2)} ${LEARForm(r2)}
 
               <div class="w3-bar w3-center">
                 <button
@@ -1472,24 +1478,24 @@ MHR.register(
       });
       console.log(form);
       const data = {
-        "email": form.LegalRepEmail,
-        "emailVisibility": true,
-        "name": form.LegalRepCommonName,
-        "organizationIdentifier": form.CompanyOrganizationID,
-        "organization": form.CompanyName,
-        "street": form.CompanyStreetName,
-        "city": form.CompanyCity,
-        "postalCode": form.CompanyPostal,
-        "country": form.CompanyCountry,
-        "learFirstName": form.LEARFirstName,
-        "learLastName": form.LEARLastName,
-        "learNationality": form.LEARNationality,
-        "learIdcard": form.LEARIDNumber,
-        "learStreet": form.LEARPostalAddress,
-        "learEmail": form.LEAREmail,
-        "learMobile": form.LEARMobilePhone,
-        "password": "12345678",
-        "passwordConfirm": "12345678"
+        email: form.LegalRepEmail,
+        emailVisibility: true,
+        name: form.LegalRepCommonName,
+        organizationIdentifier: form.CompanyOrganizationID,
+        organization: form.CompanyName,
+        street: form.CompanyStreetName,
+        city: form.CompanyCity,
+        postalCode: form.CompanyPostal,
+        country: form.CompanyCountry,
+        learFirstName: form.LEARFirstName,
+        learLastName: form.LEARLastName,
+        learNationality: form.LEARNationality,
+        learIdcard: form.LEARIDNumber,
+        learStreet: form.LEARPostalAddress,
+        learEmail: form.LEAREmail,
+        learMobile: form.LEARMobilePhone,
+        password: "12345678",
+        passwordConfirm: "12345678"
       };
       try {
         const record = await pb.collection("buyers").create(data);
@@ -1586,7 +1592,7 @@ function LegalRepresentativeForm() {
     </div>
   `;
 }
-function LegalRepresentativeDisplay(personData) {
+function LegalRepresentativeDisplay(r2) {
   return html`
     <div class="card w3-card-2 w3-white">
       <div class="w3-container">
@@ -1606,6 +1612,8 @@ function LegalRepresentativeDisplay(personData) {
                 name="LegalRepCommonName"
                 class="w3-input w3-border"
                 type="text"
+                value=${r2 ? r2.name : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1617,6 +1625,8 @@ function LegalRepresentativeDisplay(personData) {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Email"
+                value=${r2 ? r2.email : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1626,7 +1636,7 @@ function LegalRepresentativeDisplay(personData) {
     </div>
   `;
 }
-function CompanyForm() {
+function CompanyForm(r2) {
   var theHtml = html`
     <div class="card w3-card-2 w3-white">
       <div class="w3-container">
@@ -1655,6 +1665,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Name"
+                value=${r2 ? r2.organization : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1666,6 +1678,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Street name and number"
+                value=${r2 ? r2.street : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1677,6 +1691,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="City"
+                value=${r2 ? r2.city : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1688,6 +1704,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Postal code"
+                value=${r2 ? r2.postalCode : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1699,6 +1717,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Country"
+                value=${r2 ? r2.country : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1710,6 +1730,8 @@ function CompanyForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="VAT number"
+                value=${r2 ? r2.organizationIdentifier : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1720,7 +1742,7 @@ function CompanyForm() {
   `;
   return theHtml;
 }
-function LEARForm() {
+function LEARForm(r2) {
   var theHtml = html`
     <div class="card w3-card-2 w3-white">
       <div class="w3-container">
@@ -1738,9 +1760,9 @@ function LEARForm() {
             confuse with the Legal Representative, who has to appear in the
             official records in the commercial registry or equivalent
             institution in your jurisdiction. Instead, the LEAR can be any
-            person who is authorised by the company to interact with
-            DOME and act on behalf of the company. There is specific information
-            about the LEAR in the knowledge base.
+            person who is authorised by the company to interact with DOME and
+            act on behalf of the company. There is specific information about
+            the LEAR in the knowledge base.
           </p>
           <p>
             Of course, the Legal Representative can appoint him/herself as the
@@ -1757,6 +1779,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="First name"
+                value=${r2 ? r2.learFirstName : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1768,6 +1792,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Last name"
+                value=${r2 ? r2.learLastName : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1779,6 +1805,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Nationality"
+                value=${r2 ? r2.learNationality : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1790,6 +1818,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="ID card number"
+                value=${r2 ? r2.learIdcard : null}
+                ?readonly=${r2}
               />
             </p>
 
@@ -1800,6 +1830,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Complete postal professional address"
+                value=${r2 ? r2.learStreet : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1811,6 +1843,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Email"
+                value=${r2 ? r2.learEmail : null}
+                ?readonly=${r2}
                 required
               />
             </p>
@@ -1822,6 +1856,8 @@ function LEARForm() {
                 class="w3-input w3-border"
                 type="text"
                 placeholder="Mobile phone"
+                value=${r2 ? r2.learMobile : null}
+                ?readonly=${r2}
               />
             </p>
           </div>
@@ -2226,11 +2262,12 @@ MHR.register(
                 <div class="w3-row">
                   <div class="w3-quarter w3-container">
                     <p>
-                      Please, enter the code that you must have received in your email from us.
+                      Please, enter the code that you must have received in your
+                      email from us.
                     </p>
                     <p>
-                      After submitting the form, you will receive a
-                      message for confirmation.
+                      After submitting the form, you will receive a message for
+                      confirmation.
                     </p>
                   </div>
 
@@ -2257,7 +2294,11 @@ MHR.register(
                           required
                         />
                       </p>
-                      <input name="otpId" type="hidden" value=${pageData.otpId} />
+                      <input
+                        name="otpId"
+                        type="hidden"
+                        value=${pageData.otpId}
+                      />
                     </div>
                   </div>
                 </div>
@@ -2275,8 +2316,6 @@ MHR.register(
                 </button>
               </div>
             </form>
-
-
           </div>
         </div>
       `;
