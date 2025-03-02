@@ -1,7 +1,9 @@
 package onboarding
 
 import (
+	"io"
 	"log"
+	"net/mail"
 	"os"
 	"path/filepath"
 	"strings"
@@ -10,6 +12,7 @@ import (
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/pocketbase/pocketbase/tools/mailer"
 	"github.com/pocketbase/pocketbase/tools/router"
 	pbtemplate "github.com/pocketbase/pocketbase/tools/template"
 )
@@ -110,6 +113,58 @@ func (is *OnboardServer) Start() error {
 		se.Router.GET("/{path...}", apis.Static(fsys, false))
 
 		return se.Next()
+	})
+
+	app.OnRecordAuthWithOTPRequest("buyers").BindFunc(func(e *core.RecordAuthWithOTPRequestEvent) error {
+
+		// initialize the filesystem
+		fsys, err := app.NewFilesystem()
+		if err != nil {
+			return err
+		}
+		defer fsys.Close()
+
+		// Allow standard actions before sending the email
+		if err := e.Next(); err != nil {
+			return err
+		}
+
+		// Retrieve the terms and conditions files to send to customer
+		tandcs, err := e.App.FindAllRecords("tandc")
+		if err != nil {
+			return err
+		}
+
+		attachments := map[string]io.Reader{}
+		for _, record := range tandcs {
+			fileName := record.GetString("name")
+			avatarKey := record.BaseFilesPath() + "/" + record.GetString("file")
+			// retrieve a file reader for the avatar key
+			r, err := fsys.GetFile(avatarKey)
+			if err != nil {
+				return err
+			}
+			defer r.Close()
+
+			attachments[fileName] = r
+
+		}
+
+		message := &mailer.Message{
+			From: mail.Address{
+				Address: e.App.Settings().Meta.SenderAddress,
+				Name:    e.App.Settings().Meta.SenderName,
+			},
+			To:          []mail.Address{{Address: e.Record.Email()}},
+			Bcc:         []mail.Address{{Address: "hesus.ruiz@gmail.com"}},
+			Subject:     "Welcome to DOME Marketplace",
+			HTML:        "<h1>Hola desde DOME</h1>",
+			Attachments: attachments,
+
+			// bcc, cc, attachments and custom headers are also supported...
+		}
+
+		return e.App.NewMailClient().Send(message)
 	})
 
 	return is.App.Start()

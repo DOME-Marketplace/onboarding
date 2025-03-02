@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/evidenceledger/domeonboarding/faster"
+	_ "github.com/evidenceledger/domeonboarding/migrations"
 	"github.com/evidenceledger/domeonboarding/onboarding"
 	"github.com/hesusruiz/vcutils/yaml"
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"

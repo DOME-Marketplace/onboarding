@@ -1240,6 +1240,7 @@ MHR.register(
     }
     async enter(pageData) {
       debugger;
+      const records = await pb.collection("tandc").getFullList({});
       var theHtml = html`
       <!-- Header -->
       <div class="dome-header">
@@ -1406,13 +1407,15 @@ MHR.register(
 
             ${LegalRepresentativeForm()}
 
+            ${TermsAndConditionsForm(records)}
+
             ${CompanyForm()}
 
             ${LEARForm()}
 
             <div class="w3-bar w3-center">
               <button class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold"
-                title="Submit and create documents">Submit and create documents
+                title="Submit and create documents">Start registration
               </button>
               <a @click=${this.fillTestData}
                 class="w3-btn dome-color border-2 w3-round-large w3-margin-left blinker-semibold">Fill with test data (only
@@ -1427,13 +1430,11 @@ MHR.register(
             <div class="w3-container">
 
               <p>
-                Click the "<b>Submit and create documents</b>" button above to create the documents automatically including
-                the data you entered.
+                Click the "<b>Start registration</b>" button above to start the registration.
               </p>
               <p>
-                If you are not yet ready and want to see how the final documents look like, click the button "<b>Fill with
-                  test data</b>" and then the "<b>Submit and create documents</b>" button to create the documents with test
-                data.
+                After submission, you will see a confirmation screen where you have to enter the one-time
+                code that you will receive in your email inbox.
               </p>
 
             </div>
@@ -1585,6 +1586,52 @@ function LegalRepresentativeForm() {
               message. Also, if you do not receive the email in a reasonable
               time, please look in your spam inbox, just in case your email
               server has clasified it as such.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+function TermsAndConditionsForm(records) {
+  return html`
+    <div class="card w3-card-2 w3-white">
+      <div class="w3-container">
+        <h1>Accept Terms and Conditions</h1>
+      </div>
+
+      <div class="w3-row">
+        <div class="w3-quarter w3-container">
+          <p>We need the company to accept the DOME Terms and Conditions.</p>
+          <p>
+            Please, read the attached files and click on the checkbox to accept
+            the conditions.
+          </p>
+        </div>
+
+        <div class="w3-rest w3-container">
+          <div class="w3-panel w3-card-2  w3-light-grey">
+
+            ${records.map((element) => {
+    debugger;
+    let name = element.name;
+    let fileName = element.file;
+    let description = element.description;
+    let url = pb.files.getURL(element, fileName);
+    return html`
+              <p>
+                <a href=${url}>${description}</a>
+              </p>
+              `;
+  })}
+            <p>
+              <input
+                class="w3-check"
+                type="checkbox"
+                name="TermsAndConditions"
+                required
+              />
+              <label>I accept the DOME Terms and Conditions</label>
             </p>
           </div>
         </div>
