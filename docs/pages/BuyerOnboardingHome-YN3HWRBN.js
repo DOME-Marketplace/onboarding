@@ -1073,7 +1073,7 @@ MHR.register(
         >
           <div class="dome-content w3-container w3-text-white">
             <div class="text-jumbo blinker-bold w3-padding-top-48">
-              Onboarding in DOME
+              Welcome to DOME Marketplace
             </div>
             <div class="text-jumbo blinker-bold">as a Buyer of services.</div>
             <p class="w3-xlarge">
