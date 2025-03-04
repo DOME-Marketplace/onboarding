@@ -1,0 +1,32 @@
+<h3>Welcome to the DOME Marketplace!</h3>
+<p>You just completed registration of your company in the DOME Marketplace, and this is the data that you provided:</p>
+<h3>Data about yourself</h3>
+<ul>
+    <li><b>Name and surname:</b> {{ .name }}</li>
+    <li><b>Email:</b> {{ .email }}</li>
+</ul>
+
+<h3>Data about your organisation</h3>
+<ul>
+    <li><b>Official name:</b> {{ .organization }} </li>
+    <li><b>Street name and number:</b> {{ .street }} </li>
+    <li><b>City:</b> {{ .city }} </li>
+    <li><b>Postal code:</b> {{ .postalCode }} </li>
+    <li><b>Country:</b> {{ .country }} </li>
+    <li><b>Tax identifier:</b> {{ .organizationIdentifier }}</li>
+</ul>
+
+<h3>Data about the LEAR</h3>
+<ul>
+    <li><b>First name:</b> {{ .learFirstName }} </li>
+    <li><b>Last name:</b> {{ .learLastName }} </li>
+    <li><b>Nationality:</b> {{ .learNationality }} </li>
+    <li><b>ID card mumber:</b> {{ .learIdcard }} </li>
+    <li><b>Postal address:</b> {{ .learStreet }} </li>
+    <li><b>Email:</b> {{ .learEmail }} </li>
+    <li><b>Mobile phone:</b> {{ .learMobile }} </li>
+</ul>
+
+<p>For your reference, we have attached to this email the documents that you reviewed and accepted during registration.</p>
+
+<p>Sincerely, the DOME Marketplace team.</p>

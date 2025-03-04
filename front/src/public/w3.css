@@ -235,3 +235,68 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
 
 .w3-lightred,.w3-hover-lightred:hover{color:black!important;background-color:#ffa49d!important}
+
+
+.color-error{color: white; background-color: red;}
+.color-warning{color: black; background-color: yellow;}
+.color-success{color: black; background-color: #04FF00;}
+
+btn-primary, .btn-primary{
+    color: var(--fore-color-primary);
+    background-color: var(--bg-color-primary);
+    border-radius: 8px;
+    border:none;
+    display:inline-block;
+    padding:8px 16px;
+    vertical-align:middle;
+    overflow:hidden;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap
+}
+btn-primary:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
+btn-primary{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}   
+btn-primary:disabled{cursor:not-allowed;opacity:0.3}
+btn-primary.w3-disabled:hover,btn-primary:disabled:hover{box-shadow:none}
+
+btn-danger, .btn-danger{
+    color: white;
+    background-color: red;
+    border-radius: 8px;
+    border:none;
+    display:inline-block;
+    padding:8px 16px;
+    vertical-align:middle;
+    overflow:hidden;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap
+}
+
+
+.w3-half-centered{margin:auto;max-width: 600px;}
+.w3-margin-bottom5{margin-bottom:5px!important;margin-top:0px!important;margin-left:0px!important;font-size:12px!important}
+
+btn-icon, .btn-icon{
+    color: var(--fore-color-primary);
+    background-color: var(--bg-color-primary);
+    border-radius: 8px;
+    border:none;
+    display:inline-block;
+    padding:8px 16px;
+    overflow:hidden;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    white-space:nowrap;
+    -ms-text-size-adjust:none;
+}
+
+.icon {
+    height: 2rem;
+    width: 2rem;
+    vertical-align: middle;
+    fill:white;
+}
