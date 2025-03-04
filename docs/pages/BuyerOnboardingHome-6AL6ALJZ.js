@@ -1071,7 +1071,7 @@ MHR.register(
           class="bg-cover"
           style="background-image: url(assets/images/bg_1_shadow.png);"
         >
-          <div class="dome-content w3-text-white">
+          <div class="dome-content w3-container w3-text-white">
             <div class="text-jumbo blinker-bold w3-padding-top-48">
               Onboarding in DOME
             </div>
@@ -1199,8 +1199,8 @@ MHR.register(
       super(id);
     }
     async enter(pageData) {
-      debugger;
       const records = await pb.collection("tandc").getFullList({});
+      debugger;
       var theHtml = html`
       <!-- Header -->
       <div class="dome-header">
@@ -1220,7 +1220,7 @@ MHR.register(
 
       <!-- Jumbo -->
       <div class="bg-cover" style="background-image: url(assets/images/bg_1_shadow.png);">
-        <div class="dome-content w3-text-white">
+        <div class="dome-content w3-container w3-text-white">
           <div class="text-jumbo blinker-bold w3-padding-top-48">Onboarding in DOME</div>
           <div class="text-jumbo blinker-bold">as a Buyer of services.</div>
           <p class="w3-xlarge">The Marketplace is a digital platform that enables CSPs to offer cloud and edge computing
@@ -2140,7 +2140,7 @@ MHR.register(
           class="bg-cover"
           style="background-image: url(assets/images/bg_1_shadow.png);"
         >
-          <div class="dome-content w3-text-white">
+          <div class="dome-content w3-container w3-text-white">
             <div class="text-jumbo blinker-bold w3-padding-top-48">
               Waitng for confirmation of your email.
             </div>
@@ -2272,7 +2272,7 @@ MHR.register(
           class="bg-cover"
           style="background-image: url(assets/images/bg_1_shadow.png);"
         >
-          <div class="dome-content w3-text-white">
+          <div class="dome-content w3-container w3-text-white">
             <div class="text-jumbo blinker-bold w3-padding-top-48">
               Onboarding in DOME
             </div>
@@ -2418,7 +2418,7 @@ MHR.register(
           class="bg-cover"
           style="background-image: url(assets/images/bg_1_shadow.png);"
         >
-          <div class="dome-content w3-text-white">
+          <div class="dome-content w3-container w3-text-white">
             <div class="text-jumbo blinker-bold w3-padding-top-48">
               Onboarding in DOME
             </div>
@@ -2593,7 +2593,7 @@ MHR.register(
           class="bg-cover"
           style="background-image: url(assets/images/bg_1_shadow.png);"
         >
-          <div class="dome-content w3-text-white">
+          <div class="dome-content w3-container w3-text-white">
             <div class="text-jumbo blinker-bold w3-padding-top-48">
               Verification of email.
             </div>

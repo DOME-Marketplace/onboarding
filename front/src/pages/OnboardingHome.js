@@ -66,7 +66,7 @@ MHR.register(
           class="bg-cover"
           style="background-image: url(assets/images/bg_1_shadow.png);"
         >
-          <div class="dome-content w3-text-white">
+          <div class="dome-content w3-container w3-text-white">
             <div class="text-jumbo blinker-bold w3-padding-top-48">
               Please, select registration type
             </div>
