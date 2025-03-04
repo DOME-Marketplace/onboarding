@@ -976,7 +976,7 @@ var Client = class {
 };
 
 // front/src/pages/BuyerOnboardingHome.js
-var onboardServer = "http://localhost:8090";
+var onboardServer = "https://onboard.dome.mycredential.eu";
 var pb = new Client(onboardServer);
 var homePage = window.homePage;
 var gotoPage = window.MHR.gotoPage;
@@ -995,14 +995,14 @@ MHR.register(
     }
     async enter() {
       var theHtml;
-      pb.authStore.clear();
       const logedIn = pb.authStore.isValid;
-      if (logedIn && homePage == "BuyerOnboardingHome") {
-        gotoPage("BuyerOnboardingShowData", null);
-        return;
-      }
       let params = new URLSearchParams(document.location.search);
       let page = params.get("page");
+      if (page == "reset") {
+        pb.authStore.clear();
+        gotoPage("BuyerOnboardingForm", null);
+        return;
+      }
       if (page == "login") {
         gotoPage("BuyerOnboardingLogin", null);
         return;
@@ -1015,41 +1015,12 @@ MHR.register(
         gotoPage("BuyerOnboardingOTP", null);
         return;
       }
-      gotoPage("BuyerOnboardingForm", null);
-      return;
-      try {
-        const authData = await pb.send("/apisigner/loginwithcert");
-        await pb.collection("buyers").requestVerification("jesus@alastria.io");
-        if (authData.token) {
-          pb.authStore.save(authData.token, authData.record);
-          console.log(authData);
-          window.location = "https://issuer.dome-marketplace.eu/";
-          return;
-        } else {
-          if (authData.not_verified) {
-            debugger;
-            console.log("waiting for confirmation");
-            gotoPage("BuyerWaitingConfirmation", { authData });
-            return;
-          }
-          gotoPage("BuyerOnboardingForm", { authData });
-          return;
-        }
-      } catch (error) {
-        console.log("error in loginwithcert:", error);
-        if (error.status == 401) {
-          gotoPage("ErrorPage", {
-            title: "An eIDAS certificate is required",
-            msg: "We need that you provide an eIDAS certificate to enable an easy and fast onboarding process."
-          });
-          return;
-        }
-        gotoPage("ErrorPage", {
-          title: "Error authenticating",
-          msg: error.message
-        });
+      if (logedIn && homePage == "BuyerOnboardingHome") {
+        gotoPage("BuyerOnboardingShowData", null);
         return;
       }
+      gotoPage("BuyerOnboardingForm", null);
+      return;
     }
   }
 );
@@ -1106,7 +1077,8 @@ MHR.register(
             </div>
             <div class="text-jumbo blinker-bold">as a Buyer of services.</div>
             <p class="w3-xlarge">
-              This is the data for your current onboarding registration.
+              Welcome to the DOME Marketplace. This is the data for your current
+              onboarding registration.
             </p>
           </div>
           <div class="w3-padding-32"></div>
@@ -1121,21 +1093,17 @@ MHR.register(
               id="formElements"
               class="w3-margin-bottom"
             >
-              ${LegalRepresentativeDisplay(r2)} ${CompanyForm(r2)} ${LEARForm(r2)}
+              ${LegalRepresentativeDisplay(r2)} ${CompanyDisplay(r2)}
+              ${LEARDisplay(r2)}
 
               <div class="w3-bar w3-center">
-                <button
+                <a
+                  href="https://dome-marketplace.eu"
                   class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold"
-                  title="Submit and create documents"
+                  title="Go to the DOME Marketplace"
                 >
-                  Submit and create documents
-                </button>
-                <button
-                  @click=${this.fillTestData}
-                  class="w3-btn dome-color border-2 w3-round-large w3-margin-left blinker-semibold"
-                >
-                  Fill with test data (only for testing)
-                </button>
+                  Go to the DOME Marketplace
+                </a>
               </div>
             </form>
 
@@ -1144,16 +1112,8 @@ MHR.register(
             >
               <div class="w3-container">
                 <p>
-                  Click the "<b>Submit and create documents</b>" button above to
-                  create the documents automatically including the data you
-                  entered.
-                </p>
-                <p>
-                  If you are not yet ready and want to see how the final
-                  documents look like, click the button "<b
-                    >Fill with test data</b
-                  >" and then the "<b>Submit and create documents</b>" button to
-                  create the documents with test data.
+                  Click the "<b>Go to the DOME Marketplace</b>" button above to
+                  go to the DOME Marketplace, and start buying products.
                 </p>
               </div>
             </div>
@@ -1375,19 +1335,15 @@ MHR.register(
                   making sure to use Latin characters.
                 </p>
                 <p class="w3-large">
-                  The information you enter in the forms will be used to generate two of the documents required for the
-                  onboarding process. The whole process is described in more detail in the DOME knowledge base: Company
+                  The information you enter in the forms will be used for the registration of your company
+                  in the DOME Marketplace.
+                  The whole process is described in more detail in the DOME knowledge base: Buyer
                   Onboarding Process. You can read the description in the knowledgebase and come back here whenever you
                   want.
                 </p>
                 <p class="w3-large">
-                  The forms are below. Please, click the "Submit and create documents" after filling all the fields.
+                  The forms are below. Please, click the "Start registration" button after filling all the fields.
                 </p class="w3-large">
-                <p class="w3-large">
-                  For testing purposes, you can click the "Fill with test data" button to create and print documents with
-                  test data but with the final legal prose, so they can be reviewed by your legal department in advance of
-                  creating the real documents.</p>
-                </p>
               </div>
             </div>
             <div class="">
@@ -1559,6 +1515,7 @@ function LegalRepresentativeForm() {
                 name="LegalRepCommonName"
                 class="w3-input w3-border"
                 type="text"
+                placeholder="Name and Surname"
                 required
               />
             </p>
@@ -1604,14 +1561,13 @@ function TermsAndConditionsForm(records) {
         <div class="w3-quarter w3-container">
           <p>We need the company to accept the DOME Terms and Conditions.</p>
           <p>
-            Please, read the attached files and click on the checkbox to accept
-            the conditions.
+            Please, read the linked documents and click on the checkbox to
+            accept the conditions described in them.
           </p>
         </div>
 
         <div class="w3-rest w3-container">
           <div class="w3-panel w3-card-2  w3-light-grey">
-
             ${records.map((element) => {
     debugger;
     let name = element.name;
@@ -1619,9 +1575,9 @@ function TermsAndConditionsForm(records) {
     let description = element.description;
     let url = pb.files.getURL(element, fileName);
     return html`
-              <p>
-                <a href=${url}>${description}</a>
-              </p>
+                <p>
+                  <a href=${url}>${description}</a>
+                </p>
               `;
   })}
             <p>
@@ -1661,7 +1617,7 @@ function LegalRepresentativeDisplay(r2) {
                 type="text"
                 value=${r2 ? r2.name : null}
                 ?readonly=${r2}
-                required
+                disabled
               />
             </p>
 
@@ -1674,7 +1630,7 @@ function LegalRepresentativeDisplay(r2) {
                 placeholder="Email"
                 value=${r2 ? r2.email : null}
                 ?readonly=${r2}
-                required
+                disabled
               />
             </p>
           </div>
@@ -1682,6 +1638,219 @@ function LegalRepresentativeDisplay(r2) {
       </div>
     </div>
   `;
+}
+function CompanyDisplay(r2) {
+  var theHtml = html`
+    <div class="card w3-card-2 w3-white">
+      <div class="w3-container">
+        <h1>Company information</h1>
+      </div>
+
+      <div class="w3-row">
+        <div class="w3-quarter w3-container">
+          <p>This is the information about the company.</p>
+        </div>
+
+        <div class="w3-rest w3-container">
+          <div class="w3-panel w3-card-2  w3-light-grey">
+            <p>
+              <label><b>Official Name</b></label>
+              <input
+                name="CompanyName"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Name"
+                value=${r2 ? r2.organization : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Street name and number</b></label>
+              <input
+                name="CompanyStreetName"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Street name and number"
+                value=${r2 ? r2.street : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>City</b></label>
+              <input
+                name="CompanyCity"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="City"
+                value=${r2 ? r2.city : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Postal code</b></label>
+              <input
+                name="CompanyPostal"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Postal code"
+                value=${r2 ? r2.postalCode : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Country</b></label>
+              <input
+                name="CompanyCountry"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Country"
+                value=${r2 ? r2.country : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Tax identifier</b></label>
+              <input
+                name="CompanyOrganizationID"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="VAT number"
+                value=${r2 ? r2.organizationIdentifier : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  return theHtml;
+}
+function LEARDisplay(r2) {
+  var theHtml = html`
+    <div class="card w3-card-2 w3-white">
+      <div class="w3-container">
+        <h1>Information about the LEAR</h1>
+      </div>
+
+      <div class="w3-row">
+        <div class="w3-quarter w3-container">
+          <p>
+            This is the information about the LEAR, identifying the employee of
+            the company who will act as the Legal Entity Authorised
+            Representative.
+          </p>
+        </div>
+
+        <div class="w3-rest w3-container">
+          <div class="w3-panel w3-card-2  w3-light-grey">
+            <p>
+              <label><b>First name</b></label>
+              <input
+                name="LEARFirstName"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="First name"
+                value=${r2 ? r2.learFirstName : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Last name</b></label>
+              <input
+                name="LEARLastName"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Last name"
+                value=${r2 ? r2.learLastName : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Nationality</b></label>
+              <input
+                name="LEARNationality"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Nationality"
+                value=${r2 ? r2.learNationality : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>ID card number</b></label>
+              <input
+                name="LEARIDNumber"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="ID card number"
+                value=${r2 ? r2.learIdcard : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Complete postal professional address</b></label>
+              <input
+                name="LEARPostalAddress"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Complete postal professional address"
+                value=${r2 ? r2.learStreet : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Email</b></label>
+              <input
+                name="LEAREmail"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Email"
+                value=${r2 ? r2.learEmail : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+
+            <p>
+              <label><b>Mobile phone</b></label>
+              <input
+                name="LEARMobilePhone"
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Mobile phone"
+                value=${r2 ? r2.learMobile : null}
+                ?readonly=${r2}
+                disabled
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  return theHtml;
 }
 function CompanyForm(r2) {
   var theHtml = html`
@@ -1700,6 +1869,11 @@ function CompanyForm(r2) {
             The name must be the official name of the company as it appears in
             the records of incorporation of your company. The address must be
             that of the official place of incorporation of your company.
+          </p>
+          <p>
+            The Tax identifier will be used as a unique identifier of your
+            company in the DOME Marketplace, and also when you buy services
+            published in the marketplace.
           </p>
         </div>
 
@@ -2069,6 +2243,7 @@ MHR.register(
     }
     async enter(pageData) {
       debugger;
+      pb.authStore.clear();
       var theHtml = html`
         <!-- Header -->
         <div class="dome-header">
@@ -2084,9 +2259,9 @@ MHR.register(
                 </a>
               </div>
               <div class="w3-bar-item">
-                <span class="blinker-semibold w3-xlarge nowrap"
-                  >DOME MARKETPLACE</span
-                >
+                <span class="blinker-semibold w3-xlarge nowrap">
+                  DOME MARKETPLACE
+                </span>
               </div>
             </div>
           </div>
@@ -2123,9 +2298,9 @@ MHR.register(
                 <div class="w3-row">
                   <div class="w3-quarter w3-container">
                     <p>
-                      Please, enter your email to receive important messages
-                      from us. After submitting the form, you will receive a
-                      message for confirmation.
+                      Enter the email that you used to register your company.
+                      After submitting the form, you will receive a
+                      message with a code that you will have to enter in the next form.
                     </p>
                   </div>
 
@@ -2142,21 +2317,6 @@ MHR.register(
                         />
                       </p>
 
-                      <p>
-                        <b>IMPORTANT:</b> your onboarding request can only be
-                        processed after you confirm your email address. After
-                        you submit the onboarding request, you will receive a
-                        message from us at the email address you specify here,
-                        allowing you to confirm it.
-                      </p>
-                      <p>
-                        We send the email immediately, but depending on the
-                        email server configuration, you may require some minutes
-                        before receiving the message. Also, if you do not
-                        receive the email in a reasonable time, please look in
-                        your spam inbox, just in case your email server has
-                        clasified it as such.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -2172,35 +2332,10 @@ MHR.register(
                 >
                   Login
                 </button>
-                <a
-                  class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold"
-                  style="width:30%"
-                  title="Register email"
-                >
-                  Register email
-                </a>
               </div>
             </form>
 
-            <!-- Information about the form -->
-            <div
-              class="card w3-card-4 dome-content w3-round-large dome-bgcolor w3-margin-bottom"
-            >
-              <div class="w3-container">
-                <p>
-                  Click the "<b>Submit and create documents</b>" button above to
-                  create the documents automatically including the data you
-                  entered.
-                </p>
-                <p>
-                  If you are not yet ready and want to see how the final
-                  documents look like, click the button "<b
-                    >Fill with test data</b
-                  >" and then the "<b>Submit and create documents</b>" button to
-                  create the documents with test data.
-                </p>
-              </div>
-            </div>
+            
           </div>
         </div>
       `;
@@ -2395,7 +2530,7 @@ MHR.register(
         });
         return;
       }
-      goHome();
+      window.location = window.location.pathname;
     }
   }
 );

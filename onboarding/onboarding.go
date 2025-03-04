@@ -150,6 +150,29 @@ func (is *OnboardServer) Start() error {
 
 		}
 
+		emailBody, err := is.treg.LoadFiles(
+			"templates/email/welcome.html",
+		).Render(map[string]any{
+			"name":                   e.Record.GetString("name"),
+			"email":                  e.Record.GetString("email"),
+			"organization":           e.Record.GetString("organization"),
+			"street":                 e.Record.GetString("street"),
+			"city":                   e.Record.GetString("city"),
+			"postalCode":             e.Record.GetString("postalCode"),
+			"country":                e.Record.GetString("country"),
+			"organizationIdentifier": e.Record.GetString("organizationIdentifier"),
+			"learFirstName":          e.Record.GetString("learFirstName"),
+			"learLastName":           e.Record.GetString("learLastName"),
+			"learNationality":        e.Record.GetString("learNationality"),
+			"learIdcard":             e.Record.GetString("learIdcard"),
+			"learStreet":             e.Record.GetString("learStreet"),
+			"learEmail":              e.Record.GetString("learEmail"),
+			"learMobile":             e.Record.GetString("learMobile"),
+		})
+		if err != nil {
+			return err
+		}
+
 		message := &mailer.Message{
 			From: mail.Address{
 				Address: e.App.Settings().Meta.SenderAddress,
@@ -158,7 +181,7 @@ func (is *OnboardServer) Start() error {
 			To:          []mail.Address{{Address: e.Record.Email()}},
 			Bcc:         []mail.Address{{Address: "hesus.ruiz@gmail.com"}},
 			Subject:     "Welcome to DOME Marketplace",
-			HTML:        "<h1>Hola desde DOME</h1>",
+			HTML:        emailBody,
 			Attachments: attachments,
 
 			// bcc, cc, attachments and custom headers are also supported...
