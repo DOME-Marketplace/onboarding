@@ -113,7 +113,7 @@ MHR.register(
                     <button
                       class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                       title="Submit and create documents"
-                      @click=${() => window.onboardServer + "/buyer.html"}
+                      @click=${() => {window.onboardServer + "/buyer.html"}}
                     >
                       Become a DOME Marketplace Customer
                     </button>
