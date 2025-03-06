@@ -976,17 +976,7 @@ var Client = class {
 };
 
 // front/src/pages/BuyerOnboardingHome.js
-var onboardServer = "https://onboard.dome.mycredential.eu";
-var domeHome = "https://dome-marketplace.eu";
-if (document.location.hostname == "onboarding.dome-marketplace.eu") {
-  window.onboardServer = "https://onboard.dome.mycredential.eu";
-  window.domeHome = "https://dome-marketplace.eu";
-} else {
-  window.onboardServer = document.location.hostname;
-  window.domeHome = "https://dome-marketplace.eu";
-}
-window.localStorage.getItem("domeHome");
-var pb = new Client(onboardServer);
+var pb = new Client(window.onboardServer);
 var homePage = window.homePage;
 var gotoPage = window.MHR.gotoPage;
 var goHome = window.MHR.goHome;

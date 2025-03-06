@@ -2,22 +2,8 @@
 
 import PocketBase from "../components/pocketbase.es.mjs";
 
-let onboardServer = "https://onboard.dome.mycredential.eu";
-let domeHome = "https://dome-marketplace.eu";
 
-if (document.location.hostname == "onboarding.dome-marketplace.eu") {
-  window.onboardServer = "https://onboard.dome.mycredential.eu"
-  window.domeHome = "https://dome-marketplace.eu"
-} else {
-  window.onboardServer = document.location.hostname
-  window.domeHome = "https://dome-marketplace.eu"
-}
-
-
-window.localStorage.getItem("domeHome")
-
-
-const pb = new PocketBase(onboardServer);
+const pb = new PocketBase(window.onboardServer);
 
 // Copy some globals to make code less verbose
 
