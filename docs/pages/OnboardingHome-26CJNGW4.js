@@ -3,6 +3,8 @@ var MHR = window.MHR;
 var FV = window.FormValidator;
 var onboardServer = "https://onboard.dome.mycredential.eu";
 var domeHome = "https://dome-marketplace.eu";
+alert(document.referrer);
+debugger;
 if (document.referrer.startsWith("https://dome-marketplace-sbx.org/") || document.location.hostname == "onboardpre.dome.mycredential.eu") {
   onboardServer = "https://onboardpre.dome.mycredential.eu";
   domeHome = "https://dome-marketplace-sbx.org";
