@@ -6,6 +6,20 @@ const MHR = window.MHR;
 // @ts-ignore
 const FV = window.FormValidator;
 
+let onboardServer = "https://onboard.dome.mycredential.eu";
+let domeHome = "https://dome-marketplace.eu";
+
+
+if (document.referrer.startsWith("https://dome-marketplace-sbx.org/") ||
+  (document.location.hostname == "onboardpre.dome.mycredential.eu")) {
+  onboardServer = "https://onboardpre.dome.mycredential.eu"
+  domeHome = "https://dome-marketplace-sbx.org"
+}
+
+window.localStorage.setItem("onboardServer", onboardServer)
+window.localStorage.setItem("domeHome", domeHome)
+
+
 // Copy some globals to make code less verbose
 let gotoPage = MHR.gotoPage;
 let html = MHR.html;

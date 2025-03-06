@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -18,6 +19,15 @@ const defaultConfigFileName = "config/server.yaml"
 const defaultBuildConfigFile = "./data/config/devserver.yaml"
 
 var baseDir string
+
+type Config struct {
+	Server *onboarding.Config `yaml:"server"`
+}
+
+func (s *Config) Validate() (err error) {
+
+	return s.Server.Validate()
+}
 
 func main() {
 
@@ -39,15 +49,8 @@ func main() {
 	// Read configuration file
 	rootCfg := readConfiguration(LookupEnvOrString("CONFIG_FILE", defaultConfigFilePath))
 
-	// Get the configurations for the individual services
-	scfg := rootCfg.Map("server")
-	if len(scfg) == 0 {
-		panic("no configuration for new Server found")
-	}
-	serverCfg := yaml.New(scfg)
-
-	// Create a new Issuer with its configuration
-	server := onboarding.New(serverCfg)
+	// Create a new Onboarding server with its configuration
+	server := onboarding.New(rootCfg.Server)
 	app := server.App
 
 	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{
@@ -60,7 +63,9 @@ func main() {
 	// *******************************************
 	// *******************************************
 	// *******************************************
-	go faster.WatchAndBuild("buildfront.yaml")
+	if isGoRun {
+		go faster.WatchAndBuild("buildfront.yaml")
+	}
 
 	if err := server.Start(); err != nil {
 		log.Fatal(err)
@@ -68,7 +73,7 @@ func main() {
 }
 
 // readConfiguration reads a YAML file and creates an easy-to navigate structure
-func readConfiguration(configFile string) *yaml.YAML {
+func readConfiguration(configFile string) *Config {
 	var cfg *yaml.YAML
 	var err error
 
@@ -77,7 +82,13 @@ func readConfiguration(configFile string) *yaml.YAML {
 		fmt.Printf("Config file not found, exiting\n")
 		panic(err)
 	}
-	return cfg
+
+	config, err := ConfigFromMap(cfg)
+	if err != nil {
+		fmt.Printf("Config file not well formed, exiting\n")
+		panic(err)
+	}
+	return config
 }
 
 func LookupEnvOrString(key string, defaultVal string) string {
@@ -85,4 +96,24 @@ func LookupEnvOrString(key string, defaultVal string) string {
 		return val
 	}
 	return defaultVal
+}
+
+// ConfigFromMap parses and validates a configuration specified in YAML,
+// returning the config in a struct format.
+func ConfigFromMap(cfg *yaml.YAML) (*Config, error) {
+	d, err := json.Marshal(cfg.Data())
+	if err != nil {
+		return nil, err
+	}
+
+	config := &Config{}
+	err = json.Unmarshal(d, config)
+	if err != nil {
+		return nil, err
+	}
+
+	err = config.Validate()
+
+	return config, err
+
 }

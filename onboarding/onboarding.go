@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	my "github.com/hesusruiz/vcutils/yaml"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
@@ -25,13 +24,7 @@ type OnboardServer struct {
 }
 
 // New creates an instance of the Issuer, not started yet
-func New(cfg *my.YAML) *OnboardServer {
-
-	// Get the configuration struct
-	config, err := ConfigFromMap(cfg)
-	if err != nil {
-		panic(err)
-	}
+func New(config *Config) *OnboardServer {
 
 	is := &OnboardServer{}
 

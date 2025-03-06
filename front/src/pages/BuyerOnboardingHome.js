@@ -3,6 +3,17 @@
 import PocketBase from "../components/pocketbase.es.mjs";
 
 let onboardServer = "https://onboard.dome.mycredential.eu";
+let domeHome = "https://dome-marketplace.eu";
+
+
+if (document.referrer.startsWith("https://dome-marketplace-sbx.org/") ||
+  (document.location.hostname == "onboardpre.dome.mycredential.eu")) {
+  onboardServer = "https://onboardpre.dome.mycredential.eu"
+  domeHome = "https://dome-marketplace-sbx.org"
+}
+
+window.localStorage.setItem("onboardServer", onboardServer)
+window.localStorage.setItem("domeHome", domeHome)
 
 const pb = new PocketBase(onboardServer);
 
@@ -165,7 +176,7 @@ MHR.register(
 
               <div class="w3-bar w3-center">
                 <a
-                  href="https://dome-marketplace.eu"
+                  href=${domeHome}
                   class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold"
                   title="Go to the DOME Marketplace"
                 >
