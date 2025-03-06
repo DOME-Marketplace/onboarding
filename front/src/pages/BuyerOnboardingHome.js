@@ -5,15 +5,16 @@ import PocketBase from "../components/pocketbase.es.mjs";
 let onboardServer = "https://onboard.dome.mycredential.eu";
 let domeHome = "https://dome-marketplace.eu";
 
-
-if (document.referrer.startsWith("https://dome-marketplace-sbx.org/") ||
-  (document.location.hostname == "onboardpre.dome.mycredential.eu")) {
-  onboardServer = "https://onboardpre.dome.mycredential.eu"
-  domeHome = "https://dome-marketplace-sbx.org"
+if (window.localStorage.getItem("onboardServer")) {
+  onboardServer = window.localStorage.getItem("onboardServer");
+}
+if (window.localStorage.getItem("domeHome")) {
+  domeHome = window.localStorage.getItem("domeHome");
 }
 
-window.localStorage.setItem("onboardServer", onboardServer)
-window.localStorage.setItem("domeHome", domeHome)
+
+window.localStorage.getItem("domeHome")
+
 
 const pb = new PocketBase(onboardServer);
 

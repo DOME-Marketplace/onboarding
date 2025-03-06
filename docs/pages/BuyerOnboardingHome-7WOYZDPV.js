@@ -978,12 +978,13 @@ var Client = class {
 // front/src/pages/BuyerOnboardingHome.js
 var onboardServer = "https://onboard.dome.mycredential.eu";
 var domeHome = "https://dome-marketplace.eu";
-if (document.referrer.startsWith("https://dome-marketplace-sbx.org/") || document.location.hostname == "onboardpre.dome.mycredential.eu") {
-  onboardServer = "https://onboardpre.dome.mycredential.eu";
-  domeHome = "https://dome-marketplace-sbx.org";
+if (window.localStorage.getItem("onboardServer")) {
+  onboardServer = window.localStorage.getItem("onboardServer");
 }
-window.localStorage.setItem("onboardServer", onboardServer);
-window.localStorage.setItem("domeHome", domeHome);
+if (window.localStorage.getItem("domeHome")) {
+  domeHome = window.localStorage.getItem("domeHome");
+}
+window.localStorage.getItem("domeHome");
 var pb = new Client(onboardServer);
 var homePage = window.homePage;
 var gotoPage = window.MHR.gotoPage;

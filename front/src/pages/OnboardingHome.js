@@ -10,9 +10,10 @@ let onboardServer = "https://onboard.dome.mycredential.eu";
 let domeHome = "https://dome-marketplace.eu";
 
 alert(document.referrer)
+console.log(document.referrer)
 debugger
 
-if (document.referrer.startsWith("https://dome-marketplace-sbx.org/") ||
+if (document.referrer.startsWith("https://dome-marketplace-sbx.org") ||
   (document.location.hostname == "onboardpre.dome.mycredential.eu")) {
   onboardServer = "https://onboardpre.dome.mycredential.eu"
   domeHome = "https://dome-marketplace-sbx.org"
