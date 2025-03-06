@@ -5,11 +5,12 @@ import PocketBase from "../components/pocketbase.es.mjs";
 let onboardServer = "https://onboard.dome.mycredential.eu";
 let domeHome = "https://dome-marketplace.eu";
 
-if (window.localStorage.getItem("onboardServer")) {
-  onboardServer = window.localStorage.getItem("onboardServer");
-}
-if (window.localStorage.getItem("domeHome")) {
-  domeHome = window.localStorage.getItem("domeHome");
+if (document.location.hostname == "onboarding.dome-marketplace.eu") {
+  window.onboardServer = "https://onboard.dome.mycredential.eu"
+  window.domeHome = "https://dome-marketplace.eu"
+} else {
+  window.onboardServer = document.location.hostname
+  window.domeHome = "https://dome-marketplace.eu"
 }
 
 

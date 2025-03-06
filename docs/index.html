@@ -30,11 +30,11 @@
         ]
         // The page mapping
         window.pageModules = {
-  "BuyerOnboardingHome": "/pages/BuyerOnboardingHome-7WOYZDPV.js",
+  "BuyerOnboardingHome": "/pages/BuyerOnboardingHome-A4VIJ227.js",
   "ConfirmResetApp": "/pages/ConfirmResetApp-NNGCVBX3.js",
   "LogsPage": "/pages/LogsPage-WCWKZ36U.js",
   "MenuPage": "/pages/MenuPage-A455MOK2.js",
-  "OnboardingHome": "/pages/OnboardingHome-2WVFDPNY.js",
+  "OnboardingHome": "/pages/OnboardingHome-UJUJBIRN.js",
   "SWNotify": "/pages/SWNotify-56JYMAB6.js",
   "SelectCamera": "/pages/SelectCamera-RGTDG2GV.js"
 }
@@ -44,6 +44,23 @@
             mode: 'ios',
             },
         };
+
+        if (document.location.hostname == "onboarding.dome-marketplace.eu") {
+            if (document.referrer.startsWith("https://dome-marketplace-sbx.org")) {
+                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
+                window.domeHome = "https://dome-marketplace-sbx.org"
+            } else if (document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
+                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
+                window.domeHome = "https://dome-marketplace-dev2.org"
+            } else {
+                window.onboardServer = "https://onboard.dome.mycredential.eu"
+                window.domeHome = "https://dome-marketplace.eu"
+            }
+        } else {
+            window.onboardServer = document.location.hostname
+            window.domeHome = "https://dome-marketplace.eu"
+        }
+
 
     </script>
 

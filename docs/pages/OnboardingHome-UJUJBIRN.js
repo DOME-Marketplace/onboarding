@@ -1,17 +1,6 @@
 // front/src/pages/OnboardingHome.js
 var MHR = window.MHR;
 var FV = window.FormValidator;
-var onboardServer = "https://onboard.dome.mycredential.eu";
-var domeHome = "https://dome-marketplace.eu";
-alert(document.referrer);
-console.log(document.referrer);
-debugger;
-if (document.referrer.startsWith("https://dome-marketplace-sbx.org") || document.location.hostname == "onboardpre.dome.mycredential.eu") {
-  onboardServer = "https://onboardpre.dome.mycredential.eu";
-  domeHome = "https://dome-marketplace-sbx.org";
-}
-window.localStorage.setItem("onboardServer", onboardServer);
-window.localStorage.setItem("domeHome", domeHome);
 var gotoPage = MHR.gotoPage;
 var html = MHR.html;
 MHR.register(
@@ -112,7 +101,7 @@ MHR.register(
                     <button
                       class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                       title="Submit and create documents"
-                      @click=${() => window.location = "/buyer.html"}
+                      @click=${() => window.onboardServer + "/buyer.html"}
                     >
                       Become a DOME Marketplace Customer
                     </button>

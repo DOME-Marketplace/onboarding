@@ -978,11 +978,12 @@ var Client = class {
 // front/src/pages/BuyerOnboardingHome.js
 var onboardServer = "https://onboard.dome.mycredential.eu";
 var domeHome = "https://dome-marketplace.eu";
-if (window.localStorage.getItem("onboardServer")) {
-  onboardServer = window.localStorage.getItem("onboardServer");
-}
-if (window.localStorage.getItem("domeHome")) {
-  domeHome = window.localStorage.getItem("domeHome");
+if (document.location.hostname == "onboarding.dome-marketplace.eu") {
+  window.onboardServer = "https://onboard.dome.mycredential.eu";
+  window.domeHome = "https://dome-marketplace.eu";
+} else {
+  window.onboardServer = document.location.hostname;
+  window.domeHome = "https://dome-marketplace.eu";
 }
 window.localStorage.getItem("domeHome");
 var pb = new Client(onboardServer);

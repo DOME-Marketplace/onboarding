@@ -6,22 +6,6 @@ const MHR = window.MHR;
 // @ts-ignore
 const FV = window.FormValidator;
 
-let onboardServer = "https://onboard.dome.mycredential.eu";
-let domeHome = "https://dome-marketplace.eu";
-
-alert(document.referrer)
-console.log(document.referrer)
-debugger
-
-if (document.referrer.startsWith("https://dome-marketplace-sbx.org") ||
-  (document.location.hostname == "onboardpre.dome.mycredential.eu")) {
-  onboardServer = "https://onboardpre.dome.mycredential.eu"
-  domeHome = "https://dome-marketplace-sbx.org"
-}
-
-window.localStorage.setItem("onboardServer", onboardServer)
-window.localStorage.setItem("domeHome", domeHome)
-
 
 // Copy some globals to make code less verbose
 let gotoPage = MHR.gotoPage;
@@ -129,7 +113,7 @@ MHR.register(
                     <button
                       class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                       title="Submit and create documents"
-                      @click=${() => window.location = "/buyer.html"}
+                      @click=${() => window.onboardServer + "/buyer.html"}
                     >
                       Become a DOME Marketplace Customer
                     </button>

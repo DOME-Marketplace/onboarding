@@ -37,6 +37,23 @@
             },
         };
 
+        if (document.location.hostname == "onboarding.dome-marketplace.eu") {
+            if (document.referrer.startsWith("https://dome-marketplace-sbx.org")) {
+                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
+                window.domeHome = "https://dome-marketplace-sbx.org"
+            } else if (document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
+                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
+                window.domeHome = "https://dome-marketplace-dev2.org"
+            } else {
+                window.onboardServer = "https://onboard.dome.mycredential.eu"
+                window.domeHome = "https://dome-marketplace.eu"
+            }
+        } else {
+            window.onboardServer = document.location.hostname
+            window.domeHome = "https://dome-marketplace.eu"
+        }
+
+
     </script>
 
     <!-- Load the application -->
