@@ -18,14 +18,11 @@
 
 
     <script>
-        alert("In the Index.html")
-
-        // Send the user to the PRE instance if coming from PRE
-        if (document.referrer.startsWith("https://dome-marketplace-sbx.org") ||
-            document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
-            window.location = window.location.origin + "/buyer_pre.html"
-            return
-        }
+        alert("In the Buyer_pre.html")
+        
+        // Set the API server and the DOME home portal for redirection after the onboard process
+        window.onboardServer = "https://onboardpre.dome.mycredential.eu"
+        window.domeHome = "https://dome-marketplace-sbx.org"
 
         // Set here the default home page for the app, before loading app.js
         window.homePage = "OnboardingHome"
@@ -53,21 +50,6 @@
             },
         };
 
-        if (document.location.hostname == "onboarding.dome-marketplace.eu") {
-            if (document.referrer.startsWith("https://dome-marketplace-sbx.org")) {
-                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
-                window.domeHome = "https://dome-marketplace-sbx.org"
-            } else if (document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
-                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
-                window.domeHome = "https://dome-marketplace-dev2.org"
-            } else {
-                window.onboardServer = "https://onboard.dome.mycredential.eu"
-                window.domeHome = "https://dome-marketplace.eu"
-            }
-        } else {
-            window.onboardServer = document.location.hostname
-            window.domeHome = "https://dome-marketplace.eu"
-        }
         console.log("Onboard API server", window.onboardServer)
         console.log("DOME home page", window.domeHome)
 
@@ -87,7 +69,7 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="DOME Onboarding">
-    <meta property="og:description" content="Privacy-focused Wallet for Verifiable Credentials">
+    <meta property="og:description" content="DOME Onboarding process">
     <!-- <link rel="manifest" href="./manifest.webmanifest"> -->
 
     <link rel="icon" type="image/x-icon" href="assets/logos/dome_logo.png">
