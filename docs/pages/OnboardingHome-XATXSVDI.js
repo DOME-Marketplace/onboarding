@@ -978,7 +978,7 @@ var Client = class {
 // front/src/pages/OnboardingHome.js
 var MHR = window.MHR;
 console.log("BUYER ONBOARDING API", window.onboardServer);
-var pb = new Client("https://" + window.onboardServer);
+var pb = new Client(window.onboardServer);
 var gotoPage = MHR.gotoPage;
 var html = MHR.html;
 MHR.register(
@@ -1104,7 +1104,7 @@ MHR.register(
                     <button
                       class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                       title="Submit and create documents"
-                      @click=${() => loadPage("buyer")}
+                      @click=${() => gotoPage("BuyerOnboardingForm", null)}
                     >
                       Become a DOME Marketplace Customer
                     </button>
@@ -2191,7 +2191,7 @@ MHR.register(
   }
 );
 function loadPage(page) {
-  window.location = window.location.origin + "?page=" + page;
+  window.location = window.location.origin + window.location.pathname + "?page=" + page;
   return;
 }
 MHR.register(

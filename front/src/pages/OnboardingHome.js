@@ -6,7 +6,7 @@ const MHR = window.MHR;
 import PocketBase from "../components/pocketbase.es.mjs";
 
 console.log("BUYER ONBOARDING API",window.onboardServer )
-const pb = new PocketBase("https://" + window.onboardServer);
+const pb = new PocketBase(window.onboardServer);
 
 
 // Copy some globals to make code less verbose
@@ -154,7 +154,7 @@ MHR.register(
                     <button
                       class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                       title="Submit and create documents"
-                      @click=${() => loadPage("buyer")}
+                      @click=${() => gotoPage("BuyerOnboardingForm", null)}
                     >
                       Become a DOME Marketplace Customer
                     </button>
@@ -1280,10 +1280,13 @@ MHR.register(
   }
 );
 
+/**
+ * @param {string} page
+ */
 function loadPage(page) {
   // Reload the application with a clean URL
   //@ts-ignore
-  window.location = window.location.origin + "?page=" + page
+  window.location = window.location.origin + window.location.pathname + "?page=" + page
   return;
 }
 
