@@ -155,11 +155,12 @@ MHR.register(
                     </li>
                   </ul>
                   <div class="w3-section w3-center">
-                    ${window.domeEnvironment == "production" 
+                    ${window.domeEnvironment == "pre" 
                       ? html`
-                        <a class="w3-btn dome-bgcolor w3-round-large blinker-semibold">
-                          Coming soon!
-                        </a>
+                        <div class="dome-bgcolor w3-round-large blinker-semibold">
+                          <div>Temporary unavailable due to maintenance activity.</div>
+                          <div>Please try again later.</div>
+                        </div>
                       ` 
                       : html`
                         <button
