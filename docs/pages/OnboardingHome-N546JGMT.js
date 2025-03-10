@@ -1064,12 +1064,12 @@ MHR.register(
               Please, select registration type
             </div>
             <div class="text-jumbo blinker-bold">
-              as Provider or Consumer of services.
+              as Provider or Customer of services.
             </div>
             <p class="w3-xlarge">
-              The Marketplace is a digital platform that enables CSPs to offer
+              The Marketplace is a digital platform that enables Cloud Service Providers (CSPs) to offer
               cloud and edge computing services to customers across Europe. You
-              can register either as a Provider or as a Consumer of the
+              can register either as a Provider or as a Customer of the
               services.
             </p>
           </div>
@@ -1081,12 +1081,12 @@ MHR.register(
           <div class="w3-row-padding dome-content">
             <div class="w3-half">
               <div class="w3-card-4 w3-round-large w3-white">
-                <h2 class="w3-center">Consumer</h2>
+                <h2 class="w3-center">Customer</h2>
                 <div class="w3-container">
                   <h4>Do you want to buy Cloud and Edge services?</h4>
                   <p>
-                    If you are a legal entity duly registered in an EU country
-                    looking for the following benefits:
+                    If you are a legal entity or individual or professional acting
+                    within the purpose of your trade/business/profession looking for the following benefits:
                   </p>
                   <ul>
                     <li>
@@ -1096,7 +1096,9 @@ MHR.register(
                     <li>
                       Enjoy a seamless experience in the procurement journey
                     </li>
-                    <li>Reduced time for search, comparison and evaluation</li>
+                    <li>
+                      Reduced time for search, comparison and evaluation
+                    </li>
                     <li>
                       Simplified purchase processes and service monitoring
                     </li>
