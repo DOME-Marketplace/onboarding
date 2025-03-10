@@ -21,8 +21,10 @@
         
         // Set the API server and the DOME home portal for redirection after the onboard process
         window.onboardServer = "https://onboardpre.dome.mycredential.eu"
-        window.domeHome = "https://dome-marketplace-sbx.org"
+        window.domeHome = "https://dome-marketplace-dev2.org"
         window.domeEnvironment = "pre"
+        console.log("Onboard API server", window.onboardServer)
+        console.log("DOME home page", window.domeHome)
 
         // Set here the default home page for the app, before loading app.js
         window.homePage = "OnboardingHome"
@@ -35,7 +37,14 @@
             { page: "ConfirmResetApp", text: "Reset application" }
         ]
         // The page mapping
-        window.pageModules = PUT_PAGEMAP_HERE
+        window.pageModules = {
+  "ConfirmResetApp": "/pages/ConfirmResetApp-NNGCVBX3.js",
+  "LogsPage": "/pages/LogsPage-WCWKZ36U.js",
+  "MenuPage": "/pages/MenuPage-A455MOK2.js",
+  "OnboardingHome": "/pages/OnboardingHome-XATXSVDI.js",
+  "SWNotify": "/pages/SWNotify-56JYMAB6.js",
+  "SelectCamera": "/pages/SelectCamera-RGTDG2GV.js"
+}
 
         window.Ionic = {
             config: {
@@ -43,14 +52,11 @@
             },
         };
 
-        console.log("Onboard API server", window.onboardServer)
-        console.log("DOME home page", window.domeHome)
-
     </script>
 
     <!-- Load the application -->
-    <!-- <link rel="stylesheet" href="PUT_APP_CSS_NAME_HERE" /> -->
-    <script type="module" src="PUT_APP_JS_NAME_HERE"></script>
+    <!-- <link rel="stylesheet" href="." /> -->
+    <script type="module" src="app-BTZHE57Z.js"></script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

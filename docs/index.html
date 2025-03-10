@@ -19,12 +19,6 @@
 
     <script>
 
-        // Send the user to the PRE instance if coming from PRE
-        if (document.referrer.startsWith("https://dome-marketplace-sbx.org") ||
-            document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
-            window.location = window.location.origin + "/buyer_pre.html"
-        }
-
         // Set here the default home page for the app, before loading app.js
         window.homePage = "OnboardingHome"
         window.myAppTitle = "DOME Onboarding"
@@ -51,21 +45,20 @@
             },
         };
 
-        if (document.location.hostname == "onboarding.dome-marketplace.eu") {
-            if (document.referrer.startsWith("https://dome-marketplace-sbx.org")) {
-                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
-                window.domeHome = "https://dome-marketplace-sbx.org"
-            } else if (document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
-                window.onboardServer = "https://onboardpre.dome.mycredential.eu"
-                window.domeHome = "https://dome-marketplace-dev2.org"
-            } else {
-                window.onboardServer = "https://onboard.dome.mycredential.eu"
-                window.domeHome = "https://dome-marketplace.eu"
-            }
-        } else {
-            window.onboardServer = document.location.hostname
-            window.domeHome = "https://dome-marketplace.eu"
+        // Send the user to the PRE instance if coming from SBX or DEV2, or invoking directly
+        if (document.referrer.startsWith("https://dome-marketplace-sbx.org") ||
+            document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
+            window.location = window.location.origin + "/index_pre.html"
         }
+        if (document.location.hostname == "onboardpre.dome.mycredential.eu") {
+            window.location = window.location.origin + "/index_pre.html"
+        }
+
+        // In all other cases, it is PRO
+        window.onboardServer = "https://onboard.dome.mycredential.eu"
+        window.domeHome = "https://dome-marketplace.eu"
+        window.domeEnvironment = "production"
+
         console.log("Onboard API server", window.onboardServer)
         console.log("DOME home page", window.domeHome)
 
