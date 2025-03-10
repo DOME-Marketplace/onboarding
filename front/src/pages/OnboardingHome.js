@@ -5,8 +5,10 @@ const MHR = window.MHR;
 
 import PocketBase from "../components/pocketbase.es.mjs";
 
+console.log("ENVIRONMENT", window.domeEnvironment)
 console.log("BUYER ONBOARDING API",window.onboardServer )
 const pb = new PocketBase(window.onboardServer);
+
 
 
 // Copy some globals to make code less verbose
@@ -151,13 +153,21 @@ MHR.register(
                     </li>
                   </ul>
                   <div class="w3-section w3-center">
-                    <button
-                      class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
-                      title="Submit and create documents"
-                      @click=${() => gotoPage("BuyerOnboardingForm", null)}
-                    >
-                      Become a DOME Marketplace Customer
-                    </button>
+                    ${window.domeEnvironment == "production" 
+                      ? html`
+                        <a class="w3-btn dome-bgcolor w3-round-large blinker-semibold">
+                          Coming soon!
+                        </a>
+                      ` 
+                      : html`
+                        <button
+                          class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
+                          title="Submit and create documents"
+                          @click=${() => gotoPage("BuyerOnboardingForm", null)}
+                        >
+                          Become a DOME Marketplace Customer
+                        </button>                    
+                      `}
                   </div>
                 </div>
               </div>
