@@ -2520,7 +2520,7 @@ MHR.register(
 
         <div class="w3-row">
             <p class="w3-xlarge padding-right-large blinker-semibold">
-              You are a company or an individual who is acting for purposes which within your trade, business and profession
+              You are a company or an individual who is acting for purposes within your trade, business and profession
             </p>
         </div>
       </div>
