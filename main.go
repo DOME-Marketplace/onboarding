@@ -63,7 +63,7 @@ func main() {
 	// *******************************************
 	// *******************************************
 	// *******************************************
-	if isGoRun {
+	if rootCfg.Server.Environment == onboarding.Development {
 		go faster.WatchAndBuild("buildfront.yaml")
 	}
 

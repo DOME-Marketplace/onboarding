@@ -2443,9 +2443,9 @@ MHR.register(
         <div class="dome-content w3-container w3-text-white">
           <div class="text-jumbo blinker-bold w3-padding-top-48">Onboarding in DOME</div>
           <div class="text-jumbo blinker-bold">as a Buyer of services.</div>
-          <p class="w3-xlarge">The Marketplace is a digital platform that enables CSPs to offer cloud and edge computing
+          <p class="w3-xlarge">The Marketplace is a digital platform that enables Cloud Service Providers (CSPs) to offer cloud and edge computing
             services to customers across Europe. The main goal of this onboarding process is the creation of an operating
-            account for your company so you can start buying offerings from CSPs in the Marketplace.
+            account for your company so you can start looking for offerings you want to purchase from CSPs through the Marketplace.
           </p>
         </div>
         <div class="w3-padding-32"></div>
@@ -2506,8 +2506,8 @@ MHR.register(
 
             </div>
 
-            <h4>Upon the generation of the LEAR verifiable credential, the company account is fully operational and products
-              and services can be purchased.
+            <h4>Upon the generation of the LEAR verifiable credential,
+              the company account is complete and you can start operating in the Marketplace.
             </h4>
           </div>
 
@@ -2519,25 +2519,9 @@ MHR.register(
         <h1>Eligibility Verification</h1>
 
         <div class="w3-row">
-          <div class="w3-half">
-            <p class="w3-large padding-right-large">Before launching the onboarding process, make sure that you meet the
-              following criteria:</p>
-          </div>
-          <div class="w3-half">
-
-            <div class="w3-cell-row w3-padding-16">
-              <div class="w3-cell w3-cell-top padding-top-small padding-right-4">
-                <span class="material-symbols-outlined dome-color">
-                  check_circle
-                </span>
-              </div>
-              <div class="w3-cell w3-cell-top">
-                <div class="w3-xlarge blinker-semibold">You are a legal entity duly registered in an EU country.</div>
-              </div>
-            </div>
-
-          </div>
-
+            <p class="w3-xlarge padding-right-large blinker-semibold">
+              You are a company or an individual who is acting for purposes which within your trade, business and profession
+            </p>
         </div>
       </div>
 
@@ -2551,8 +2535,8 @@ MHR.register(
               <div class="w3-panel">
                 <h1>Filling Out Forms</h1>
                 <p class="w3-large">
-                  In this page you will find a form with three sections. Fill in all the fields (all of them are required),
-                  making sure to use Latin characters.
+                  In this page you will find a form with three sections. Fill in all the fields 
+                  (unless marked as optional), making sure to use Latin characters.
                 </p>
                 <p class="w3-large">
                   The information you enter in the forms will be used for the registration of your company
@@ -2649,7 +2633,7 @@ MHR.register(
         if (el.value.length > 0) {
           form[el.name] = el.value;
         } else {
-          form[el.name] = "[" + el.name + "]";
+          form[el.name] = "[N/A]";
         }
       });
       console.log(form);
@@ -2808,7 +2792,7 @@ function TermsAndConditionsForm(records) {
                 name="TermsAndConditions"
                 required
               />
-              <label>I accept the DOME Terms and Conditions</label>
+              <label>I have read and accept the DOME terms and conditions and the DOME MArketplace privacy policy</label>
             </p>
           </div>
         </div>
@@ -3194,21 +3178,13 @@ function LEARForm(r2) {
       <div class="w3-row">
         <div class="w3-quarter w3-container">
           <p>
-            This section identifies an employee of the company who will act as
-            the LEAR.
+            This section identifies the person who will act as LEAR of  your company.
           </p>
           <p>
-            The LEAR is the Legal Entity Appointed Representative. Do not
-            confuse with the Legal Representative, who has to appear in the
-            official records in the commercial registry or equivalent
-            institution in your jurisdiction. Instead, the LEAR can be any
-            person who is authorised by the company to interact with DOME and
-            act on behalf of the company. There is specific information about
-            the LEAR in the knowledge base.
-          </p>
-          <p>
-            Of course, the Legal Representative can appoint him/herself as the
-            LEAR for DOME, if this is what is suitable for you.
+            The LEAR is the Legal Entity Appointed Representative,
+            and she/he can be any person who is authorized by your company to act on behalf
+            of the company within the DOME Marketplace.
+            There is specific information about the LEAR in the Knowledge Base.
           </p>
         </div>
 
@@ -3254,7 +3230,7 @@ function LEARForm(r2) {
             </p>
 
             <p>
-              <label><b>ID card number</b></label>
+              <label><b>ID card number (optional)</b></label>
               <input
                 name="LEARIDNumber"
                 class="w3-input w3-border"
