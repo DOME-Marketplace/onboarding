@@ -723,7 +723,7 @@ MHR.register(
               </div>
               <p class="w3-xlarge">
                 The documents below have to be sent to
-                <b>onboarding@dome-marketplace.org</b> duly signed.
+                <b>onboarding@dome-marketplace.eu</b> duly signed.
               </p>
             </div>
             <div class="w3-padding-16"></div>
@@ -896,8 +896,8 @@ MHR.register(
                 <p>
                   To complete the onboarding process in DOME, you will have to
                   submit some documentation to
-                  <a href="mailto:onboarding@dome-marketplace.org"
-                    >onboarding@dome-marketplace.org</a
+                  <a href="mailto:onboarding@dome-marketplace.eu"
+                    >onboarding@dome-marketplace.eu</a
                   >.
                 </p>
                 <p>
