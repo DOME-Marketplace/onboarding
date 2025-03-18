@@ -1,6 +1,9 @@
 package onboarding
 
 import (
+	"crypto/ecdsa"
+	"crypto/x509"
+	"encoding/pem"
 	"io"
 	"log"
 	"net/mail"
@@ -12,19 +15,38 @@ import (
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/tools/mailer"
-	"github.com/pocketbase/pocketbase/tools/router"
 	pbtemplate "github.com/pocketbase/pocketbase/tools/template"
 )
 
 type OnboardServer struct {
-	App               *pocketbase.PocketBase
-	config            *Config
-	treg              *pbtemplate.Registry
-	generalLoginRoute *router.Route[*core.RequestEvent]
+	App    *pocketbase.PocketBase
+	config *Config
+	treg   *pbtemplate.Registry
 }
 
 // New creates an instance of the Issuer, not started yet
 func New(config *Config) *OnboardServer {
+
+	// Read the private key and set in theconfig struct
+	pemBytesRaw, err := os.ReadFile(config.PrivateKeyFilePEM)
+	if err != nil {
+		panic(err)
+	}
+
+	// Decode from the PEM format
+	pemBlock, _ := pem.Decode(pemBytesRaw)
+	privKeyAny, err := x509.ParsePKCS8PrivateKey(pemBlock.Bytes)
+	if err != nil {
+		panic(err)
+	}
+	config.PrivateKey = privKeyAny.(*ecdsa.PrivateKey)
+
+	// Read the LEARCredentialMachine and set in the config struct
+	buf, err := os.ReadFile(config.MachineCredentialFile)
+	if err != nil {
+		panic(err)
+	}
+	config.MachineCredential = string(buf)
 
 	is := &OnboardServer{}
 
@@ -37,6 +59,7 @@ func New(config *Config) *OnboardServer {
 
 	// is.cfg = cfg
 	is.config = config
+
 	return is
 }
 
@@ -110,6 +133,59 @@ func (is *OnboardServer) Start() error {
 
 	app.OnRecordAuthWithOTPRequest("buyers").BindFunc(func(e *core.RecordAuthWithOTPRequestEvent) error {
 
+		l := &LEARIssuanceRequestBody{
+			Schema:        "LEARCredentialEmployee",
+			OperationMode: "S",
+			Format:        "jwt_vc_json",
+			Payload: Payload{
+				Mandator: Mandator{
+					OrganizationIdentifier: e.Record.GetString("organizationIdentifier"),
+					Organization:           e.Record.GetString("organization"),
+					Country:                e.Record.GetString("country"),
+					CommonName:             e.Record.GetString("name"),
+					EmailAddress:           e.Record.GetString("email"),
+					SerialNumber:           "12345678D",
+				},
+				Mandatee: Mandatee{
+					FirstName:   e.Record.GetString("learFirstName"),
+					LastName:    e.Record.GetString("learLastName"),
+					Nationality: e.Record.GetString("learNationality"),
+					Email:       e.Record.GetString("learEmail"),
+				},
+				Power: []Power{
+					{
+						Type:     "domain",
+						Domain:   "DOME",
+						Function: "Onboarding",
+						Action:   Strings{"execute"},
+					},
+				},
+			},
+		}
+
+		// Call the Credential Issuer to automatically issue a LEARCredentialEmployee
+		_, err := LEARIssuanceRequest(is.config, l)
+		if err != nil {
+			e.App.Logger().Error("issuing LEARCredentialEmployee",
+				"organizationIdentifier", e.Record.GetString("organizationIdentifier"),
+				"organization", e.Record.GetString("organization"),
+				"name", e.Record.GetString("name"),
+				"learFirstName", e.Record.GetString("learFirstName"),
+				"learLastName", e.Record.GetString("learLastName"),
+				"learEmail", e.Record.GetString("learEmail"),
+			)
+			return err
+		}
+
+		e.App.Logger().Info("LEARCredentialEmployee issued",
+			"organizationIdentifier", e.Record.GetString("organizationIdentifier"),
+			"organization", e.Record.GetString("organization"),
+			"name", e.Record.GetString("name"),
+			"learFirstName", e.Record.GetString("learFirstName"),
+			"learLastName", e.Record.GetString("learLastName"),
+			"learEmail", e.Record.GetString("learEmail"),
+		)
+
 		// initialize the filesystem
 		fsys, err := app.NewFilesystem()
 		if err != nil {
@@ -176,8 +252,6 @@ func (is *OnboardServer) Start() error {
 			Subject:     "Welcome to DOME Marketplace",
 			HTML:        emailBody,
 			Attachments: attachments,
-
-			// bcc, cc, attachments and custom headers are also supported...
 		}
 
 		return e.App.NewMailClient().Send(message)

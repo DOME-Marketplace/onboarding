@@ -53,6 +53,9 @@
         if (document.location.hostname == "onboardpre.dome.mycredential.eu") {
             window.location = window.location.origin + "/index_pre.html"
         }
+        if (document.location.hostname == "onboarddev.dome.mycredential.eu") {
+            window.location = window.location.origin + "/index_dev.html"
+        }
 
         // In all other cases, it is PRO
         window.onboardServer = "https://onboard.dome.mycredential.eu"
