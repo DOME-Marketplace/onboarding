@@ -27,12 +27,13 @@ type Config struct {
 	MachineCredential string
 
 	// rest of the fields
-	AppName       string     `json:"appName,omitempty"`
-	ServerURL     string     `json:"serverURL,omitempty"`
-	SenderName    string     `json:"senderName,omitempty"`
-	SenderAddress string     `json:"senderAddress,omitempty"`
-	AdminEmail    string     `json:"adminEmail,omitempty"`
-	SMTP          SMTPConfig `json:"smtp,omitempty"`
+	AppName          string     `json:"appName,omitempty"`
+	ServerURL        string     `json:"serverURL,omitempty"`
+	SenderName       string     `json:"senderName,omitempty"`
+	SenderAddress    string     `json:"senderAddress,omitempty"`
+	AdminEmail       string     `json:"adminEmail,omitempty"`
+	SMTP             SMTPConfig `json:"smtp,omitempty"`
+	SupportTeamEmail []string   `json:"supportTeamEmail,omitempty"`
 }
 
 type SMTPConfig struct {

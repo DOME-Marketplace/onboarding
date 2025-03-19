@@ -9,8 +9,6 @@ console.log("ENVIRONMENT", window.domeEnvironment)
 console.log("BUYER ONBOARDING API",window.onboardServer )
 const pb = new PocketBase(window.onboardServer);
 
-
-
 // Copy some globals to make code less verbose
 let gotoPage = MHR.gotoPage;
 let html = MHR.html;
@@ -32,12 +30,6 @@ MHR.register(
 
       let params = new URLSearchParams(document.location.search);
       let page = params.get("page");
-
-      // // If we have a logedin Buyer, just show the data about the registration
-      // if (logedIn && page == "buyer") {
-      //   gotoPage("BuyerOnboardingShowData", null);
-      //   return;
-      // }
 
       if (page == "buyer") {
         debugger

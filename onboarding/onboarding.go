@@ -4,6 +4,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/x509"
 	"encoding/pem"
+	"fmt"
 	"io"
 	"log"
 	"net/mail"
@@ -66,7 +67,14 @@ func New(config *Config) *OnboardServer {
 func (is *OnboardServer) Start() error {
 
 	app := is.App
-	// cfg := is.cfg
+
+	fmt.Println("*****************************************")
+	if app.IsDev() {
+		fmt.Println("I AM RUNNING IN DEV MODE")
+	} else {
+		fmt.Println("I AM RUNNING IN PROD MODE")
+	}
+	fmt.Println("*****************************************")
 
 	// Create the HTML templates registry, adding the 'sprig' utility functions
 	is.treg = pbtemplate.NewRegistry()
@@ -133,6 +141,8 @@ func (is *OnboardServer) Start() error {
 
 	app.OnRecordAuthWithOTPRequest("buyers").BindFunc(func(e *core.RecordAuthWithOTPRequestEvent) error {
 
+		// The user successfully verified his email (via an OTP)
+		// Build the data needed to create a LEARCredentialMachine
 		l := &LEARIssuanceRequestBody{
 			Schema:        "LEARCredentialEmployee",
 			OperationMode: "S",
@@ -144,7 +154,6 @@ func (is *OnboardServer) Start() error {
 					Country:                e.Record.GetString("country"),
 					CommonName:             e.Record.GetString("name"),
 					EmailAddress:           e.Record.GetString("email"),
-					SerialNumber:           "12345678D",
 				},
 				Mandatee: Mandatee{
 					FirstName:   e.Record.GetString("learFirstName"),
@@ -186,6 +195,9 @@ func (is *OnboardServer) Start() error {
 			"learEmail", e.Record.GetString("learEmail"),
 		)
 
+		// After successful issuance, we will send notification emails to several accounts,
+		// as record keeping for the user and for the administration teams in DOME
+
 		// initialize the filesystem
 		fsys, err := app.NewFilesystem()
 		if err != nil {
@@ -198,7 +210,7 @@ func (is *OnboardServer) Start() error {
 			return err
 		}
 
-		// Retrieve the terms and conditions files to send to customer
+		// Retrieve the terms and conditions files to send to customer as attachments
 		tandcs, err := e.App.FindAllRecords("tandc")
 		if err != nil {
 			return err
@@ -207,9 +219,9 @@ func (is *OnboardServer) Start() error {
 		attachments := map[string]io.Reader{}
 		for _, record := range tandcs {
 			fileName := record.GetString("name")
-			avatarKey := record.BaseFilesPath() + "/" + record.GetString("file")
-			// retrieve a file reader for the avatar key
-			r, err := fsys.GetFile(avatarKey)
+			fileKey := record.BaseFilesPath() + "/" + record.GetString("file")
+			// retrieve a file reader for the file
+			r, err := fsys.GetFile(fileKey)
 			if err != nil {
 				return err
 			}
@@ -219,6 +231,7 @@ func (is *OnboardServer) Start() error {
 
 		}
 
+		// Build the email body with the registration data
 		emailBody, err := is.treg.LoadFiles(
 			"templates/email/welcome.html",
 		).Render(map[string]any{
@@ -242,13 +255,19 @@ func (is *OnboardServer) Start() error {
 			return err
 		}
 
+		// Send email to registered user and to other configured DOME accounts
+		bcc := []mail.Address{}
+		for _, email := range is.config.SupportTeamEmail {
+			bcc = append(bcc, mail.Address{Address: email})
+		}
+
 		message := &mailer.Message{
 			From: mail.Address{
 				Address: e.App.Settings().Meta.SenderAddress,
 				Name:    e.App.Settings().Meta.SenderName,
 			},
 			To:          []mail.Address{{Address: e.Record.Email()}},
-			Bcc:         []mail.Address{{Address: "hesus.ruiz@gmail.com"}},
+			Bcc:         bcc,
 			Subject:     "Welcome to DOME Marketplace",
 			HTML:        emailBody,
 			Attachments: attachments,
@@ -257,7 +276,25 @@ func (is *OnboardServer) Start() error {
 		return e.App.NewMailClient().Send(message)
 	})
 
-	return is.App.Start()
+	// If running in dev mode, erase ALL registrations at 10 minutes past midnigh (after backup)
+	if is.App.IsDev() {
+		app.Cron().MustAdd("resetregs", "10 0 * * *", func() {
+			log.Println("Hello!")
+			collection, err := app.FindCollectionByNameOrId("example")
+			if err != nil {
+				app.Logger().Error("running cron job to erase buyers", "error", err.Error())
+				return
+			}
+			app.TruncateCollection(collection)
+		})
+	}
+
+	err := is.App.Start()
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func inspectRuntime() (baseDir string, withGoRun bool) {
