@@ -1,6 +1,7 @@
 package onboarding
 
 import (
+	"crypto/ecdsa"
 	"encoding/json"
 
 	"github.com/hesusruiz/vcutils/yaml"
@@ -15,19 +16,24 @@ const Development Environment = "development"
 type Config struct {
 	Environment            Environment `json:"environment,omitempty"`
 	ListenAddress          string      `json:"listenAddress,omitempty"`
-	AppName                string      `json:"appName,omitempty"`
-	ServerURL              string      `json:"serverURL,omitempty"`
-	IssuerCertificateURL   string      `json:"issuerCertificateURL,omitempty"`
-	SenderName             string      `json:"senderName,omitempty"`
-	SenderAddress          string      `json:"senderAddress,omitempty"`
+	CredentialIssuancePath string      `json:"credentialIssuancePath,omitempty"`
+	MyDidkey               string      `json:"mydidkey,omitempty"`
 	VerifierURL            string      `json:"verifierURL,omitempty"`
-	CallbackPath           string      `json:"callbackPath,omitempty"`
-	Scopes                 string      `json:"scopes,omitempty"`
-	AdminEmail             string      `json:"adminEmail,omitempty"`
-	SMTP                   SMTPConfig  `json:"smtp,omitempty"`
-	SamedeviceWallet       string      `json:"samedeviceWallet,omitempty"`
-	CredentialTemplatesDir string      `json:"credentialTemplatesDir,omitempty"`
-	ClientID               string      `json:"clientID,omitempty"`
+	VerifierTokenEndpoint  string      `json:"verifierTokenEndpoint,omitempty"`
+	PrivateKeyFilePEM      string      `json:"privateKeyFilePEM,omitempty"`
+	MachineCredentialFile  string      `json:"machineCredentialFile,omitempty"`
+
+	PrivateKey        *ecdsa.PrivateKey
+	MachineCredential string
+
+	// rest of the fields
+	AppName          string     `json:"appName,omitempty"`
+	ServerURL        string     `json:"serverURL,omitempty"`
+	SenderName       string     `json:"senderName,omitempty"`
+	SenderAddress    string     `json:"senderAddress,omitempty"`
+	AdminEmail       string     `json:"adminEmail,omitempty"`
+	SMTP             SMTPConfig `json:"smtp,omitempty"`
+	SupportTeamEmail []string   `json:"supportTeamEmail,omitempty"`
 }
 
 type SMTPConfig struct {

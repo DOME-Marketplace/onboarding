@@ -15,8 +15,8 @@ import (
 	"github.com/pocketbase/pocketbase/plugins/migratecmd"
 )
 
-const defaultConfigFileName = "config/server.yaml"
-const defaultBuildConfigFile = "./data/config/devserver.yaml"
+const defaultConfigFileName = "config/dev_config.yaml"
+const defaultBuildConfigFile = "buildfront.yaml"
 
 var baseDir string
 
@@ -47,7 +47,10 @@ func main() {
 	defaultConfigFilePath := filepath.Join(baseDir, defaultConfigFileName)
 
 	// Read configuration file
-	rootCfg := readConfiguration(LookupEnvOrString("CONFIG_FILE", defaultConfigFilePath))
+	configFilePath := LookupEnvOrString("DOME_CONFIG_FILE", defaultConfigFilePath)
+	rootCfg := readConfiguration(configFilePath)
+
+	fmt.Println("Configuration:", configFilePath)
 
 	// Create a new Onboarding server with its configuration
 	server := onboarding.New(rootCfg.Server)
@@ -63,8 +66,8 @@ func main() {
 	// *******************************************
 	// *******************************************
 	// *******************************************
-	if rootCfg.Server.Environment == onboarding.Development {
-		go faster.WatchAndBuild("buildfront.yaml")
+	if isGoRun {
+		go faster.WatchAndBuild(defaultBuildConfigFile)
 	}
 
 	if err := server.Start(); err != nil {
@@ -91,13 +94,6 @@ func readConfiguration(configFile string) *Config {
 	return config
 }
 
-func LookupEnvOrString(key string, defaultVal string) string {
-	if val, ok := os.LookupEnv(key); ok {
-		return val
-	}
-	return defaultVal
-}
-
 // ConfigFromMap parses and validates a configuration specified in YAML,
 // returning the config in a struct format.
 func ConfigFromMap(cfg *yaml.YAML) (*Config, error) {
@@ -116,4 +112,11 @@ func ConfigFromMap(cfg *yaml.YAML) (*Config, error) {
 
 	return config, err
 
+}
+
+func LookupEnvOrString(key string, defaultVal string) string {
+	if val, ok := os.LookupEnv(key); ok {
+		return val
+	}
+	return defaultVal
 }

@@ -1,6 +1,10 @@
 package onboarding
 
 import (
+	"crypto/ecdsa"
+	"crypto/x509"
+	"encoding/pem"
+	"fmt"
 	"io"
 	"log"
 	"net/mail"
@@ -12,19 +16,38 @@ import (
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/pocketbase/pocketbase/tools/mailer"
-	"github.com/pocketbase/pocketbase/tools/router"
 	pbtemplate "github.com/pocketbase/pocketbase/tools/template"
 )
 
 type OnboardServer struct {
-	App               *pocketbase.PocketBase
-	config            *Config
-	treg              *pbtemplate.Registry
-	generalLoginRoute *router.Route[*core.RequestEvent]
+	App    *pocketbase.PocketBase
+	config *Config
+	treg   *pbtemplate.Registry
 }
 
 // New creates an instance of the Issuer, not started yet
 func New(config *Config) *OnboardServer {
+
+	// Read the private key and set in theconfig struct
+	pemBytesRaw, err := os.ReadFile(config.PrivateKeyFilePEM)
+	if err != nil {
+		panic(err)
+	}
+
+	// Decode from the PEM format
+	pemBlock, _ := pem.Decode(pemBytesRaw)
+	privKeyAny, err := x509.ParsePKCS8PrivateKey(pemBlock.Bytes)
+	if err != nil {
+		panic(err)
+	}
+	config.PrivateKey = privKeyAny.(*ecdsa.PrivateKey)
+
+	// Read the LEARCredentialMachine and set in the config struct
+	buf, err := os.ReadFile(config.MachineCredentialFile)
+	if err != nil {
+		panic(err)
+	}
+	config.MachineCredential = string(buf)
 
 	is := &OnboardServer{}
 
@@ -37,13 +60,21 @@ func New(config *Config) *OnboardServer {
 
 	// is.cfg = cfg
 	is.config = config
+
 	return is
 }
 
 func (is *OnboardServer) Start() error {
 
 	app := is.App
-	// cfg := is.cfg
+
+	fmt.Println("*****************************************")
+	if app.IsDev() {
+		fmt.Println("I AM RUNNING IN DEV MODE")
+	} else {
+		fmt.Println("I AM RUNNING IN PROD MODE")
+	}
+	fmt.Println("*****************************************")
 
 	// Create the HTML templates registry, adding the 'sprig' utility functions
 	is.treg = pbtemplate.NewRegistry()
@@ -110,6 +141,63 @@ func (is *OnboardServer) Start() error {
 
 	app.OnRecordAuthWithOTPRequest("buyers").BindFunc(func(e *core.RecordAuthWithOTPRequestEvent) error {
 
+		// The user successfully verified his email (via an OTP)
+		// Build the data needed to create a LEARCredentialMachine
+		l := &LEARIssuanceRequestBody{
+			Schema:        "LEARCredentialEmployee",
+			OperationMode: "S",
+			Format:        "jwt_vc_json",
+			Payload: Payload{
+				Mandator: Mandator{
+					OrganizationIdentifier: e.Record.GetString("organizationIdentifier"),
+					Organization:           e.Record.GetString("organization"),
+					Country:                e.Record.GetString("country"),
+					CommonName:             e.Record.GetString("name"),
+					EmailAddress:           e.Record.GetString("email"),
+				},
+				Mandatee: Mandatee{
+					FirstName:   e.Record.GetString("learFirstName"),
+					LastName:    e.Record.GetString("learLastName"),
+					Nationality: e.Record.GetString("learNationality"),
+					Email:       e.Record.GetString("learEmail"),
+				},
+				Power: []Power{
+					{
+						Type:     "domain",
+						Domain:   "DOME",
+						Function: "Onboarding",
+						Action:   Strings{"execute"},
+					},
+				},
+			},
+		}
+
+		// Call the Credential Issuer to automatically issue a LEARCredentialEmployee
+		_, err := LEARIssuanceRequest(is.config, l)
+		if err != nil {
+			e.App.Logger().Error("issuing LEARCredentialEmployee",
+				"organizationIdentifier", e.Record.GetString("organizationIdentifier"),
+				"organization", e.Record.GetString("organization"),
+				"name", e.Record.GetString("name"),
+				"learFirstName", e.Record.GetString("learFirstName"),
+				"learLastName", e.Record.GetString("learLastName"),
+				"learEmail", e.Record.GetString("learEmail"),
+			)
+			return err
+		}
+
+		e.App.Logger().Info("LEARCredentialEmployee issued",
+			"organizationIdentifier", e.Record.GetString("organizationIdentifier"),
+			"organization", e.Record.GetString("organization"),
+			"name", e.Record.GetString("name"),
+			"learFirstName", e.Record.GetString("learFirstName"),
+			"learLastName", e.Record.GetString("learLastName"),
+			"learEmail", e.Record.GetString("learEmail"),
+		)
+
+		// After successful issuance, we will send notification emails to several accounts,
+		// as record keeping for the user and for the administration teams in DOME
+
 		// initialize the filesystem
 		fsys, err := app.NewFilesystem()
 		if err != nil {
@@ -122,7 +210,7 @@ func (is *OnboardServer) Start() error {
 			return err
 		}
 
-		// Retrieve the terms and conditions files to send to customer
+		// Retrieve the terms and conditions files to send to customer as attachments
 		tandcs, err := e.App.FindAllRecords("tandc")
 		if err != nil {
 			return err
@@ -131,9 +219,9 @@ func (is *OnboardServer) Start() error {
 		attachments := map[string]io.Reader{}
 		for _, record := range tandcs {
 			fileName := record.GetString("name")
-			avatarKey := record.BaseFilesPath() + "/" + record.GetString("file")
-			// retrieve a file reader for the avatar key
-			r, err := fsys.GetFile(avatarKey)
+			fileKey := record.BaseFilesPath() + "/" + record.GetString("file")
+			// retrieve a file reader for the file
+			r, err := fsys.GetFile(fileKey)
 			if err != nil {
 				return err
 			}
@@ -143,6 +231,7 @@ func (is *OnboardServer) Start() error {
 
 		}
 
+		// Build the email body with the registration data
 		emailBody, err := is.treg.LoadFiles(
 			"templates/email/welcome.html",
 		).Render(map[string]any{
@@ -166,24 +255,46 @@ func (is *OnboardServer) Start() error {
 			return err
 		}
 
+		// Send email to registered user and to other configured DOME accounts
+		bcc := []mail.Address{}
+		for _, email := range is.config.SupportTeamEmail {
+			bcc = append(bcc, mail.Address{Address: email})
+		}
+
 		message := &mailer.Message{
 			From: mail.Address{
 				Address: e.App.Settings().Meta.SenderAddress,
 				Name:    e.App.Settings().Meta.SenderName,
 			},
 			To:          []mail.Address{{Address: e.Record.Email()}},
-			Bcc:         []mail.Address{{Address: "hesus.ruiz@gmail.com"}},
+			Bcc:         bcc,
 			Subject:     "Welcome to DOME Marketplace",
 			HTML:        emailBody,
 			Attachments: attachments,
-
-			// bcc, cc, attachments and custom headers are also supported...
 		}
 
 		return e.App.NewMailClient().Send(message)
 	})
 
-	return is.App.Start()
+	// If running in dev mode, erase ALL registrations at 10 minutes past midnigh (after backup)
+	if is.App.IsDev() {
+		app.Cron().MustAdd("resetregs", "10 0 * * *", func() {
+			log.Println("Hello!")
+			collection, err := app.FindCollectionByNameOrId("example")
+			if err != nil {
+				app.Logger().Error("running cron job to erase buyers", "error", err.Error())
+				return
+			}
+			app.TruncateCollection(collection)
+		})
+	}
+
+	err := is.App.Start()
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func inspectRuntime() (baseDir string, withGoRun bool) {
