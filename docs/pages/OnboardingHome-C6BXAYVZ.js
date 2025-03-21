@@ -2674,7 +2674,9 @@ MHR.register(
         if (error.response?.data?.organizationIdentifier?.code == "validation_not_unique") {
           gotoPage("MessagePage", {
             title: "Error in registration",
-            msg: "The organization is already registered"
+            msg: "The organization is already registered",
+            details: "If you want to modify your registration data, or have any doubts, please contact us at onboarding@dome-marketplace.eu",
+            level: "info"
           });
           return;
         }
@@ -3734,6 +3736,7 @@ MHR.register(
       });
       console.log(form);
       try {
+        debugger;
         const authData = await pb.collection("buyers").authWithOTP(form.otpId, form.ReceivedOTP);
         console.log(authData);
         loadPage("buyershow");
