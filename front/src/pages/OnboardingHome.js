@@ -9,13 +9,11 @@ console.log("ENVIRONMENT", window.domeEnvironment)
 console.log("BUYER ONBOARDING API",window.onboardServer )
 const pb = new PocketBase(window.onboardServer);
 
-// Check if the onboarding server is available
-
-
 // Copy some globals to make code less verbose
 let gotoPage = MHR.gotoPage;
 let html = MHR.html;
 
+// Check if the onboarding server is available
 var serverAvailable = false
 
 MHR.register(
@@ -31,7 +29,7 @@ MHR.register(
     async enter() {
 
       try {
-        const result = await pb.health.check();
+        const result = await fetch(window.onboardServer + "/api/health")
         console.log('Server is available:', result);
         serverAvailable = true
       } catch (error) {
