@@ -994,7 +994,7 @@ MHR.register(
     }
     async enter() {
       try {
-        const result = await pb.health.check();
+        const result = await fetch(window.onboardServer + "/api/health");
         console.log("Server is available:", result);
         serverAvailable = true;
       } catch (error) {
