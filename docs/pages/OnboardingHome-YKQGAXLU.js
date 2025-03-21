@@ -1113,7 +1113,7 @@ MHR.register(
                     </li>
                   </ul>
                   <div class="w3-section w3-center">
-                    ${window.domeEnvironment == "production_2" ? html`
+                    ${serverAvailable == false ? html`
                         <div class="dome-bgcolor w3-round-large blinker-semibold">
                           <div>Temporary unavailable due to maintenance activity.</div>
                           <div>Please try again later.</div>
