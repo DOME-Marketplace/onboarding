@@ -982,6 +982,7 @@ console.log("BUYER ONBOARDING API", window.onboardServer);
 var pb = new Client(window.onboardServer);
 var gotoPage = MHR.gotoPage;
 var html = MHR.html;
+var serverAvailable = false;
 MHR.register(
   "OnboardingHome",
   class extends MHR.AbstractPage {
@@ -992,6 +993,14 @@ MHR.register(
       super(id);
     }
     async enter() {
+      try {
+        const result = await pb.health.check();
+        console.log("Server is available:", result);
+        serverAvailable = true;
+      } catch (error) {
+        console.log("Server is not available:", error);
+        serverAvailable = false;
+      }
       const logedIn = pb.authStore.isValid;
       let params = new URLSearchParams(document.location.search);
       let page = params.get("page");

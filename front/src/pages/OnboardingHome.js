@@ -9,9 +9,14 @@ console.log("ENVIRONMENT", window.domeEnvironment)
 console.log("BUYER ONBOARDING API",window.onboardServer )
 const pb = new PocketBase(window.onboardServer);
 
+// Check if the onboarding server is available
+
+
 // Copy some globals to make code less verbose
 let gotoPage = MHR.gotoPage;
 let html = MHR.html;
+
+var serverAvailable = false
 
 MHR.register(
   "OnboardingHome",
@@ -24,6 +29,15 @@ MHR.register(
     }
 
     async enter() {
+
+      try {
+        const result = await pb.health.check();
+        console.log('Server is available:', result);
+        serverAvailable = true
+      } catch (error) {
+        console.log('Server is not available:', error);
+        serverAvailable = false
+      }
 
       // Chech if we are logged in
       const logedIn = pb.authStore.isValid;
@@ -147,7 +161,7 @@ MHR.register(
                     </li>
                   </ul>
                   <div class="w3-section w3-center">
-                    ${window.domeEnvironment == "production_2" 
+                    ${serverAvailable == false 
                       ? html`
                         <div class="dome-bgcolor w3-round-large blinker-semibold">
                           <div>Temporary unavailable due to maintenance activity.</div>
