@@ -725,7 +725,7 @@ register(
       let theHtml = html`
         <div class="w3-container w3-half-centered w3-padding-64">
           <div class="w3-card-4 w3-center">
-            <header class="w3-container w3-center color-error">
+            <header class="w3-container w3-center dome-bgcolor">
               <h1>${title}</h1>
             </header>
 
@@ -755,10 +755,10 @@ register(
                       "Back"
                     )}
                   </ion-button>`
-                : html` <btn-danger
+                : html` <button class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                     @click=${() => {window.location = window.location}}
                     >${T("Accept")}
-              </btn-danger>`}
+              </button>`}
             </div>
           </div>
         </div>

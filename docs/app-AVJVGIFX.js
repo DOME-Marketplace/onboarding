@@ -5466,7 +5466,7 @@ register(
       let theHtml = html2`
         <div class="w3-container w3-half-centered w3-padding-64">
           <div class="w3-card-4 w3-center">
-            <header class="w3-container w3-center color-error">
+            <header class="w3-container w3-center dome-bgcolor">
               <h1>${title}</h1>
             </header>
 
@@ -5490,12 +5490,12 @@ register(
                     <ion-icon slot="start" name="chevron-back"></ion-icon>${T2(
         "Back"
       )}
-                  </ion-button>` : html2` <btn-danger
+                  </ion-button>` : html2` <button class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                     @click=${() => {
         window.location = window.location;
       }}
                     >${T2("Accept")}
-              </btn-danger>`}
+              </button>`}
             </div>
           </div>
         </div>
