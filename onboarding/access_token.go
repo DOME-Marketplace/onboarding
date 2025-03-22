@@ -52,7 +52,7 @@ func TokenRequest(
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode > 399 {
-		fmt.Println("Error calling Token Endpoint:", resp.Status)
+		fmt.Println("Error calling Token Endpoint:", resp.Status, req.Host, req.URL.String())
 		return "", fmt.Errorf("error calling Token Endpoint: %v", resp.Status)
 	}
 

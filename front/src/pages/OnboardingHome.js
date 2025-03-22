@@ -13,6 +13,9 @@ const pb = new PocketBase(window.onboardServer);
 let gotoPage = MHR.gotoPage;
 let html = MHR.html;
 
+// Check if the onboarding server is available
+var serverAvailable = false
+
 MHR.register(
   "OnboardingHome",
   class extends MHR.AbstractPage {
@@ -24,6 +27,15 @@ MHR.register(
     }
 
     async enter() {
+
+      try {
+        const result = await fetch(window.onboardServer + "/api/health")
+        console.log('Server is available:', result);
+        serverAvailable = true
+      } catch (error) {
+        console.log('Server is not available:', error);
+        serverAvailable = false
+      }
 
       // Chech if we are logged in
       const logedIn = pb.authStore.isValid;
@@ -147,7 +159,7 @@ MHR.register(
                     </li>
                   </ul>
                   <div class="w3-section w3-center">
-                    ${window.domeEnvironment == "production_2" 
+                    ${serverAvailable == false 
                       ? html`
                         <div class="dome-bgcolor w3-round-large blinker-semibold">
                           <div>Temporary unavailable due to maintenance activity.</div>
@@ -1873,6 +1885,8 @@ MHR.register(
           gotoPage("MessagePage", {
             title: "Error in registration",
             msg: "The organization is already registered",
+            details: "If you want to modify your registration data, or have any doubts, please contact us at onboarding@dome-marketplace.eu",
+            level: "info",
           });
           return;
         }
@@ -3104,6 +3118,7 @@ MHR.register(
 
       // Perform the authentication with the received OTP
       try {
+        debugger
         const authData = await pb
           .collection("buyers")
           .authWithOTP(form.otpId, form.ReceivedOTP);

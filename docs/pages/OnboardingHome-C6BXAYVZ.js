@@ -982,6 +982,7 @@ console.log("BUYER ONBOARDING API", window.onboardServer);
 var pb = new Client(window.onboardServer);
 var gotoPage = MHR.gotoPage;
 var html = MHR.html;
+var serverAvailable = false;
 MHR.register(
   "OnboardingHome",
   class extends MHR.AbstractPage {
@@ -992,6 +993,14 @@ MHR.register(
       super(id);
     }
     async enter() {
+      try {
+        const result = await fetch(window.onboardServer + "/api/health");
+        console.log("Server is available:", result);
+        serverAvailable = true;
+      } catch (error) {
+        console.log("Server is not available:", error);
+        serverAvailable = false;
+      }
       const logedIn = pb.authStore.isValid;
       let params = new URLSearchParams(document.location.search);
       let page = params.get("page");
@@ -1104,7 +1113,7 @@ MHR.register(
                     </li>
                   </ul>
                   <div class="w3-section w3-center">
-                    ${window.domeEnvironment == "production_2" ? html`
+                    ${serverAvailable == false ? html`
                         <div class="dome-bgcolor w3-round-large blinker-semibold">
                           <div>Temporary unavailable due to maintenance activity.</div>
                           <div>Please try again later.</div>
@@ -2665,7 +2674,9 @@ MHR.register(
         if (error.response?.data?.organizationIdentifier?.code == "validation_not_unique") {
           gotoPage("MessagePage", {
             title: "Error in registration",
-            msg: "The organization is already registered"
+            msg: "The organization is already registered",
+            details: "If you want to modify your registration data, or have any doubts, please contact us at onboarding@dome-marketplace.eu",
+            level: "info"
           });
           return;
         }
@@ -3725,6 +3736,7 @@ MHR.register(
       });
       console.log(form);
       try {
+        debugger;
         const authData = await pb.collection("buyers").authWithOTP(form.otpId, form.ReceivedOTP);
         console.log(authData);
         loadPage("buyershow");
