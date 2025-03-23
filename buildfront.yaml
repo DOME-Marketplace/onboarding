@@ -13,6 +13,7 @@ htmlfiles:
   - index.html
   - index_pre.html
   - index_dev.html
+  - admin.html
 
 # The JavaScript files which are the entrypoints (normally included in the HTML files)
 # Name is relative to the 'sourcedir'
