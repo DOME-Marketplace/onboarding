@@ -1,0 +1,41 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic');
+
+html[data-theme='dark'] {
+	/* foreground   | background color */
+	--cfg:   #cecbc4; --cbg:    #252220;
+	--cdark: #999;    --clight: #333;
+	--cmed:  #566;
+	--clink: #1ad;
+	--cemph: #0b9;    --cemphbg: #0b91;
+}
+
+@media (prefers-color-scheme: dark) {
+	html[data-theme='light'] {
+		/* foreground   | background color */
+		--cfg:   #cecbc4; --cbg:    #252220;
+		--cdark: #999;    --clight: #333;
+		--cmed:  #566;
+		--clink: #1ad;
+		--cemph: #0b9;    --cemphbg: #0b91;
+	}	
+}
+
+
+:root, html[data-theme='light'] {
+	--rem: 120%;
+	--navpos: absolute;
+	--width: 90%;
+	--font-p: 1em/1.6 Roboto, system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+	--font-h: 1em/1.6 Roboto, "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--font-c: .9em/1.4 SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+	--ornament: "";
+	--border: 1px solid var(--cmed);
+	/* foreground   | background color */
+	--cfg:  #212529;    --cbg:    #fff;
+	--cdark: #343a40; --clight: #f8f9fa;
+	--cmed: #6c757d;
+	--clink: #0d6efd;
+	--cemph: #7952b3; --cemphbg: #7952b310;
+}
+

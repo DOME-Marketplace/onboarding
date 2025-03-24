@@ -12,7 +12,10 @@ Table of Contents:
 
 
 :root, html[data-theme='light'] {
-	--rem: 12pt;
+
+	/* JRM: set the root element size to the browser one */
+	--rem: 100%;
+
 	--width: 50rem;
 	--navpos: absolute;  /* fixed | absolute */
 	--font-p: 1em/1.7  'Open Sans', 'DejaVu Sans', FreeSans, Helvetica, sans-serif;
@@ -26,6 +29,11 @@ Table of Contents:
 	--cmed:  #d1d1d1;
 	--clink: #07c;
 	--cemph: #088;    --cemphbg: #0881;
+}
+
+/* JRM: for big screens, do not use all space */
+@media screen and (min-width: 1200px) {
+	
 }
 
 
