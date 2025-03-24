@@ -151,7 +151,7 @@ MHR.register(
       let table = new window.DataTable("#myTable", {
         responsive: true,
         scrollX: true,
-        buttons: ["copy", "csv", "excel", "pdf", "print"],
+        buttons: ["copy", "csv", "excel"],
         layout: {
           top1Start: "buttons"
         },
