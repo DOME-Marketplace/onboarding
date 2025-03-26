@@ -27,8 +27,6 @@ MHR.register(
     }
 
     async enter() {
-      debugger;
-
       try {
         const result = await fetch(window.onboardServer + "/api/health");
         console.log("Server is available:", result);
@@ -84,7 +82,6 @@ MHR.register(
 
     async submitForm(ev) {
       ev.preventDefault();
-      debugger;
       const authData = await pb
         .collection("admins")
         .authWithPassword(
@@ -114,59 +111,65 @@ MHR.register(
       debugger;
 
       let theHtml = html`
-        <h2>Admin for DOME Marketplace Onboarding</h2>
+        <div class="ui wide container">
+          <h2>Admin for DOME Marketplace Onboarding</h2>
 
-        <table id="myTable" class="display compact cell-border">
-          <thead>
-            <tr>
-              <th rowspan=2 style="border: 1px solid rgba(0, 0, 0, 0.15);">Time</th>
-              <th colspan="3" data-dt-order="disable" class="dt-center" style="border: 1px solid rgba(0, 0, 0, 0.15);">
-                Registrant
-              </th>
-              <th colspan="6" data-dt-order="disable" class="dt-center" style="border: 1px solid rgba(0, 0, 0, 0.15);">
-                Company
-              </th>
-              <th colspan="3" data-dt-order="disable" class="dt-center" style="border: 1px solid rgba(0, 0, 0, 0.15);">
-                LEAR
-              </th>
-            </tr>
-            <tr>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">Name</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">Email</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">Verified</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">Name</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">OrgID</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">Street</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">PO</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">City</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">Country</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">LEAREmail</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">LEARName</th>
-              <th style="border: 1px solid rgba(0, 0, 0, 0.15);">Nationality</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${records.map((record) => {
-              return html`
-                <tr>
-                  <td>${record.updated.substring(0, 19)}</td>
-                  <td>${record.name}</td>
-                  <td>${record.email}</td>
-                  <td>${record.verified ? "Yes" : "No"}</td>
-                  <td>${record.organization}</td>
-                  <td>${record.organizationIdentifier}</td>
-                  <td>${record.street}</td>
-                  <td>${record.postalCode}</td>
-                  <td>${record.city}</td>
-                  <td>${record.country}</td>
-                  <td>${record.learEmail}</td>
-                  <td>${record.learFirstName + " " + record.learLastName}</td>
-                  <td>${record.learNationality}</td>
-                </tr>
-              `;
-            })}
-          </tbody>
-        </table>
+          <table id="myTable" class="ui celled table">
+            <thead>
+              <tr>
+                <th rowspan="2">Time</th>
+                <th colspan="3" data-dt-order="disable" class="dt-center">
+                  Registrant
+                </th>
+                <th colspan="3" data-dt-order="disable" class="dt-center">
+                  Company
+                </th>
+                <th colspan="6" data-dt-order="disable" class="dt-center">
+                  LEAR
+                </th>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Verified</th>
+                <th>Name</th>
+                <th>OrgID</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Mobile</th>
+                <th>Street</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${records.map((record) => {
+                console.log(record);
+                return html`
+                  <tr>
+                    <td>${record.updated.substring(0, 19)}</td>
+                    <td>${record.name}</td>
+                    <td>${record.email}</td>
+                    <td>${record.verified ? "Yes" : "No"}</td>
+                    <td>${record.organization}</td>
+                    <td>${record.organizationIdentifier}</td>
+                    <td>
+                    ${record.street} (${record.postalCode} - ${record.city}) ${record.country}
+                    </td>
+                    <td>${record.learEmail}</td>
+                    <td>${record.learFirstName + " " + record.learLastName}</td>
+                    <td>${record.learIdcard}</td>
+                    <td>${record.learMobile}</td>
+                    <td>${record.learStreet}</td>
+
+                    <td>${record.learNationality}</td>
+                  </tr>
+                `;
+              })}
+            </tbody>
+          </table>
+        </div>
       `;
 
       // @ts-ignore
@@ -179,7 +182,6 @@ MHR.register(
         layout: {
           top1Start: "buttons",
         },
-        columnDefs: [{ className: "dt-center", targets: ["_all"] }],
       });
     }
   }
