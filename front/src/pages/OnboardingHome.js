@@ -3040,6 +3040,9 @@ MHR.register(
                       After submitting the form, you will receive a message for
                       confirmation.
                     </p>
+                    <p>
+                      If your previous code expired, you can request a new one.
+                    </p>
                   </div>
 
                   <div class="w3-rest w3-container">
@@ -3077,7 +3080,7 @@ MHR.register(
 
               <!-- Buttons -->
               <div class="w3-bar w3-center">
-                <button
+              <button
                   id="login_button"
                   class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold"
                   style="width:30%"
@@ -3085,6 +3088,33 @@ MHR.register(
                 >
                   Confirm
                 </button>
+                <div
+                  id="anotherotp_button"
+                  class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold"
+                  style="width:30%"
+                  title="Request another code"
+                  @click=${async () => {
+                    // Request an OTP
+                    try {
+                      const record = await pb.collection("buyers").requestOTP(email);
+                      console.log(record);
+                      localStorage.setItem("buyerEmail", email);
+                      localStorage.setItem("buyerOtpId", record.otpId)
+                      alert("A new code has been sent to your email.")
+                      loadPage("buyerotp");
+                      return;
+                    } catch (error) {
+                      myerror(error);
+                      gotoPage("MessagePage", {
+                        title: "Error in registration",
+                        msg: error.message,
+                      });
+                      return;
+                    }
+                  }}
+                >
+                  Request another code
+                </div>
               </div>
             </form>
           </div>

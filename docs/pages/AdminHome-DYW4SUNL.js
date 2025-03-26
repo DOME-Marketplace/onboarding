@@ -34,30 +34,45 @@ MHR.register(
       }
       if (pb.authStore.record?.collectionName !== "admins") {
         let theHtml = html`
-          <div class="row">
-            <div class="col-4 mx-auto">
-              <h2>Admin for DOME Marketplace Onboarding</h2>
+          <div class="ui wide container">
+            <div class="ui centered grid">
+              <div class="eight wide column">
+                <div class="ui large top hidden menu">
+                  <div class="ui container">
+                    <div class="item">
+                      <h2>Admin for DOME Marketplace Onboarding</h2>
+                    </div>
+                  </div>
+                </div>
 
-              <h3>Login as administrator</h3>
-              <form
-                id="login-form"
-                @submit=${(ev) => this.submitForm(ev)}
-              >
-                <fieldset>
-                  <legend>Login</legend>
+                <h3>Login as administrator</h3>
 
-                  <label for="login_email">Email</label>
-                  <input id="login_email" type="email" placeholder="Email" />
-                  <label for="login_password">Password</label>
-                  <input
-                    id="login_password"
-                    type="password"
-                    placeholder="Type your Password"
-                  />
-
-                  <button type="submit">Login</button>
-                </fieldset>
-              </form>
+                <form
+                  class="ui large form"
+                  id="login-form"
+                  @submit=${(ev) => this.submitForm(ev)}
+                >
+                  <div class="field">
+                    <label>Email</label>
+                    <input
+                      id="login_email"
+                      type="email"
+                      name="login_email"
+                      placeholder="john.doe@example.com"
+                    />
+                  </div>
+                  <div class="field">
+                    <label>Password</label>
+                    <input
+                      id="login_password"
+                      type="password"
+                      name="login_password"
+                      placeholder="Type your password"
+                    />
+                  </div>
+                  <button class="ui primary button" type="submit">Login</button>
+                </form>
+              </div>
             </div>
           </div>
         `;
@@ -92,7 +107,26 @@ MHR.register(
       debugger;
       let theHtml = html`
         <div class="ui wide container">
-          <h2>Admin for DOME Marketplace Onboarding</h2>
+          <!-- Header -->
+          <div class="ui large top hidden menu">
+            <div class="ui container">
+              <div class="item">
+                <h2>Admin for DOME Marketplace Onboarding</h2>
+              </div>
+              <div class="right menu">
+                <div class="item">
+                  <a
+                    @click=${() => {
+        pb.authStore.clear();
+        location = location.href;
+      }}
+                    class="ui primary button"
+                    >Log off</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
 
           <table id="myTable" class="ui celled table">
             <thead>
@@ -135,7 +169,8 @@ MHR.register(
                     <td>${record.organization}</td>
                     <td>${record.organizationIdentifier}</td>
                     <td>
-                    ${record.street} (${record.postalCode} - ${record.city}) ${record.country}
+                      ${record.street} (${record.postalCode} - ${record.city})
+                      ${record.country}
                     </td>
                     <td>${record.learEmail}</td>
                     <td>${record.learFirstName + " " + record.learLastName}</td>
