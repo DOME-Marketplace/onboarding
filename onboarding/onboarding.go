@@ -40,14 +40,23 @@ func New(config *Config) *OnboardServer {
 	if err != nil {
 		panic(err)
 	}
-	config.PrivateKey = privKeyAny.(*ecdsa.PrivateKey)
+
+	// And set into the configuration struct
+	config.privateKey = privKeyAny.(*ecdsa.PrivateKey)
 
 	// Read the LEARCredentialMachine and set in the config struct
 	buf, err := os.ReadFile(config.MachineCredentialFile)
 	if err != nil {
 		panic(err)
 	}
-	config.MachineCredential = string(buf)
+	config.machineCredential = string(buf)
+
+	// Read the SMTP server password and set in the config struct
+	pass, err := os.ReadFile(config.SMTP.PasswordFile)
+	if err != nil {
+		panic(err)
+	}
+	config.SMTP.password = string(pass)
 
 	is := &OnboardServer{}
 
@@ -90,7 +99,7 @@ func (is *OnboardServer) Start() error {
 		pbSettings := se.App.Settings()
 		pbSettings.Meta.AppName = is.config.AppName
 		pbSettings.Meta.AppURL = is.config.ServerURL
-		pbSettings.Logs.MaxDays = 2
+		pbSettings.Logs.MaxDays = 7
 
 		pbSettings.Meta.SenderName = is.config.SenderName
 		pbSettings.Meta.SenderAddress = is.config.SenderAddress
@@ -101,6 +110,10 @@ func (is *OnboardServer) Start() error {
 		pbSettings.SMTP.Port = is.config.SMTP.Port
 		pbSettings.SMTP.TLS = is.config.SMTP.Tls
 		pbSettings.SMTP.Username = is.config.SMTP.Username
+		pbSettings.SMTP.Password = is.config.SMTP.password
+
+		pbSettings.TrustedProxy.Headers = []string{"X-Forwarded-For"}
+		pbSettings.RateLimits.Enabled = true
 
 		// Write the settings to the database
 		err := se.App.Save(pbSettings)
@@ -108,29 +121,6 @@ func (is *OnboardServer) Start() error {
 			return err
 		}
 		log.Println("Running as", pbSettings.Meta.AppName, "in", pbSettings.Meta.AppURL)
-
-		// Create the default admin if needed
-		adminEmail := is.config.AdminEmail
-		if len(adminEmail) == 0 {
-			log.Fatal("Email for server administrator is not specified in the configuration file")
-		}
-
-		// admin, err := dao.FindAdminByEmail(adminEmail)
-		// if err != nil {
-		// 	return err
-		// }
-		// if admin == nil {
-		// 	admin = &models.Admin{}
-		// 	admin.Email = adminEmail
-		// 	admin.SetPassword("1234567890")
-		// 	err = dao.SaveAdmin(admin)
-		// 	if err != nil {
-		// 		return err
-		// 	}
-		// 	log.Println("Default Admin added:", admin.Email)
-		// } else {
-		// 	log.Println("Default Admin already existed:", admin.Email)
-		// }
 
 		// Serves static files from the provided public dir (if exists)
 		fsys := os.DirFS("./docs")

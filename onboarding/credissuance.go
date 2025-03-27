@@ -71,10 +71,10 @@ func LEARIssuanceRequest(config *Config, learCredData *LEARIssuanceRequestBody) 
 	// Get an access token from the Verifier
 	access_token, err := TokenRequest(
 		config.VerifierTokenEndpoint,
-		config.MachineCredential,
+		config.machineCredential,
 		config.MyDidkey,
 		config.VerifierURL,
-		config.PrivateKey,
+		config.privateKey,
 	)
 	if err != nil {
 		return nil, err
