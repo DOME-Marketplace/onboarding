@@ -1815,7 +1815,7 @@ MHR.register(
       document.forms["buyer_onboarding_form"].elements["CompanyPostal"].value =
         "28654";
       document.forms["buyer_onboarding_form"].elements["CompanyCountry"].value =
-        "Spain";
+        "ES";
       document.forms["buyer_onboarding_form"].elements[
         "CompanyOrganizationID"
       ].value = "VATES-B35664875";
@@ -1848,6 +1848,7 @@ MHR.register(
           form[el.name] = "[N/A]";
         }
       });
+      form.CompanyCountry = me("#buyerCompanyCountry").value
       console.log(form);
 
       // Prepare data to be sent to the server. The password is not used, but the server requires it (for the moment)
@@ -2457,15 +2458,39 @@ function CompanyForm(r) {
 
             <p>
               <label><b>Country</b></label>
-              <input
-                name="CompanyCountry"
-                class="w3-input w3-border"
-                type="text"
-                placeholder="Country"
-                value=${r ? r.country : null}
-                ?readonly=${r}
-                required
-              />
+              <select id="buyerCompanyCountry" class="w3-select w3-border" name="CompanyCountry" required value=${r ? r.postalCode : null} ?readonly=${r}>
+                <option value="" disabled selected>Choose the country</option>
+                <option value="AT">Austria</option>
+                <option value="BE">Belgium</option>
+                <option value="BG">Bulgaria</option>
+                <option value="HR">Croatia</option>
+                <option value="CY">Cyprus</option>
+                <option value="CZ">Czech Republic</option>
+                <option value="DK">Denmark</option>
+                <option value="EE">Estonia</option>
+                <option value="FI">Finland</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+                <option value="EL">Greece</option>
+                <option value="HU">Hungary</option>
+                <option value="IS">Iceland</option>
+                <option value="IE">Ireland</option>
+                <option value="IT">Italy</option>
+                <option value="LV">Latvia</option>
+                <option value="LI">Liechtenstein</option>
+                <option value="LT">Lithuania</option>
+                <option value="LU">Luxembourg</option>
+                <option value="MT">Malta</option>
+                <option value="NL">Netherlands</option>
+                <option value="NO">Norway</option>
+                <option value="PL">Poland</option>
+                <option value="PT">Portugal</option>
+                <option value="RO">Romania</option>
+                <option value="SK">Slovakia</option>
+                <option value="SI">Slovenia</option>
+                <option value="ES">Spain</option>
+                <option value="SE">Sweden</option>
+              </select>
             </p>
 
             <p>
