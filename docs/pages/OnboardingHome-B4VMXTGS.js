@@ -619,7 +619,11 @@ MHR.register(
         if (el.value.length > 0) {
           form[el.name] = el.value;
         } else {
-          form[el.name] = "[" + el.name + "]";
+          if (el.name == "LEARIDNumber") {
+            form[el.name] = "";
+          } else {
+            form[el.name] = "[" + el.name + "]";
+          }
         }
       });
       console.log(form);
