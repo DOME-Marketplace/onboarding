@@ -5,6 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Examples",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${file}"
+        },
+        {
+            "name": "iSHARE",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "cmd/ishare/main.go",
+            "cwd": "."
+        },
+
+        {
             "name": "DID",
             "type": "go",
             "request": "launch",
