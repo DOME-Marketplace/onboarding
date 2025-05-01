@@ -51,10 +51,11 @@ func BuildFront(configFile string) {
 	Build(cfg)
 }
 
-func WatchAndBuild(configFile string) {
+func WatchAndBuild(configFile string) error {
 	// Read configuration file
 	cfg := readConfiguration(configFile)
 	watchAndBuild(cfg)
+	return nil
 }
 
 // Build performs a standard Build
