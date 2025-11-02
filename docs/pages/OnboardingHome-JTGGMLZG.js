@@ -104,9 +104,8 @@ MHR.register(
             </div>
             <p class="w3-xlarge">
               The Marketplace is a digital platform that enables Cloud Service Providers (CSPs) to offer
-              cloud and edge computing services to customers across Europe. You
-              can register either as a Provider or as a Customer of the
-              services.
+              cloud and edge computing services to customers across Europe.
+              You can register as a service provider or as a customer.
             </p>
           </div>
           <div class="w3-padding-32"></div>
@@ -232,9 +231,8 @@ MHR.register(
     <div class="bg-cover" style="background-image: url(assets/images/bg_1_shadow.png);">
       <div class="dome-content w3-text-white">
         <div class="text-jumbo blinker-bold w3-padding-top-48">Information for</div>
-        <div class="text-jumbo blinker-bold">Onboarding in DOME.</div>
-        <p class="w3-xlarge">The Marketplace is a digital platform that enables CSPs to offer cloud and edge computing
-          services to customers across Europe. The main goal of the onboarding process is the creation of an operating
+        <div class="text-jumbo blinker-bold">Onboarding in DOME Marketplace</div>
+        <p class="w3-xlarge">The main goal of the onboarding process is the creation of an operating
           account for the CSPs from which they can operate within the Marketplace and start publishing their offerings.
         </p>
       </div>
@@ -321,7 +319,7 @@ MHR.register(
               </span>
             </div>
             <div class="w3-cell w3-cell-top">
-              <div class="w3-xlarge blinker-semibold">You are a legal entity duly registered in an EU country.</div>
+              <div class="w3-xlarge blinker-semibold">You are a legal entity duly registered in an EU country</div>
             </div>
           </div>
 
@@ -332,7 +330,7 @@ MHR.register(
               </span>
             </div>
             <div class="w3-cell w3-cell-middle">
-              <div class="w3-xlarge blinker-semibold">You have the capability to offer cloud or edge services.</div>
+              <div class="w3-xlarge blinker-semibold">You have the capability to offer cloud or edge services</div>
             </div>
           </div>
 
@@ -343,7 +341,7 @@ MHR.register(
               </span>
             </div>
             <div class="w3-cell w3-cell-middle">
-              <div class="w3-xlarge blinker-semibold">The target users of the offerings you publish are other companies or legal entities or professionals, not consumers.</div>
+              <div class="w3-xlarge blinker-semibold">The target users of the offerings you publish are other companies or legal entities or professionals, not consumers</div>
             </div>
           </div>
 
@@ -410,24 +408,24 @@ MHR.register(
                 <div class="w3-panel w3-card-2  w3-light-grey">
       
                   <p><label><b>First Name</b></label>
-                    <input name="LegalRepFirstName" class="w3-input w3-border" type="text" placeholder="First name" required>
+                    <input name="LegalRepFirstName" class="w3-input w3-border" type="text" required>
                   </p>
       
       
                   <p><label><b>Last Name</b></label>
-                    <input name="LegalRepLastName" class="w3-input w3-border" type="text" placeholder="Last name" required>
+                    <input name="LegalRepLastName" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Nationality</b></label>
-                    <input name="LegalRepNationality" class="w3-input w3-border" type="text" placeholder="Nationality" required>
+                    <input name="LegalRepNationality" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>ID card number</b></label>
-                    <input name="LegalRepIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number" required>
+                    <input name="LegalRepIDNumber" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Email</b></label>
-                    <input name="LegalRepEmail" class="w3-input w3-border" type="text" placeholder="Email" required>
+                    <input name="LegalRepEmail" class="w3-input w3-border" type="text" required>
                   </p>
       
                 </div>
@@ -466,7 +464,7 @@ MHR.register(
                 <div class="w3-panel w3-card-2  w3-light-grey">
       
                   <p><label><b>Name</b></label>
-                    <input name="CompanyName" class="w3-input w3-border" type="text" placeholder="Name" required>
+                    <input name="CompanyName" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Street name and number</b></label>
@@ -475,19 +473,19 @@ MHR.register(
                   </p>
       
                   <p><label><b>City</b></label>
-                    <input name="CompanyCity" class="w3-input w3-border" type="text" placeholder="City" required>
+                    <input name="CompanyCity" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Postal code</b></label>
-                    <input name="CompanyPostal" class="w3-input w3-border" type="text" placeholder="Postal code" required>
+                    <input name="CompanyPostal" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Country</b></label>
-                    <input name="CompanyCountry" class="w3-input w3-border" type="text" placeholder="Country" required>
+                    <input name="CompanyCountry" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>VAT number</b></label>
-                    <input name="CompanyVATID" class="w3-input w3-border" type="text" placeholder="VAT number" required>
+                    <input name="CompanyVATID" class="w3-input w3-border" type="text" required>
                   </p>
       
       
@@ -526,31 +524,31 @@ MHR.register(
                 <div class="w3-panel w3-card-2  w3-light-grey">
       
                   <p><label><b>First name</b></label>
-                    <input name="LEARFirstName" class="w3-input w3-border" type="text" placeholder="First name" required>
+                    <input name="LEARFirstName" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Last name</b></label>
-                    <input name="LEARLastName" class="w3-input w3-border" type="text" placeholder="Last name" required>
+                    <input name="LEARLastName" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Nationality</b></label>
-                    <input name="LEARNationality" class="w3-input w3-border" type="text" placeholder="Nationality" required>
+                    <input name="LEARNationality" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>ID card number</b></label>
-                    <input name="LEARIDNumber" class="w3-input w3-border" type="text" placeholder="ID card number">
+                    <input name="LEARIDNumber" class="w3-input w3-border" type="text" >
                   </p>
       
                   <p><label><b>Complete postal professional address</b></label>
-                    <input name="LEARPostalAddress" class="w3-input w3-border" type="text" placeholder="Complete postal professional address" required>
+                    <input name="LEARPostalAddress" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Email</b></label>
-                    <input name="LEAREmail" class="w3-input w3-border" type="text" placeholder="Email" required>
+                    <input name="LEAREmail" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>Mobile phone</b></label>
-                    <input name="LEARMobilePhone" class="w3-input w3-border" type="text" placeholder="Mobile phone">
+                    <input name="LEARMobilePhone" class="w3-input w3-border" type="text">
                   </p>
       
       
@@ -1481,10 +1479,9 @@ MHR.register(
       <!-- Jumbo -->
       <div class="bg-cover" style="background-image: url(assets/images/bg_1_shadow.png);">
         <div class="dome-content w3-container w3-text-white">
-          <div class="text-jumbo blinker-bold w3-padding-top-48">Onboarding in DOME</div>
-          <div class="text-jumbo blinker-bold">as a Buyer of services.</div>
-          <p class="w3-xlarge">The Marketplace is a digital platform that enables Cloud Service Providers (CSPs) to offer cloud and edge computing
-            services to customers across Europe. The main goal of this onboarding process is the creation of an operating
+          <div class="text-jumbo blinker-bold w3-padding-top-48">Onboarding in DOME Marketplace</div>
+          <div class="text-jumbo blinker-bold">as a Buyer of services</div>
+          <p class="w3-xlarge">The main goal of this onboarding process is the creation of an operating
             account for your company so you can start looking for offerings you want to purchase from CSPs through the Marketplace.
           </p>
         </div>
@@ -1508,8 +1505,7 @@ MHR.register(
                     </span>
                   </div>
                   <div class="child padding-right-24">
-                    <p>Provide all the information required in the forms below and
-                      acceptance of the terms and conditions here
+                    <p>Provide all the information required in the forms below and accept the terms and conditions
                       <a target="_blank"
                         href="https://knowledgebase.dome-marketplace.eu/shelves/company-onboarding-process">
                       </a>
@@ -1547,7 +1543,7 @@ MHR.register(
             </div>
 
             <h4>Upon the generation of the LEAR verifiable credential,
-              the company account is complete and you can start operating in the Marketplace.
+              the company account is fully operational and can be used to buy/contract services in the Marketplace
             </h4>
           </div>
 
@@ -1758,12 +1754,11 @@ function LegalRepresentativeForm() {
         <div class="w3-rest w3-container">
           <div class="w3-panel w3-card-2  w3-light-grey">
             <p>
-              <label><b>Name and Surname</b></label>
+              <label><b>Name and surname</b></label>
               <input
                 name="LegalRepCommonName"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Name and Surname"
                 required
               />
             </p>
@@ -1774,7 +1769,6 @@ function LegalRepresentativeForm() {
                 name="LegalRepEmail"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Email"
                 required
               />
             </p>
@@ -1835,7 +1829,7 @@ function TermsAndConditionsForm(records) {
                 name="TermsAndConditions"
                 required
               />
-              <label>I have read and accept the DOME terms and conditions and the DOME MArketplace privacy policy</label>
+              <label>I have read and accept the DOME terms and conditions and the DOME Marketplace privacy policy</label>
             </p>
           </div>
         </div>
@@ -1858,7 +1852,7 @@ function LegalRepresentativeDisplay(r) {
         <div class="w3-rest w3-container">
           <div class="w3-panel w3-card-2  w3-light-grey">
             <p>
-              <label><b>Name and Surname</b></label>
+              <label><b>Name and surname</b></label>
               <input
                 name="LegalRepCommonName"
                 class="w3-input w3-border"
@@ -1902,7 +1896,7 @@ function CompanyDisplay(r) {
         <div class="w3-rest w3-container">
           <div class="w3-panel w3-card-2  w3-light-grey">
             <p>
-              <label><b>Official Name</b></label>
+              <label><b>Official name</b></label>
               <input
                 name="CompanyName"
                 class="w3-input w3-border"
@@ -2128,12 +2122,11 @@ function CompanyForm(r) {
         <div class="w3-rest w3-container">
           <div class="w3-panel w3-card-2  w3-light-grey">
             <p>
-              <label><b>Official Name</b></label>
+              <label><b>Official name</b></label>
               <input
                 name="CompanyName"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Name"
                 value=${r ? r.organization : null}
                 ?readonly=${r}
                 required
@@ -2146,7 +2139,6 @@ function CompanyForm(r) {
                 name="CompanyStreetName"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Street name and number"
                 value=${r ? r.street : null}
                 ?readonly=${r}
                 required
@@ -2159,7 +2151,6 @@ function CompanyForm(r) {
                 name="CompanyCity"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="City"
                 value=${r ? r.city : null}
                 ?readonly=${r}
                 required
@@ -2172,7 +2163,6 @@ function CompanyForm(r) {
                 name="CompanyPostal"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Postal code"
                 value=${r ? r.postalCode : null}
                 ?readonly=${r}
                 required
@@ -2222,7 +2212,6 @@ function CompanyForm(r) {
                 name="CompanyOrganizationID"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="VAT number"
                 value=${r ? r.organizationIdentifier : null}
                 ?readonly=${r}
                 required
@@ -2263,7 +2252,6 @@ function LEARForm(r) {
                 name="LEARFirstName"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="First name"
                 value=${r ? r.learFirstName : null}
                 ?readonly=${r}
                 required
@@ -2276,7 +2264,6 @@ function LEARForm(r) {
                 name="LEARLastName"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Last name"
                 value=${r ? r.learLastName : null}
                 ?readonly=${r}
                 required
@@ -2289,7 +2276,6 @@ function LEARForm(r) {
                 name="LEARNationality"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Nationality"
                 value=${r ? r.learNationality : null}
                 ?readonly=${r}
                 required
@@ -2302,7 +2288,6 @@ function LEARForm(r) {
                 name="LEARIDNumber"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="ID card number"
                 value=${r ? r.learIdcard : null}
                 ?readonly=${r}
               />
@@ -2314,7 +2299,6 @@ function LEARForm(r) {
                 name="LEARPostalAddress"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Complete postal professional address"
                 value=${r ? r.learStreet : null}
                 ?readonly=${r}
                 required
@@ -2327,7 +2311,6 @@ function LEARForm(r) {
                 name="LEAREmail"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Email"
                 value=${r ? r.learEmail : null}
                 ?readonly=${r}
                 required
@@ -2335,12 +2318,11 @@ function LEARForm(r) {
             </p>
 
             <p>
-              <label><b>Mobile phone</b></label>
+              <label><b>Mobile phone (optional)</b></label>
               <input
                 name="LEARMobilePhone"
                 class="w3-input w3-border"
                 type="text"
-                placeholder="Mobile phone"
                 value=${r ? r.learMobile : null}
                 ?readonly=${r}
               />
@@ -2731,23 +2713,21 @@ MHR.register(
                   <div class="w3-rest w3-container">
                     <div class="w3-panel w3-card-2  w3-light-grey">
                       <p>
-                        <label><b>Email to verify</b></label>
+                        <label><b>Verification email</b></label>
                         <input
                           name="LegalRepEmail"
                           class="w3-input w3-border"
                           type="text"
-                          placeholder="Email"
                           value=${email}
                           readonly
                         />
                       </p>
                       <p>
-                        <label><b>Enter the code you received</b></label>
+                        <label><b>Verification code</b></label>
                         <input
                           name="ReceivedOTP"
                           class="w3-input w3-border"
                           type="text"
-                          placeholder="OTP"
                           required
                         />
                       </p>

@@ -79,7 +79,8 @@ func detectBaseDir() (baseDir string, err error) {
 func isDevelopmentMode() bool {
 	// Check for the environment variable or if it's likely "go run"
 	isGoRun := strings.HasPrefix(os.Args[0], os.TempDir())
-	return isGoRun || os.Getenv(devModeEnvVar) == "true"
+	debugger := strings.Contains(os.Args[0], "debug")
+	return isGoRun || os.Getenv(devModeEnvVar) == "true" || debugger
 }
 
 func startServer(rootCfg *Config, isDevMode bool) error {
