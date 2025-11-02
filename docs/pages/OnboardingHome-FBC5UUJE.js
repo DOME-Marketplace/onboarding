@@ -468,8 +468,7 @@ MHR.register(
                   </p>
       
                   <p><label><b>Street name and number</b></label>
-                    <input name="CompanyStreetName" class="w3-input w3-border" type="text"
-                      placeholder="Street name and number" required>
+                    <input name="CompanyStreetName" class="w3-input w3-border" type="text" required>
                   </p>
       
                   <p><label><b>City</b></label>
