@@ -36,6 +36,11 @@ MHR.register(
         gotoPage("BuyerOnboardingForm", null);
         return;
       }
+      if (page == "seller") {
+        debugger;
+        gotoPage("OnboardingForm", null);
+        return;
+      }
       if (page == "buyerotp") {
         gotoPage("BuyerOnboardingOTP", null);
         return;

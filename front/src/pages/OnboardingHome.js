@@ -6,7 +6,7 @@ const MHR = window.MHR;
 import PocketBase from "../components/pocketbase.es.mjs";
 
 console.log("ENVIRONMENT", window.domeEnvironment)
-console.log("BUYER ONBOARDING API",window.onboardServer )
+console.log("BUYER ONBOARDING API", window.onboardServer)
 const pb = new PocketBase(window.onboardServer);
 
 // Copy some globals to make code less verbose
@@ -46,6 +46,11 @@ MHR.register(
       if (page == "buyer") {
         debugger
         gotoPage("BuyerOnboardingForm", null);
+        return;
+      }
+      if (page == "seller") {
+        debugger
+        gotoPage("OnboardingForm", null);
         return;
       }
 
@@ -158,14 +163,14 @@ MHR.register(
                     </li>
                   </ul>
                   <div class="w3-section w3-center">
-                    ${serverAvailable == false 
-                      ? html`
+                    ${serverAvailable == false
+          ? html`
                         <div class="dome-bgcolor w3-round-large blinker-semibold">
                           <div>Temporary unavailable due to maintenance activity.</div>
                           <div>Please try again later.</div>
                         </div>
-                      ` 
-                      : html`
+                      `
+          : html`
                         <button
                           class="w3-btn dome-bgcolor w3-round-large blinker-semibold"
                           title="Submit and create documents"
@@ -585,9 +590,8 @@ MHR.register(
       
           <div class="w3-bar w3-center">
             <button class="w3-btn dome-bgcolor w3-round-large w3-margin-right blinker-semibold" title="Submit and create documents">Submit and create documents</button>
-            <button @click=${
-              this.fillTestData
-            } class="w3-btn dome-color border-2 w3-round-large w3-margin-left blinker-semibold">Fill with test data (only for
+            <button @click=${this.fillTestData
+        } class="w3-btn dome-color border-2 w3-round-large w3-margin-left blinker-semibold">Fill with test data (only for
               testing)</button>
           </div>
       
@@ -2078,17 +2082,17 @@ function TermsAndConditionsForm(records) {
         <div class="w3-rest w3-container">
           <div class="w3-panel w3-card-2  w3-light-grey">
             ${records.map((element) => {
-              debugger;
-              let name = element.name;
-              let fileName = element.file;
-              let description = element.description;
-              let url = pb.files.getURL(element, fileName);
-              return html`
+    debugger;
+    let name = element.name;
+    let fileName = element.file;
+    let description = element.description;
+    let url = pb.files.getURL(element, fileName);
+    return html`
                 <p>
                   <a href=${url}>${description}</a>
                 </p>
               `;
-            })}
+  })}
             <p>
               <input
                 class="w3-check"
@@ -2985,10 +2989,10 @@ MHR.register(
     async enter(pageData) {
       debugger;
       let email = localStorage.getItem("buyerEmail")
-      if (!email) {email = ""}
+      if (!email) { email = "" }
       let otpId = localStorage.getItem("buyerOtpId")
-      if (!otpId) {otpId = ""}
-      
+      if (!otpId) { otpId = "" }
+
       var theHtml = html`
         <!-- Header -->
         <div class="dome-header">
@@ -3102,24 +3106,24 @@ MHR.register(
                   style="width:30%"
                   title="Request another code"
                   @click=${async () => {
-                    // Request an OTP
-                    try {
-                      const record = await pb.collection("buyers").requestOTP(email);
-                      console.log(record);
-                      localStorage.setItem("buyerEmail", email);
-                      localStorage.setItem("buyerOtpId", record.otpId)
-                      alert("A new code has been sent to your email.")
-                      loadPage("buyerotp");
-                      return;
-                    } catch (error) {
-                      myerror(error);
-                      gotoPage("MessagePage", {
-                        title: "Error in registration",
-                        msg: error.message,
-                      });
-                      return;
-                    }
-                  }}
+          // Request an OTP
+          try {
+            const record = await pb.collection("buyers").requestOTP(email);
+            console.log(record);
+            localStorage.setItem("buyerEmail", email);
+            localStorage.setItem("buyerOtpId", record.otpId)
+            alert("A new code has been sent to your email.")
+            loadPage("buyerotp");
+            return;
+          } catch (error) {
+            myerror(error);
+            gotoPage("MessagePage", {
+              title: "Error in registration",
+              msg: error.message,
+            });
+            return;
+          }
+        }}
                 >
                   Request another code
                 </div>
@@ -3171,7 +3175,7 @@ MHR.register(
         });
         return;
       }
-      
+
     }
   }
 );
