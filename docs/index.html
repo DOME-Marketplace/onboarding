@@ -47,9 +47,10 @@
         };
 
         // Send the user to the PRE instance if coming from SBX or DEV2, or invoking directly
-        if (document.referrer.startsWith("https://dome-marketplace-sbx.org") ||
-            document.referrer.startsWith("https://dome-marketplace-dev2.org")) {
-            window.location = window.location.origin + "/index_pre.html"
+        debugger
+        if (document.referrer.includes("dome-marketplace-sbx.org") ||
+            document.referrer.includes("dome-marketplace-dev2.org")) {
+            window.location = "https://onboard.sbx.evidenceledger.eu"
         }
         if (document.location.hostname == "onboardpre.dome.mycredential.eu") {
             window.location = window.location.origin + "/index_pre.html"
