@@ -50,7 +50,14 @@
         debugger
         if (document.referrer.includes("dome-marketplace-sbx.org") ||
             document.referrer.includes("dome-marketplace-dev2.org")) {
-            window.location = "https://onboard.sbx.evidenceledger.eu"
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("page") === "seller") {
+                window.location = "https://onboard.sbx.evidenceledger.eu/register-customer";
+            } else if (params.get("page") === "buyer") {
+                window.location = "https://onboard.sbx.evidenceledger.eu/register-provider";
+            } else {
+                window.location = "https://onboard.sbx.evidenceledger.eu";
+            }
         }
         if (document.location.hostname == "onboardpre.dome.mycredential.eu") {
             window.location = window.location.origin + "/index_pre.html"
