@@ -49,6 +49,7 @@
         // Send the user to the PRE instance if coming from SBX or DEV2, or invoking directly
         debugger
 
+        const params = new URLSearchParams(window.location.search);
 
         if (params.get("page") === "seller") {
             console.log("seller")
@@ -64,7 +65,6 @@
 
         if (document.referrer.includes("dome-marketplace-sbx.org") ||
             document.referrer.includes("dome-marketplace-dev2.org")) {
-            const params = new URLSearchParams(window.location.search);
             if (params.get("page") === "seller") {
                 window.location = "https://onboard.sbx.evidenceledger.eu/register-provider";
             } else if (params.get("page") === "buyer") {
