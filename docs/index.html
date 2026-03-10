@@ -47,15 +47,17 @@
         };
 
         // Send the user to the PRE instance if coming from SBX or DEV2, or invoking directly
-        alert("hello")
         debugger
 
 
         if (params.get("page") === "seller") {
+            console.log("seller")
             window.location = "https://onboard.sbx.evidenceledger.eu/register-provider";
         } else if (params.get("page") === "buyer") {
+            console.log("buyer")
             window.location = "https://onboard.sbx.evidenceledger.eu/register-customer";
         } else {
+            console.log("home")
             window.location = "https://onboard.sbx.evidenceledger.eu";
         }
 
