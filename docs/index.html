@@ -1,140 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-
-    <script src="css-scope-inline.js"></script>
-    <script src="surreal.js"></script>
-    <script src="validate.js"></script>
-    <link rel="stylesheet" href="w3.css" />
-    <link rel="stylesheet" href="dome.css" />
-    <link rel="stylesheet" href="print.css" media="print" />
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=check_circle,counter_1,counter_2,counter_3" />
-
-
-    <script>
-
-        // Set here the default home page for the app, before loading app.js
-        window.homePage = "OnboardingHome"
-        window.myAppTitle = "DOME Onboarding"
-        // Configure the menu items, with entries like:
-        //    {page:"NameOfPage", text:"Text in menu item", params: object to pass to page}
-        window.menuItems = [
-            { page: "OnboardingHome", text: "Home", params: "" },
-            { page: "LogsPage", text: "Show technical logs" },
-            { page: "ConfirmResetApp", text: "Reset application" }
-        ]
-        // The page mapping
-        window.pageModules = {
-  "AdminHome": "/pages/AdminHome-DYW4SUNL.js",
-  "ConfirmResetApp": "/pages/ConfirmResetApp-NNGCVBX3.js",
-  "LogsPage": "/pages/LogsPage-WCWKZ36U.js",
-  "MenuPage": "/pages/MenuPage-A455MOK2.js",
-  "OnboardingHome": "/pages/OnboardingHome-BMPWHTCE.js",
-  "SWNotify": "/pages/SWNotify-56JYMAB6.js",
-  "SelectCamera": "/pages/SelectCamera-RGTDG2GV.js"
-}
-
-        window.Ionic = {
-            config: {
-                mode: 'ios',
-            },
-        };
-
-        // Send the user to the PRE instance if coming from SBX or DEV2, or invoking directly
-        debugger
-
-        const params = new URLSearchParams(window.location.search);
-
-        if (document.referrer.includes("dome-marketplace-sbx.org") ||
-            document.referrer.includes("dome-marketplace-dev2.org")) {
-            if (params.get("page") === "seller") {
-                window.location = "https://sbx.onboard.dome-marketplace.eu/register-provider";
-            } else if (params.get("page") === "buyer") {
-                window.location = "https://sbx.onboard.dome-marketplace.eu/register-customer";
-            }
-        }
-
-        if (document.location.hostname == "onboardpre.dome.mycredential.eu") {
-            window.location = window.location.origin + "/index_pre.html"
-        }
-        if (document.location.hostname == "onboarddev.dome.mycredential.eu") {
-            window.location = window.location.origin + "/index_dev.html"
-        }
-
-        // In all other cases, it is PRO
-        window.onboardServer = "https://onboard.dome.mycredential.eu"
-        window.domeHome = "https://dome-marketplace.eu"
-        window.domeEnvironment = "production"
-
-        console.log("Onboard API server", window.onboardServer)
-        console.log("DOME home page", window.domeHome)
-
-    </script>
-
-    <!-- Load the application -->
-    <!-- <link rel="stylesheet" href="." /> -->
-    <script type="module" src="app-AVJVGIFX.js"></script>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="DOME Onboarding" />
-    <meta name="theme-color" content="#919597">
-    <title>DOME Onboarding</title>
-    <meta itemprop="name" content="DOME Onboarding">
-    <meta itemprop="description" content="DOME Onboarding">
-    <!-- Facebook Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="DOME Onboarding">
-    <meta property="og:description" content="DOME Onboarding process">
-    <!-- <link rel="manifest" href="./manifest.webmanifest"> -->
-
-    <link rel="icon" type="image/x-icon" href="assets/logos/dome_logo.png">
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="DOME Onboarding" />
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <link href="prism.css" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: "Roboto";
-            src: url("./fonts/Roboto-Regular.ttf") format("truetype");
-        }
-
-        @font-face {
-            font-family: "Roboto";
-            src: url("./fonts/Roboto-Medium.ttf") format("truetype");
-            font-weight: 450 500;
-        }
-    </style>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 1,
-                'wght' 500,
-                'GRAD' 0,
-                'opsz' 40
-        }
-    </style>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOME Marketplace - The Trusted European Ecosystem</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 
-<body>
+<body class="bg-[#020617] text-white overflow-x-hidden">
+    <!-- Navbar -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 px-6 py-5 flex items-center justify-between border-b border-white/5 backdrop-blur-xl bg-[#020617]/40">
+        <div class="flex items-center gap-10">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="relative w-9 h-9 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-blue-500 blur-md opacity-20"></div>
+                    <svg viewBox="0 0 24 24" class="w-full h-full text-blue-500 fill-current"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
+                    </svg>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl font-bold tracking-tight uppercase font-display">Dome</span>
+                    <span class="text-[7px] text-slate-400 uppercase tracking-widest font-semibold mt-0.5">Distributed
+                        Open Marketplace For Europe</span>
+                </div>
+            </div>
 
-    <header></header>
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">For
+                    Customers</a>
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">For
+                    Providers</a>
+                <div
+                    class="flex items-center gap-1 text-sm font-medium text-slate-300 hover:text-white cursor-pointer transition-colors">
+                    Marketplace
+                    <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Resources</a>
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Blog</a>
+            </div>
+        </div>
 
-    <main></main>
+        <div class="flex items-center gap-4">
+            <a href="#"
+                class="hidden md:block px-5 py-2.5 text-sm font-semibold text-slate-200 border border-white/10 rounded-lg hover:bg-white/5 transition-all">
+                Contact us
+            </a>
+            <a href="#"
+                class="px-7 py-2.5 text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-all shadow-lg shadow-blue-500/25">
+                Login
+            </a>
+        </div>
+    </nav>
 
-    <footer></footer>
+    <!-- Hero Section -->
+    <main class="relative min-h-[95vh] flex flex-col items-center justify-center text-center px-6 pt-20">
+        <!-- Glow & Arc Effects (CSS Only) -->
+        <div class="hero-glow"></div>
+        <div class="hero-arc"></div>
 
-    <script src="prism.js"></script>
+        <div class="max-w-4xl z-10">
 
+            <h1 class="text-[2.75rem] md:text-[5rem] font-bold font-display leading-[1.05] tracking-tight mb-8">
+                The Trusted <span class="text-blue-500">European</span><br>
+                Ecosystem for Cloud,<br>
+                Edge & AI Services.
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-12">
+                Connecting providers and customers to discover, deliver and scale sovereign digital services across
+                Europe.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="#"
+                    class="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-all shadow-xl shadow-blue-600/30">
+                    Start your customer journey
+                </a>
+                <a href="#"
+                    class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold rounded-lg transition-all">
+                    Start your provider journey
+                </a>
+            </div>
+        </div>
+
+        <!-- Subtle bottom planet-like glow -->
+        <div
+            class="absolute bottom-0 w-full h-[30%] bg-gradient-to-t from-blue-500/10 to-transparent pointer-events-none">
+        </div>
+    </main>
 </body>
 
 </html>
